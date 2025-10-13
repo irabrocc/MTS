@@ -1,0 +1,148 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{0}
+
+\chapter{Metric Spaces}
+\label{chap:chapter1}
+
+\begin{definition}
+    A \emph{metric space} is a set $X$ with a function $d: X \times X \to \mathbb{R}_{\ge 0}$($d$ is the metric, or the distance function) satisfying the following properties for all $x, y, z \in X$: 
+    \begin{itemize}
+    \item \textbf{Non-negativity:} $d(x, y) \ge 0$ and $d(x, y) = 0$ if and only if $x = y$.
+    \item \textbf{Symmetry:} $d(x, y) = d(y, x)$.
+    \item \textbf{Triangle inequality:} $d(x, z) \le d(x, y) + d(y, z)$. 
+\end{itemize}
+\end{definition}
+
+\begin{example}
+    $X = \mathbb{R}$, $d(x, y) = \|x - y\|$ 
+\end{example}
+
+\begin{example}
+    $X$ is finite, $d(x, y) = 1$ if $x \neq y$, $d(x, x) = 0$ (discrete metric)
+\end{example}
+
+\begin{example}
+    $X$ is a finite set of vertices of a connected graph, $d(x, y)$ is the length of the shortest path between $x$ and $y$ (graph metric)
+\end{example}
+
+\begin{example}
+    $X = \mathbb{R}^n$, $d(x, y) = \|x - y\|$ (Euclidean metric) 
+\end{example}
+
+\begin{example}
+    $X = \mathbb{R}^n$, $d(x, y) = \sum_{i=1}^n |x_i - y_i|$ (manhattan metric)
+\end{example}
+
+\begin{example}
+    $X = \mathbb{R}^n$, $d(x, y) = \max_{1 \le i \le n} |x_i - y_i|$ (sup metric)
+\end{example}
+
+\par \noindent \textbf{Exercise} Prove that the above examples are indeed metric spaces(You may use Cauchy-Schwarz inequality which is stated later). 
+
+\begin{example}
+    $X = \mathbb{R}^2$, $P = (x, y), P' = (x', y')$ \[ d(P, P') = \begin{cases} 
+    |x - x'| + |y| + |y'|   &  \text{if } x \neq x' \\
+    |y - y'|   &  \text{if } x = x'  
+   \end{cases}
+\]
+\end{example}
+
+\begin{example}
+    $X = C[0, 1]$ (the set of continuous functions on $[0, 1]$), $d(f, g) = \max_{x \in [0, 1]} |f(x) - g(x)|$ (sup metric) 
+\end{example}
+
+\begin{example}
+    $X = C[0, 1]$, $d(f, g) = \int_0^1 |f(x) - g(x)| dx$ ($L^1$ metric)
+\end{example}
+
+\par \noindent \textbf{Remark} We cannot replace $X$ by the set of all integrable functions, because the distance between two functions may be zero even if they are not equal (they may differ on a set of measure zero). 
+
+\begin{definition}[Normed Space]
+    Let $V$ be a vector space over $\mathbb{R}$. A \emph{norm} on $V$ is a function $\|\cdot\|: V \to \mathbb{R}_{\ge 0}$ satisfying the following properties for all $u, v \in V$ and all $a \in \mathbb{R}$:  
+\begin{itemize}
+    \item \textbf{Non-negativity:} $\|v\| \ge 0$ and $\|v\| = 0$ if and only if $v = 0$.
+    \item \textbf{Absolute homogeneity:} $\|av\| = |a|\|v\|$.
+    \item \textbf{Triangle inequality:} $\|u + v\| \le \|u\| + \|v\|$.
+\end{itemize} 
+\end{definition}
+
+\par \noindent \textbf{Remark} A norm defines a metric by $d(u, v) = \|u - v\|$ on $V$. 
+
+\begin{example}
+    $\|v\| = \sqrt{\sum_{i=1}^n |v_i|^2}$ (Euclidean norm) 
+\end{example}
+\begin{example}
+    $\|v\| = \sum_{i=1}^n |v_i|$ (manhattan norm)
+\end{example}
+\begin{example}
+    $\|v\| = \max_{1 \le i \le n} |v_i|$ (sup norm)
+\end{example}
+
+\begin{example}
+    $V = C[0, 1]$, $\|f\| = \max_{x \in [0, 1]} |f(x)|$ (sup norm) 
+\end{example}
+
+\begin{example}
+    $V = C[0, 1]$, $\|f\| = \int_0^1 |f(x)| dx$ ($L^1$ norm) 
+\end{example}
+
+\begin{definition}
+    [$l_p$-Spaces]
+    Let $1 \le p < \infty$. 
+\begin{itemize}
+    \item $l_{\infty} = \{x = (x_1, x_2, \ldots) : \sup_i |x_i| < \infty\}$ with norm $\|x\|_{\infty} = \sup_i |x_i|$.
+    \item $l_1 = \{x = (x_1, x_2, \ldots) : \sum_i |x_i| < \infty\}$ with norm $\|x\|_1 = \sum_i |x_i|$. 
+    \item $l_2 = \{x = (x_1, x_2, \ldots) : \sum_i |x_i|^2 < \infty\}$ with norm $\|x\|_2 = \sqrt{\sum_i |x_i|^2}$.
+    \item $l_p = \{x = (x_1, x_2, \ldots) : \sum_i |x_i|^p < \infty\}$ with norm $\|x\|_p = (\sum_i |x_i|^p)^{1/p}$.
+\end{itemize}
+\end{definition}
+
+\begin{property}
+$l_p \subseteq l_q$ if $p < q$ 
+\end{property}
+
+\begin{example}
+    $x_n = \dfrac{1}{n}$. $\sum_{1}^{\infty} \dfrac{1}{n} = \infty$ but $\sum_{1}^{\infty} \dfrac{1}{n^2} < \infty$. So $x = (1, \dfrac{1}{2}, \dfrac{1}{3}, \ldots) \in l_2$ but $x \notin l_1$. 
+\end{example}
+
+\begin{definition}
+    [Euclidean Space/Vector Space with Inner Product]
+    Let $V$ be a vector space over $\mathbb{R}$. An \emph{inner product} on $V$ is a function $\langle \cdot, \cdot \rangle: V \times V \to \mathbb{R}$ satisfying the following properties for all $u, v, w \in V$ and all $a \in \mathbb{R}$:
+\begin{itemize}
+    \item \textbf{Positivity:} $\langle v, v \rangle \ge 0$ and $\langle v, v \rangle = 0$ if and only if $v = 0$.
+    \item \textbf{Symmetry:} $\langle u, v \rangle = \langle v, u \rangle$.
+    \item \textbf{Bilinearity:} $\langle au + w, v \rangle = a\langle u, v \rangle + \langle w, v \rangle$. 
+\end{itemize}
+\end{definition}
+\par \noindent \textbf{Remark. } We always use Euclidean Space as the default example of inner product space.
+
+\begin{theorem}
+    [Cauchy-Schwarz Inequality]
+    For all $u, v \in V$, $|\langle u, v \rangle| \le \|u\|\|v\|$.
+\end{theorem}
+\par \noindent \textbf{Proof} Let $f(t) = \|u + tv\|^2 = \langle u + tv, u + tv \rangle$. Then using the properties of quadratic polynomials. 
+\\ \null \hfill $\blacksquare$ \
+\begin{property}
+    $\|v\| = \sqrt{\langle v, v \rangle}$ is a norm on $V$. 
+\end{property}
+
+\par \noindent \textbf{Proof. } Use Cauchy-Schwarz inequality: $|\langle u, v \rangle| \le \|u\|\|v\|$.
+\\ \null \hfill $\blacksquare$ 
+\begin{corollary}
+    $l_2$-norm satisfies the triangle inequality. 
+\end{corollary}
+
+\par \noindent \textbf{Proof. } $l_2$ is an Euclidean Space(infinite dimenstions) with $\langle x, y \rangle = \sum_i x_i y_i$ and $\|x\|_2 = \sqrt{\sum_i |x_i|^2}$. 
+\\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Remark. } $\|x\|_p$ does not come from an inner product if $p \neq 2$. 
+
+\begin{theorem}
+    $l_p$ are normed spaces. 
+\end{theorem}
+\par \noindent \textbf{Proof. } This will be proved later in the course. 
+
+\end{document}
