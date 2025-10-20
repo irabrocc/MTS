@@ -1,0 +1,110 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{1}
+
+\chapter{Later}
+\label{chap:chapter1}
+
+\begin{definition}
+    For $p>1, q>1$. $p$ is conjugate to $q$ if $\frac{1}{p} + \frac{1}{q} = 1$.
+\end{definition}
+\par \noindent \textbf{Remark} When $p = 1$, $q = \infty$; when $p = \infty$, $q = 1$. And $2$ is conjugate to itself. 
+\begin{theorem}
+    [Young's inequality]
+    \begin{equation}
+        ab \le \dfrac{a^p}{p} + \frac{b^q}{q}, \quad \text{where } \frac{1}{p} + \frac{1}{q} = 1 
+    \end{equation}
+\end{theorem}
+\par \noindent \textbf{Proof} $\ln(x)$ is concave, just use Jensen's inequality.
+
+\begin{theorem}
+    [Hölder's inequality]
+    For $p, q \ge 1$ with $\frac{1}{p} + \frac{1}{q} = 1$, for any $a = (a_i)\in l_p, b = (b_i) \in l_q$ respectively, we have \[ \sum_{k=1}^{\infty} a_k b_k \le \sqrt[\frac{1}{p}]{\sum a_k^p} \sqrt[\frac{1}{q}]{\sum b_k^q}  \]
+\end{theorem}
+\par \noindent \textbf{Proof} 
+
+\begin{theorem}
+    [Minkowski inequality]
+    For $p \ge 1$, for any $x, y \in l_p$, we have \[ \|x + y\|_p \le \|x\|_p + \|y\|_p. \]
+\end{theorem}
+\par \noindent \textbf{Proof}  
+\par Let us first show that for $x = (x_i), y = (y_i) \in l_p$, we have \[ \sqrt[\frac{1}{p}]{|x_k + y_k|^p} \le \sqrt[\frac{1}{p}]{|x_k|^p} + \sqrt[\frac{1}{p}]{|y_k|^p} \] 
+\par For every summand, we have 
+\begin{align*}
+    |x_k + y_k|^p & = |x_k + y_k| \cdot |x_k + y_k|^{p-1} \\
+    & \le |x_k| \cdot |x_k + y_k|^{p-1} + |y_k| \cdot |x_k + y_k|^{p-1} \\
+\end{align*}
+So we have 
+\begin{equation}
+    \sum_{k=1}^{n} |x_k + y_k|^p \le \sum_{k=1}^{n} |x_k| \cdot |x_k + y_k|^{p-1} + \sum_{k=1}^{n} |y_k| \cdot |x_k + y_k|^{p-1}
+\end{equation}
+\par Let $a_k = |x_k|, b_k = |x_k + y_k|^{p-1}$, then $b_k^q = |x_k + y_k|^p$. By Hölder's inequality, we have 
+\[
+    \sum_{k=1}^{n} |x_k| \cdot |x_k + y_k|^{p-1} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
+\]
+\par On the other hand, let $a_k = |y_k|, b_k = |x_k + y_k|^{p-1}$, we have
+\[
+    \sum_{k=1}^{n} |y_k| \cdot |x_k + y_k|^{p-1} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p} \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
+\]
+\par Combining these two inequalities, we have
+\begin{equation}
+    \sum_{k=1}^{n} |x_k + y_k|^p \le \left( \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} + \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p} \right) \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
+\end{equation}
+\par Dividing both sides by $\sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}$, we have
+\begin{equation}
+    \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k + y_k|^p} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} + \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p}
+\end{equation}
+\par Taking limit $n \to \infty$, we have the desired result.
+\\ \null \hfill $\blacksquare$ 
+
+\par Let $X$ be a metric space. Let $x\in X$. We have the following definitions.
+\begin{definition}
+    We define a neighborhood of $x$ to be a set of the form \[ U_{\epsilon} (x) = \{y \in X | d(x, y) < \epsilon \} \] for some $\epsilon > 0$.
+\end{definition}
+\begin{definition}
+    We define a punctured neighborhood of $x$ to be a set of the form \[ U_{\epsilon}^{\ast} (x) = \{y \in X | 0 < d(x, y) < \epsilon \} = U_{\epsilon} (x) \setminus \{x\} \] for some $\epsilon > 0$. 
+\end{definition}
+
+\begin{definition}
+    We say that $M \subseteq X$ is open in $X$ if for every $x \in M$, there exists $\epsilon > 0$ such that $U_{\epsilon} (x) \subseteq M$.
+\end{definition}
+\par \noindent \textbf{Remark} $\emptyset, X$ are open in $X$ by definition. 
+
+\begin{example}
+    Is it possible that in a metric space $X$, a ball is contained properly inside a ball with smaller radius? That is, is there $x \in X$ and $0 < r < s$ such that $U_s (x) \subsetneq U_r (x)$?
+    [Hint: If $Y \subseteq X$ and $(X, d)$ is a metric space, then $(Y, d)$ is also a metric space. ]
+\end{example}
+
+\par \noindent \textbf{Solution} Yes. Let $X = (-1, 1)$ with the usual metric. Then $U_{\frac{3}{2}} (\dfrac{4}{3}) = (-\frac{4}{3}, 1) \subsetneq U_1 (0) = (-1, 1)$. 
+
+\begin{example}
+    Draw balls centered at $0$ in $\mathbb{R}^2$ with norms $\|\cdot\|_1, \|\cdot\|_2, \|\cdot\|_{\infty}$. 
+\end{example}
+
+\begin{example} 
+    "Amazon Metric" on $\mathbb{R}^2$ is given by 
+    \[d((x_1, y_1), (x_2, y_2)) = \begin{cases}
+    |y_1 - y_2|   &  \text{if } x_1 = x_2  \\
+    |y_1| + |x_1 - x_2| + |y_2|   &  \text{if } x_1 \neq x_2
+   \end{cases}\] 
+\end{example}
+
+\par We will solve these problems later in the course.
+
+\begin{theorem} 
+    \begin{enumerate}
+        \item The intersection of finitely many open sets is open, that is, $U_1 \cap U_2 \cap \cdots \cap U_n$ is open where each $U_i$ is open in $X$. 
+        \item The union of any collection of open sets is open, that is, if $\{U_i\}_{i \in I}$ is a collection of open sets in $X$, then $\bigcup_{i \in I} U_i$ is open.
+    \end{enumerate}
+\end{theorem}
+
+\par \noindent \textbf{Proof to 1.} 
+\par If $V = U_1 \cap U_2 \cap \cdots \cap U_n = \emptyset$, then $V$ is open by definition.
+\par If $V \neq \emptyset$, let $x \in V$. Since $x \in U_i$ for each $i = 1, 2, \ldots, n$, there exists $\epsilon_i > 0$ such that $U_{\epsilon_i} (x) \subseteq U_i$. Let $\epsilon = \min\{\epsilon_1, \epsilon_2, \ldots, \epsilon_n\}$. Then $U_{\epsilon} (x) \subseteq U_i$ for each $i$, so $U_{\epsilon} (x) \subseteq V$. Thus, $V$ is open.
+\par \noindent \textbf{Proof to 2.}
+\par Let $x \in U = \bigcup_{i \in I} U_i$. Then there exists some $j \in I$ such that $x \in U_j$. Since $U_j$ is open, there exists $\epsilon > 0$ such that $U_{\epsilon} (x) \subseteq U_j \subseteq U$. Thus, $U$ is open. 
+
+\end{document}

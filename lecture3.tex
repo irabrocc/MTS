@@ -1,0 +1,119 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{2}
+
+\chapter{Later}
+\label{chap:chapter1}
+
+\begin{definition}
+    $x\in M$ is an interior point of $M$ if there exists $\epsilon > 0$ such that $U_{\epsilon} (x) \subseteq M$. (We denote $Int(M)$ as the set of all interior points of $M$.)
+\end{definition}
+
+\begin{definition}
+    $M$ is open if $M = Int(M)$. 
+\end{definition}
+\begin{theorem}
+    $U \subseteq \mathbb{R}$ is open $\Longleftrightarrow$ $U$ is a union of at most countably many disjoint open intervals.
+\end{theorem}
+\begin{example}
+    [discrete metric]
+    Let $(X, d)$ be a metric space where \[ d(x, y) = \begin{cases} 0, & x = y \\ 1, & x \ne y \end{cases} \] for all $x, y \in X$. Then every subset of $X$ is open(e.g. a set of a single point, its neighborhood has radius smaller than 1).
+\end{example}
+\par \noindent \textbf{Remark} In $\mathbb{R}^n$, any "reasonable" set of strict inequalities defines an open set. For example, $\{x\in \mathbb{R}^n| x_1 > 0\}$ or $\{(x, y)\in \mathbb{R}^2| 2x > y, y^2 + y > 3x^2 -2\}$ are open. Another example: $X = \mathbb{R}^{n^2} \backsimeq  Mat(n)$. Then the set $\{A \subseteq Mat(n)| det(A) \neq 0\}$ is open where $A$ is non-degenerate. Let 
+\begin{equation}
+    A = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn}
+    \end{pmatrix}, \quad det(A) \neq 0
+\end{equation}
+Metric on $Mat(n)$ is defined: $||A|| = \max(|a_{ij}|)$. Then we have 
+\begin{equation}
+    \begin{split}
+        U_{\epsilon} (A) & = \{B \in Mat(n) | ||A - B|| < \epsilon \}\\
+         & = \{B \in Mat(n) | \max(|a_{ij} - b_{ij}|) < \epsilon \}\\ 
+         & = \{\begin{pmatrix}
+    a_{11}+ \epsilon_{11} & a_{12} + \epsilon_{12} & \cdots & a_{1n} + \epsilon_{1n} \\
+    a_{21}+ \epsilon_{21} & a_{22} + \epsilon_{22} & \cdots & a_{2n} + \epsilon_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1}+ \epsilon_{n1} & a_{n2} + \epsilon_{n2} & \cdots & a_{nn} + \epsilon_{nn}
+    \end{pmatrix}| \epsilon_{ij} < \epsilon\}
+    \end{split}
+\end{equation}
+
+\par Then we have 
+\begin{equation}
+    det(B) = \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i=1}^{n} (a_{i \sigma(i)} + \epsilon_{i \sigma(i)})
+\end{equation}
+\par Let $\epsilon$ be small enough such that $\epsilon < ||A||$. Then We can estimate one summand of $det(B)$ as follows:
+\begin{equation}
+    |(a_{11} + \epsilon_{11})(a_{12} + \epsilon_{12}) \cdots (a_{1n} + \epsilon_{1n}) - a_{11} a_{12} \cdots a_{1n}| < ||A||^{n-1} \cdot (2^n - 1) \epsilon
+\end{equation}
+\par Sum up all estimates, we have 
+\begin{equation}
+    |det(A) - det(B)| < n! ||A||^{n-1} \cdot (2^n - 1) \epsilon 
+\end{equation}
+\par Taking $\epsilon$ small enough such that 
+\begin{equation}
+    n! ||A||^{n-1} \cdot (2^n - 1) \epsilon < |det(A)|
+\end{equation}
+ensures that $det(B) > 0$. Thus, $U_{\epsilon} (A) \subseteq \{A \in Mat(n)| det(A) \neq 0\}$. So $\{A \in Mat(n)| det(A) \neq 0\}$ is open. 
+\\ \null \hfill $\blacksquare$ 
+\begin{definition}
+    A point $x\in X$ (not neccessarily in $M$) is a limit point of $M$ if for every $\epsilon > 0$, the punctured neighborhood $U_{\epsilon}^{\ast} (x)$ contains a point of $M$($U_{\epsilon}^*(x) \cap M \neq \emptyset$) or (the neighborhood $U_{\epsilon}(x)$ contains infinitely many points of $M$).
+\end{definition}
+
+\begin{definition}
+    $x\in M$ is isolated if $\exists \epsilon > 0$ such that $U_{\epsilon} (x) \cap M = \{x\}$.
+\end{definition}
+
+\begin{definition}
+    The closure of $M$, denoted by $\overline{M}$, is the union of the set of all limit points of $M$ and $M$ itself.
+\end{definition}
+\begin{definition}
+    A set $M$ is closed if $M$ contains all its limit points. 
+\end{definition}
+\begin{property}
+    $M = \overline{M} \Longleftrightarrow M \text{ is closed}$
+\end{property}
+\par \noindent \textbf{Exercise} Show that for any $M \subseteq X$, we have $\overline{M} = \overline{\overline{M}}$. 
+\begin{property}
+    If $M$ is open in $X$, then $CM = X \setminus M$ is closed in $X$. Conversely, if $M$ is closed in $X$, then $CM$ is open in $X$.
+\end{property}
+\par \noindent \textbf{Exercise} Prove the above property. 
+
+\begin{property}
+    $M \subseteq X$ is closed $\Longleftrightarrow$ $\forall y\in X\setminus M, \exists \epsilon > 0$ such that $U_{\epsilon} (y) \cap M = \emptyset$. (any point can be seperated from $M$). 
+\end{property}
+\par \noindent \textbf{Proof} Suppose $\exists y \in X\setminus M$ that cannot be seperated from $M$. Then $\forall \epsilon > 0, U_{\epsilon} ^(y) \cap M \neq \emptyset$. But $y\notin M$, so $U_{\epsilon}^{\ast} (y) \cap M \neq \emptyset$. So $y$ is a limit point of $M$ which implies that $y\in \overline{M}$. Since $M$ is closed, we have a contradiction. 
+\par Suppose every $y\in X\setminus M$ can be seperated from $M$. Let $x$ be a limit point of $M$. If $x \notin M$, then by assumption, there exists $\epsilon > 0$ such that $U_{\epsilon} (x) \cap M = \emptyset$. This contradicts the definition of limit point. 
+
+\begin{example}
+    We will see that $\{det(A) = 0\}$ is closed in $Mat(n)$. So every matrix with $det(A) \neq 0$ can be seperated from the set $\{det(A)  = 0\}$.
+\end{example}
+\begin{definition}
+    The function $f: X_1 \rightarrow X_2$ between two metric spaces $(X_1, d_1), (X_2, d_2)$ is continuous if for every $x$, $\forall \epsilon > 0, \exists \delta > 0$ such that $\forall x' \in X_1$ with $d_1 (x, x') < \delta$, we have $d_2 (f(x), f(x')) < \epsilon$. 
+\end{definition}
+\begin{definition}
+    [Alternative definition of continuity]
+    The function $f: X_1 \rightarrow X_2$ between two metric spaces $(X_1, d_1), (X_2, d_2)$ is continuous if for every open set $U \subseteq X_2$, the preimage $f^{-1} (U) = \{x \in X_1 | f(x) \in U\}$ is open in $X_1$.
+\end{definition}
+\begin{theorem}
+    The two definitions of continuity are equivalent.
+\end{theorem}
+
+\par \noindent \textbf{Proof} Let $f: X_1 \rightarrow X_2$ be continuous in the first definition. Let $U \subseteq X_2$ be open. Let $x \in f^{-1} (U)$. Then $f(x) \in U$. Since $U$ is open, there exists $\epsilon > 0$ such that $U_{\epsilon} (f(x)) \subseteq U$. By continuity of $f$, there exists $\delta > 0$ such that $\forall x' \in X_1$ with $d_1 (x, x') < \delta$, we have $d_2 (f(x), f(x')) < \epsilon$, i.e. $f(x') \in U_{\epsilon} (f(x)) \subseteq U$. Thus, $x' \in f^{-1} (U)$. So we have $U_{\delta} (x) \subseteq f^{-1} (U)$. Thus, $f^{-1} (U)$ is open in $X_1$. 
+\par Let $f: X_1 \rightarrow X_2$ be continuous in the second definition. Let $x \in X_1$. Let $\epsilon > 0$. Consider the open set $U_{\epsilon} (f(x)) \subseteq X_2$. By continuity of $f$, the preimage $f^{-1} (U_{\epsilon} (f(x)))$ is open in $X_1$. Since $x \in f^{-1} (U_{\epsilon} (f(x)))$, there exists $\delta > 0$ such that $U_{\delta} (x) \subseteq f^{-1} (U_{\epsilon} (f(x)))$. Thus, for every $x' \in X_1$ with $d_1 (x, x') < \delta$, we have $f(x') \in U_{\epsilon} (f(x))$, i.e. $d_2 (f(x), f(x')) < \epsilon$. Thus, $f$ is continuous in the first definition.
+\par \noindent \textbf{Question} Suppose $f: X \rightarrow Y$ is continuous and bijective, is the inverse $f^{-1}: Y \rightarrow X$ also continuous?
+\par \noindent \textbf{Answer} Not necessarily. For example, let $X = \{0\} \cup (1, 2]$ and $Y = [0, 1]$. Define $f: X \rightarrow Y$ by
+\[f(x) = \begin{cases}
+    0, & x = 0 \\
+    x - 1, & x \in (1, 2]
+\end{cases}\]
+Then $f$ is continuous and bijective. However, $\{0\} \subseteq X$ is open but its preimage $f^{-1} (\{0\}) = \{0\}$ is not open in $X$.  
+\par There's another example: Let $X = [0, 1]$ with discrete metric(i.e., $d(x, y) = 1, \forall x,y\in X$ with $x\neq y$) and $Y = [0,1]$ with standard metric. Define $f: X \rightarrow Y$ by $f(x) = x$. Then $f$ is continuous and bijective. But its inverse is not continuous. 
+\end{document}
