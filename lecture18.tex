@@ -1,0 +1,51 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{17}
+
+\chapter{Later}
+\label{chap:chapter18}
+
+\begin{theorem}
+    Every second countable regular space is normal.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Let $X$ be a second countable regular space with $A, B \subseteq X$ closed and $A \cap B = \emptyset$.
+\par For every $x \in A$, since $X$ is regular, there exist open sets $U\ni x$ such that $U\cap B = \emptyset$. 
+\par By the lemma, there exists a open set $V$ such that $x \in V$, $\bar{V} \subseteq U$ and thus $\bar{V} \cap B = \emptyset$. 
+\par Let $\mathcal{B}$ be a countable baisis for $X$. For each $x \in A$, there exists $U_x \in \mathcal{B}$ such that $x \in U_x \subseteq V$, and thus $\bar{U_x} \subseteq \bar{V} \subseteq U$ and $\bar{U_x} \cap B = \emptyset$. Since $\mathcal{B}$ is countable, the collection $\{\bar{U_x}: x \in A\}$ has a countable subcollection $\{\bar{U_n}: n \in \mathbb{N}\}$ covering $A$ such that $\bar{U_n} \cap B = \emptyset$ for each $n$. 
+
+\begin{theorem}
+    Every metrizable space $X$ is normal.
+\end{theorem}
+
+\par \noindent \textbf{Proof} Let $d$ be the metric on $X$. Given two closed disjoint subsets $A, B \subseteq X$. 
+\par For each $a\in A$, there exists $r_a > 0$ such that $B(a, r_a) \cap B = \emptyset$. 
+\par Similarly, for each $b \in B$, there exists $s_b > 0$ such that $B(b, r_b) \cap A = \emptyset$.
+\par Let $U = \bigcup_{a \in A} B(a, r_{\frac{a}{2}})$ and $V = \bigcup_{b \in B} B(b, r_{\frac{b}{2}})$. Then $U$ and $V$ are open sets containing $A$ and $B$ respectively. 
+\par We claim that $U \cap V = \emptyset$. Assume the contrary that there exists $x \in U \cap V$. Then there exist $a \in A$ and $b \in B$ such that $x \in B(a, r_{\frac{a}{2}})$ and $x \in B(b, r_{\frac{b}{2}})$. Without loss of generality, assume that $r_{\frac{a}{2}} \leq r_{\frac{b}{2}}$. Then
+\begin{equation}
+    d(a, b) \leq d(a, x) + d(x, b) < r_{\frac{a}{2}} + r_{\frac{b}{2}} \leq r_a
+\end{equation}
+This implies that $b \in B(a, r_a)$, which contradicts the choice of $r_a$. Thus, $U \cap V = \emptyset$. Hence, $X$ is normal. 
+\begin{theorem}
+    Every compact Hausdorff space is normal.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Let $x\in X$ and $B \subseteq X$ be closed such that $x \notin B$.
+\par For each $y\in B$, since $X$ is Hausdorff, there exist disjoint open sets $U_y$ and $V_y$ such that $x \in U_y$ and $y \in V_y$. Then $\{V_y | y \in B\}$ is an open covering of $B$. By the compactness of $B$, there exists a finite subcollection $\{V_{y_1}, V_{y_2}, \ldots, V_{y_n}\}$ that covers $B$. 
+Let $V = \bigcup V_{y_i}$ and $U = \bigcap U_{y_i}$. Then $U$ and $V$ are disjoint open sets containing $x$ and $B$ respectively. So $X$ is regular. 
+\par Let $A, B \subseteq X$ be closed and $A \cap B = \emptyset$. For each $a\in A$, since $X$ is regular, there exist disjoint open sets $U_a$ and $V_a$ such that $a \in U_a$ and $B \subseteq V_a$. Then $\{U_a | a \in A\}$ is an open covering of $A$. By the compactness of $A$, there exists a finite subcollection $\{U_{a_1}, U_{a_2}, \ldots, U_{a_m}\}$ that covers $A$. 
+Let $U = \bigcup U_{a_i}$ and $V = \bigcap V_{a_i}$. Then $U$ and $V$ are disjoint open sets containing $A$ and $B$ respectively. So $X$ is normal. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{lemma}
+    [Urysohn's lemma]
+    Given a normal space $X$ and two closed disjoint subsets $A, B \subseteq X$, there exists a continuous map $f: X \to [0, 1]$ such that $f(A) = \{0\}$ and $f(B) = \{1\}$.
+\end{lemma}
+\par \noindent \textbf{Proof}
+
+
+\end{document}

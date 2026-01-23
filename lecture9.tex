@@ -1,0 +1,139 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{8}
+
+\chapter{Lecture9}
+\label{chap:Lecture9}
+
+\begin{definition}
+    A topological space $X$ is Hausdorff or T2 if for every pair of distinct points $x, y \in X$, there exist open sets $U, V \subseteq X$ such that $x \in U$, $y \in V$, and $U \cap V = \emptyset$.
+\end{definition}
+
+\begin{property}
+    If $X$ is a metric space, then $X$ is Hausdorff.
+\end{property}
+\par \noindent \textbf{Proof} Let $d = d(x, y) > 0$. Take $U = B\left(x, \frac{d}{2}\right)$ and $V = B\left(y, \frac{d}{2}\right)$. Then $U \cap V = \emptyset$.
+
+\begin{property}
+    For a Hausdorff space $X$, for every $x_0\in X$, the singleton set $\{ x_0 \}$ is closed. 
+\end{property}
+\par Let $x\in X $ with $x \neq x_0$. Since $X$ is Hausdorff, there exist open sets $U, V \subseteq X$ such that $x_0 \in U$, $x \in V$, and $U \cap V = \emptyset$. Thus $V \subseteq X \setminus \{ x_0 \}$. Therefore, $X \setminus \{ x_0 \}$ is open, which means $\{ x_0 \}$ is closed.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\par \noindent \textbf{Question} If $\forall x_0 \in X$, $\{ x_0 \}$ is closed, is $X$ Hausdorff? 
+\par \noindent \textbf{Answer} No. Consider the finite complement topology. 
+\begin{definition}
+    If every point $x_0\in X$ is closed, then $X$ is called a Frechet space or T1 space.
+\end{definition}
+\par \noindent \textbf{Remark} If $X$ is Hausdorff(T2), then $X$ is T1. The converse is not true. 
+\begin{property}
+    $X$ is T1 if and only if $\forall x, y\in X, \exists U\ni x$ a open set such that $y \notin U$.
+\end{property}
+\par \noindent \textbf{Exercise} Prove this property. 
+\par \noindent \textbf{Exercise} Let $X$ satisfy the following: for $x, y\in X$ with $x \neq y$, either $\exists U \ni x$ open set such that $y \notin U$, or $\exists V \ni y$ open set such that $x \notin V$. Is it true that $X$ is T1? 
+\begin{theorem}
+    Let $X$ be T1, and $A \subseteq X$. Then $x \in A'$ if and only if every open set $U \ni x$ contains infinitely many points of $A$.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par $(\Rightarrow)$ Assume the contrary that only finitely many points are in the intersection. Suppose $x \in A'$. Then every open set $U \ni x$ contains a point of $A$ different from $x$, i.e., $\exists y\in U\setminus \{x\} \cap A$. So we have that $U\cap A = \{y_1, y_2, \cdots, y_m\}$. Since $X$ is T1, then $\{y_i\}$ is closed for each $i = 1, 2, \cdots, m$. Thus $V=:U \setminus \{y_1, y_2, \cdots, y_m\}$ is open and contains $x$. Then $V\setminus \{x\} \cap A = \emptyset$, which contradicts the assumption that $x \in A'$. 
+\par $(\Leftarrow)$ Obvious.
+
+\begin{theorem}
+    A sequence $(x_n)$ in a Hausdorff space $X$ converges to at most one point.
+\end{theorem}
+\par \noindent \textbf{Proof} Suppose $a_1, a_2$ are two distinct limits of the sequence $(x_n)$. Since $X$ is Hausdorff, there exist open sets $U, V \subseteq X$ such that $a_1 \in U$, $a_2 \in V$, and $U \cap V = \emptyset$. Since $a_1$ is a limit of the sequence, there exists $N_1 \in \mathbb{N}$ such that for all $n \geq N_1$, $x_n \in U$. Similarly, since $a_2$ is a limit of the sequence, there exists $N_2 \in \mathbb{N}$ such that for all $n \geq N_2$, $x_n \in V$. Let $N = \max\{N_1, N_2\}$. Then for all $n \geq N$, $x_n \in U$ and $x_n \in V$, which implies $x_n \in U \cap V$. This contradicts the fact that $U \cap V = \emptyset$. Therefore, the sequence $(x_n)$ converges to at most one point.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $(X, <)$ with the order topology is Hausdorff.
+        \item If $X$ is Hausdorff, then the set with subspace topology $Y \subseteq X$ is also Hausdorff.
+        \item If $X_1, X_2$ are Hausdorff, then the product space $X_1 \times X_2$ with the product topology is also Hausdorff.
+    \end{enumerate}
+\end{theorem}
+\par \noindent \textbf{Exercise} Prove this theorem. 
+\begin{definition}
+    Let $X, Y$ be topological spaces. A function $f: X \to Y$ is called continuous if for every open set $V \subseteq Y$, the preimage $f^{-1}(V)$ is an open set in $X$. 
+\end{definition}
+\par \noindent \textbf{Remark} If the topology on $Y$ is given by the basis $\mathcal{B}$, then $f$ is continuous if and only if for every basis element $B \in \mathcal{B}$, $f^{-1}(B)$ is open in $X$. 
+
+\begin{example}
+    Consider the identity map for topological spaces $\mathbb{R}$ with the usual topology and $\mathbb{R}_l$ with the lower limit topology. The identity map $id: \mathbb{R} \to \mathbb{R}_l$ is not continuous, but the inverse $id: \mathbb{R}_l \to \mathbb{R}$ is continuous. Note that $(a, b) = \bigcup_{n=1}^{\infty} [a + \frac{1}{n}, b)$. 
+\end{example}
+
+\par \noindent \textbf{Observation} If $\mathcal{T}, \mathcal{T'}$ are topologies on $X$ with $\mathcal{T} \subseteq \mathcal{T'}$, then the identity map $id: (X, \mathcal{T'}) \to (X, \mathcal{T})$ is continuous and the map $id: (X, \mathcal{T}) \to (X, \mathcal{T'})$ is not continuous. 
+
+\begin{theorem}
+    The following are equivalent: 
+    \begin{enumerate}
+        \item $f: X \to Y$ is continuous.
+        \item $\forall A \subseteq X, f(\bar{A}) \subseteq \overline{f(A)}$.
+        \item For every closed set $C \subseteq Y$, the preimage $f^{-1}(C)$ is closed in $X$. 
+        \item $\forall x\in X$, for every open set $V \subseteq Y$ containing $f(x)$, there exists an open set $U \subseteq X$ containing $x$ such that $f(U) \subseteq V$.
+    \end{enumerate}
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par (1) $\Rightarrow$ (2) Let $f: X \to Y$ be continuous and $A \subseteq X$. Let $x\in \bar{A}$. We need to show that $f(x) \in \overline{f(A)}$. If $x\in A$, then $f(x) \in f(A) \subseteq \overline{f(A)}$. If $x \in \bar{A} \setminus A$, take $V \ni f(x)$ open in $Y$. Since $f$ is continuous, $f^{-1}(V)$ is open in $X$ and contains $x$. Thus $f^{-1}(V) \cap A \neq \emptyset$. Let $y \in f^{-1}(V) \cap A$. Then $f(y) \in V \cap f(A) \neq \emptyset$. Therefore, $f(x) \in \overline{f(A)}$. 
+\par (2) $\Rightarrow$ (3) Let $C \subseteq Y$ be closed. We need to show that $f^{-1}(C):= A$ is closed in $X$, i.e., $\bar{A} = A$. We have $f(A) = f(f^{-1}(C)) = C$. So if $x\in \bar{A}, f(x)\in f(\bar{A}) \subseteq \overline{f(A)} = \overline{C} = C$. So $x\in f^{-1}(C) = A$. Thus $\bar{A} \subseteq A$. The other direction is obvious. 
+\par (3) $\Rightarrow$ (1) Obvious(take the complement).
+
+\par (1) $\Rightarrow$ (4) Let $f(x) \in V$. Take $x\in f^{-1}(V) =: U$ which is open in $X$. Then $f(U) \subseteq V$.
+
+\par (4) $\Rightarrow$ (1) Let $V \subseteq Y$ be open. We need to show that $f^{-1}(V)$ is open in $X$. Let $x\in f^{-1} (V)$. Then $\exists x\in U_x \subseteq X$ such that $f(U_x) \subseteq V$. Take $U = \bigcup_{f(x)\in V} U_x$ which is open in $X$. So $f^{-1} (V) \subseteq U$. But $U \subseteq f^{-1} (V)$. 
+
+\section{Constructing continuous functions} 
+\begin{theorem}
+    Let $X, Y, Z$ be topological spaces. 
+    \begin{enumerate}
+        \item $f: X \rightarrow Y$ is a constant function, i.e., $f(X) = y$. Then $f$ is continuous. 
+        \item Let $A \subseteq X$ be a set with subspace topology. Then the embedding map $j: A \hookrightarrow X$ defined by $j(x) = x$ is continuous. 
+        \item Let $f: X \rightarrow Y$, $g: Y \rightarrow Z$ be continuous, then $g\circ f: X \rightarrow Z$ is continous. 
+        \item Restriction of domain: Let $f: X \rightarrow Y$ be continuous and $A \subseteq X$, then $f|_A: A \rightarrow Y$ is continuous. 
+        \item $f: X \rightarrow Y$ and $Z \subseteq Y$ with $f(X) \subseteq Z$. Then $f: X \rightarrow Z$ is continuous. 
+        \item If $f: X \rightarrow Y, Y \subseteq Z$, then $f: X \rightarrow Z$ is continuous. 
+        \item $f: X \rightarrow Y$ is continuous if $X = \bigcup U_{\alpha}$ ($U_{\alpha}$ is required to be open in $X$) and $f|_{U_{\alpha}}: U_{\alpha} \rightarrow Y$ is continuous. 
+    \end{enumerate} 
+\end{theorem}
+\par \noindent \textbf{Poof} 
+\begin{enumerate}
+    \item Let $V \subseteq Y$ be open. If $y \in V$, then $f^{-1}(V) = X$ which is open. If $y \notin V$, then $f^{-1}(V) = \emptyset$ which is open. 
+    \item Let $U \subseteq X$ be open. Then $j^{-1}(U) = U \cap A$ which is open in $A$. 
+    \item $(g\circ f)^{-1} (W) = f^{-1} (g^{-1} (W))$ which is open in $X$. 
+    \item $(f|_A)^{-1} (V) = f^{-1} (V) \cap A$ which is open in $A$(Subspace topology). 
+    \item Let $W$ be open in $Z$. By subspace topology, $\exists V$ open in $Y$ such that $W = V \cap Z$. Then $f^{-1} (W) = f^{-1} (V \cap Z) = f^{-1} (V)$(because $f(X) \subseteq Z$) which is open in $X$. 
+    \item Let $f: X \rightarrow Y$ be continuous and $Y \subseteq Z$($Z$ has an topology $\mathcal{T}_Z$ and $Y$ has the subspace topology $\mathcal{T}_Y = \{U\cap Y| U\in \mathcal{T}_Z\}$). Then we have for every open set $W \subseteq Z$, $f^{-1} (W) = f^{-1} (W \cap Y)$ which is open in $X$. 
+    \item Let $X = \bigcup U_{\alpha}$ and $U_{\alpha}$ is open in $X$. And for each $\alpha$, $f|_{U_{\alpha}}: U_{\alpha} \rightarrow Y$ is continuous. 
+    \par Take $V \subseteq Y$ open. Then 
+    \begin{equation}
+        f^{-1} (V) = f^{-1} (V) \cap X = f^{-1} (V) \cap \left( \bigcup U_{\alpha} \right) = \bigcup \left( f^{-1} (V) \cap U_{\alpha} \right) = \bigcup (f|_{U_{\alpha}})^{-1} (V)
+    \end{equation}
+    Since $(f|_{U_{\alpha}})^{-1} $ is continuous, then $(f|_{U_{\alpha}})^{-1} (V)$ is open in $U_{\alpha}$. And since $U_{\alpha}$ has the subspace topology and $U_{\alpha}$ is open in $X$, then $(f|_{U_{\alpha}})^{-1} (V)$ is open in $X$. Thus $f^{-1} (V)$ is open in $X$. 
+\end{enumerate}
+\begin{theorem}
+    Let $X = A \cup B$ where $A$ and $B$ are both open in $X$ or both closed in $X$. And $f: A \rightarrow Y$, $g: B \rightarrow Y$ be continuous and $f(x) = g(x)$ for $x \in A \cap B$. Then define $h: X \rightarrow Y$ as 
+\[
+h(x) = \begin{cases} 
+f(x) & \text{if } x \in A \\
+g(x) & \text{if } x \in B 
+\end{cases}
+\]
+Then $h$ is continuous. 
+\end{theorem}
+\par \noindent \textbf{Proof} Let's assume that $A, B$ are both open. Let $V \subseteq Y$ be open. Then 
+\begin{equation}
+    h^{-1} (V) = \{ x \in X | h(x) \in V \} = \{ x \in A | f(x) \in V \} \cup \{ x \in B | g(x) \in V \} = f^{-1} (V) \cup g^{-1} (V)
+\end{equation}
+Since $f, g$ are continuous, by the subspace topology, $f^{-1} (V) = A \cap U_1$ where $U_1$ is open in $X$, and $g^{-1} (V) = B \cap U_2$ where $U_2$ is open in $X$. Thus 
+\begin{equation}
+    h^{-1} (V) = (A \cap U_1) \cup (B \cap U_2)
+\end{equation}
+is open in $X$ since $A, B, U_1, U_2$ are all open in $X$. 
+\par For the case where $A, B$ are both closed, we have a similar argument. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Exercise} Prove the above theorem.
+
+\end{document}

@@ -1,0 +1,155 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{13}
+
+\chapter{Lecture14}
+\label{chap:chapter14}
+
+\begin{theorem}
+    $\mathbb{R}^{\omega}$ is metrizable in the product topology.
+\end{theorem}
+
+\par \noindent \textbf{Proof} Define
+\begin{equation}
+    \bar{d}(x_i, y_i) = \min(|x_i - y_i|, 1)
+\end{equation}
+Let $x, y\in \mathbb{R}^{\omega}$. Then we define 
+\begin{equation}
+    D(x, y) = \sup \{ \frac{\bar{d}(x_i, y_i)}{i}| i\in \mathbb{Z}_{> 0}\}
+\end{equation}
+Then we can show that $D$ is a metric on $\mathbb{R}^{\omega}$ because we have 
+\begin{equation}
+    \bar{d}(x_i, z_i) \le \bar{d}(x_i, y_i) + \bar{d}(y_i, z_i) \Longrightarrow D(x, z) \le D(x, y) + D(y, z)
+\end{equation}
+
+\par Why does it define the product topology?
+\par ($\Rightarrow$) Let $U$ be open in the metric topology. Then there exists $\epsilon >  0$ such that $B_D(x, \epsilon) \subseteq U$. Let $N$ be such that $\frac{1}{N} < \epsilon$. Then let 
+\begin{equation}
+    V = \prod_{i=1}^{N} (x_i - \epsilon, x_i + \epsilon) \times \prod_{i=N+1}^{\infty} \mathbb{R}
+\end{equation}
+Then let $y\in V$. We have
+\begin{enumerate}
+    \item If $i \le N$, then $\bar{d}(x_i, y_i) < \epsilon$.
+    \item If $i > N$, then $\bar{d}(x_i, y_i) \le 1$.
+\end{enumerate}
+Thus, we have $D(x, y) = \sup \{\frac{\bar{d}(x_i, y_i)}{i}\} \le \max\{\epsilon, \frac{1}{N}\} = \epsilon$. So $y\in B_D(x, \epsilon) \subseteq U$. Hence, $V \subseteq U$. So $U$ is open in the product topology.
+\par ($\Leftarrow$) Let $U$ be open in the product topology. Then 
+\begin{equation}
+    U = \prod U_i
+\end{equation}
+where $U_i$ is open if $i\in \{\alpha_1, \cdots, \alpha_n\}$ and $U_i = \mathbb{R}$ otherwise. We want $V$ open in the metric topology such that $V \subseteq U$. Let
+\begin{equation}
+    x \in U
+\end{equation}
+Then 
+\begin{equation}
+    x_i \in U_i
+\end{equation}
+for $i\in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$. Then there exists $\epsilon_i > 0$ such that
+\begin{equation}
+    (x_i - \epsilon_i, x_i + \epsilon_i) \subseteq U_i
+\end{equation}
+Let 
+\begin{equation}
+    \epsilon = \min \{\frac{\epsilon_i}{i}| i \in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}\}\cup \{1\}
+\end{equation}
+Then we claim that
+\begin{equation}
+    U_D(x, \epsilon) \subseteq U
+\end{equation}
+Let $y\in U_D(x, \epsilon)$. Then we have
+\begin{equation}
+    \frac{\bar{d}(x_i, y_i)}{i} \le D(x, y) < \epsilon
+\end{equation}
+\par If $i \in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$, then
+\begin{equation}
+    \frac{\bar{d}(x_i, y_i)}{i} < \epsilon \le \frac{\epsilon_i}{i}
+\end{equation}
+which implies that
+\begin{equation}
+    y_i \in (x_i - \epsilon_i, x_i + \epsilon_i) \subseteq U_i
+\end{equation}
+So $y\in U$. Hence, $U_D(x, \epsilon) \subseteq U$. So $U$ is open in the metric topology.
+
+\begin{definition}
+    $(X, \le )$ has a least upper bound property or supremum property if every non-empty subset of $X$ that is bounded above has a least upper bound in $X$. (For example, $\mathbb{R}$ has the least upper bound property)
+\end{definition}
+
+\par Let $X$ be a set with order topology and supremum property. 
+
+\begin{theorem}
+    $\forall a \le b \in X$, we have $[a, b]$ is compact. 
+\end{theorem}
+\par \noindent \textbf{Proof} Let $\mathcal{A}$ be an open covering of $[a, b]$. We need that there exists a finite subcovering of $\mathcal{A}$ covering $[a, b]$. 
+\par \noindent \textbf{Step 1} Let $x\in [a, b]$ with $x \neq b$, there exists $y > x$ such that at most two elements of $\mathcal{A}$ can cover $[x, y]$. 
+\begin{enumerate}
+    \item If $x$ has an immediate successor $s(x)$, then $[x, s(x)] = \{x, s(x)\}$ is covered by two elements from $ \mathcal{A}$. 
+    \item If not. Take $ x\in A$ with $A \in \mathcal{A}$ such that $\exists c\in X, x < c \le b, [x, c) \subseteq A$. Take any $y \in (x, c)$. Then $[x, y] \subseteq A$ is covered by one element from $\mathcal{A}$. 
+\end{enumerate} 
+\par \noindent \textbf{Step 2} Let $C$ be the set of points $y$ with $a\le y\le b$ such that $[a, y]$ has a finite subcovering from $\mathcal{A}$. Since $a \in C$, $C$ is non-empty. Let $c = \sup C$. 
+\par \noindent \textbf{Step 3} Show that $c\in C$. Let $c\in A, A\in \mathcal{A}, \exists d\in A$ such that $d < c, [d, c] \subseteq A$. Since $[a, d]$ can be covered by finite elements(say $N$) from $\mathcal{A}$, $[a, c]$ can be covered by $N + 1$ elements from $\mathcal{A}$. So $c\in C$.
+\par \noindent \textbf{Step 4} Show that $c = b$. If not, by Step 1, $\exists e > c$ such that $[c, e]$ can be covered by two elements from $\mathcal{A}$. Since $[a, c]$ can be covered by finite elements(say $M$) from $\mathcal{A}$, $[a, e]$ can be covered by at most $M + 2$ elements from $\mathcal{A}$. So $e\in C$ which contradicts the assumption that $c = \sup C$. Hence, $c = b$.  
+
+\begin{corollary}
+    $[a, b] \subseteq \mathbb{R}$ is compact. 
+\end{corollary}
+
+\begin{corollary}
+    $[a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_n, b_n] \subseteq \mathbb{R}^n$ is compact.
+\end{corollary}
+
+\begin{theorem}
+    $A \subseteq \mathbb{R}^n$ is compact if and only if $A$ is closed and bounded.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par ($\Rightarrow$) Take a covering by 
+\begin{equation}
+    \bigcup U_N(0)
+\end{equation} 
+which is the union of open balls centered at $0$ with radius $N$ for $N \in \mathbb{Z}_{>0}$. Since $A$ is compact, there exists a finite subcovering. Thus, $A \subseteq U_{N_0}(0)$ for $N_0 = \max\{N_1, N_2, \cdots, N_k\}$. So $A$ is bounded.
+\par ($\Leftarrow$) Since $A$ is bounded, there exists $n$ such that
+\begin{equation}
+    A \subseteq [a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_n, b_n]
+\end{equation}
+We know that the closed subset of a compact set is compact. So $A$ is compact.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    [Extreme value theorem]
+    Let $f: X \rightarrow Y$ be continuous where $X$ is compact and $Y$ is an ordered set with the order topology. Then $\exists a, b \in X$ such that $\forall x\in X$, $f(a) \le f(x) \le f(b)$.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par We know that $A = f(X)$ is compact. We want to show that $A$ has a largest element. 
+\par We assume the contrary that $A$ has no largest element. Then $\forall a \in A$, $\exists b \in A$ such that $b > a$. So 
+\begin{equation}
+    A = \bigcup_{a \in A} (a, +\infty)
+\end{equation}
+which is an open covering of $A$. Since $A$ is compact, there exists a finite subcovering. Let the largest element among the finite elements be $a_0$. Then $a_0$ is not covered. This is a contradiction. So $A$ has a largest element. Similarly, $A$ has a smallest element. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{definition}
+    Let $(X, d)$ be a metric space, $A \subseteq X$, $x\in X$. Let $d(x, A) = \inf \{d(x, a)| a\in A\}$.
+\end{definition}
+\begin{property}
+    $d(x, A)$ is a continuous function for $A$ fixed. 
+\end{property}
+\par \noindent \textbf{Proof} 
+\par We know 
+\begin{equation}
+    d(x, A) \le d(x, a) \le d(x, y) + d(y, a)
+\end{equation}
+Then 
+\begin{equation}
+    d(x, A) - d(x, y) \le \inf \{d(y, a)| a\in A\} = d(y, A)
+\end{equation}
+So 
+\begin{equation}
+    d(x, A) - d(y, A) \le d(x, y) 
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\end{document}

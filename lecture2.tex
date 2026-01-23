@@ -12,25 +12,76 @@
     For $p>1, q>1$. $p$ is conjugate to $q$ if $\frac{1}{p} + \frac{1}{q} = 1$.
 \end{definition}
 \par \noindent \textbf{Remark} When $p = 1$, $q = \infty$; when $p = \infty$, $q = 1$. And $2$ is conjugate to itself. 
+
+\begin{lemma}
+    [Jensen's inequality]
+    If $f(t)$ is a strictly concave function on an interval $I \subseteq \mathbb{R}$, then for any $t_1, t_2\in I$ and any $\lambda_1, \lambda_2 > 0$ with $\lambda_1 + \lambda_2 = 1$, we have
+    \begin{equation}
+        f(\lambda_1 t_1 + \lambda_2 t_2) \ge \lambda_1 f(t_1) + \lambda_2 f(t_2)
+    \end{equation}
+    where the equality holds if and only if $t_1 = t_2$.
+\end{lemma}
+\par \noindent \textbf{Proof} Obviuos. 
+
 \begin{theorem}
     [Young's inequality]
+    For $a, b \ge 0$ and $p, q > 1$ with $\frac{1}{p} + \frac{1}{q} = 1$, we have
     \begin{equation}
-        ab \le \dfrac{a^p}{p} + \frac{b^q}{q}, \quad \text{where } \frac{1}{p} + \frac{1}{q} = 1 
+        ab \le \dfrac{a^p}{p} + \frac{b^q}{q}
     \end{equation}
 \end{theorem}
-\par \noindent \textbf{Proof} $\ln(x)$ is concave, just use Jensen's inequality.
+\par \noindent \textbf{Proof} 
+\par Let $x = a^p, y = b^q$. Then $a = x^{\frac{1}{p}}, b = y^{\frac{1}{q}}$. Substituting these into the inequality, we need to show that
+\begin{equation}
+    x^{\frac{1}{p}} y^{\frac{1}{q}} \le \dfrac{x}{p} + \dfrac{y}{q}, \forall x, y \ge 0
+\end{equation}
+If $x = 0$ or $y = 0$, the inequality holds trivially. Now we assume $x, y > 0$. Let $f(t) = \ln t$, which is strictly concave on $(0, +\infty)$. By Jensen's inequality, we have
+\begin{equation}
+    f\left( \dfrac{x}{p} + \dfrac{y}{q} \right) \ge \dfrac{1}{p} f(x) + \dfrac{1}{q} f(y) 
+\end{equation}
+Exponentiating both sides, we have
+\begin{equation}
+    \dfrac{x}{p} + \dfrac{y}{q} \ge x^{\frac{1}{p}} y^{\frac{1}{q}}
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{theorem}
     [Hölder's inequality]
-    For $p, q \ge 1$ with $\frac{1}{p} + \frac{1}{q} = 1$, for any $a = (a_i)\in l_p, b = (b_i) \in l_q$ respectively, we have \[ \sum_{k=1}^{\infty} a_k b_k \le \sqrt[\frac{1}{p}]{\sum a_k^p} \sqrt[\frac{1}{q}]{\sum b_k^q}  \]
+    For $p, q \ge 1$ with $\frac{1}{p} + \frac{1}{q} = 1$, for any $a = (a_i)\in l_p, b = (b_i) \in l_q$ respectively, we have \[ \sum_{k=1}^{\infty} |a_k b_k| \le \sqrt[\frac{1}{p}]{\sum a_k^p} \sqrt[\frac{1}{q}]{\sum b_k^q}  \]
 \end{theorem}
 \par \noindent \textbf{Proof} 
+\par In case when $\|a\|_p = 0$ or $\|b\|_q = 0$, the inequality holds trivially. Now we assume $\|a\|_p > 0$ and $\|b\|_q > 0$. Let 
+\begin{equation}
+    x_k = \frac{|a_k|}{\|a\|_p}, \quad y_k = \frac{|b_k|}{\|b\|_q}, \quad \forall k \ge 1
+\end{equation}
+We have 
+\begin{equation}
+    \sum_{k=1}^{\infty} x_k^p = \frac{|a_k|^p}{\|a\|_p^p} = 1, \quad \sum_{k=1}^{\infty} y_k^q = \frac{|b_k|^q}{\|b\|_q^q} = 1
+\end{equation}
+\par By Young's inequality, we have
+\begin{equation}
+    x_k y_k \le \dfrac{x_k^p}{p} + \dfrac{y_k^q}{q}, \quad \forall k \ge 1
+\end{equation}
+\par Summing over $k$ from $1$ to $\infty$, we have
+\begin{equation}
+    \sum_{k=1}^{\infty} x_k y_k \le \dfrac{1}{p} \sum_{k=1}^{\infty} x_k^p + \dfrac{1}{q} \sum_{k=1}^{\infty} y_k^q = \dfrac{1}{p} + \dfrac{1}{q} = 1
+\end{equation}
+\par Thus, we have
+\begin{equation}
+    \sum_{k=1}^{\infty} |a_k b_k| = \|a\|_p \|b\|_q \sum_{k=1}^{\infty} x_k y_k \le \|a\|_p \|b\|_q
+\end{equation}
+\par For the case when $p = 1$ and $q = \infty$, we have
+\begin{equation}
+    \sum_{k=1}^{\infty} |a_k b_k| \le \sum_{k=1}^{\infty} |a_k| \|b\|_{\infty} = \|a\|_1 \|b\|_{\infty}
+\end{equation}
+\\ \null \hfill $\blacksquare$
 
 \begin{theorem}
     [Minkowski inequality]
     For $p \ge 1$, for any $x, y \in l_p$, we have \[ \|x + y\|_p \le \|x\|_p + \|y\|_p. \]
 \end{theorem}
 \par \noindent \textbf{Proof}  
+\par If $\sum_{k = 1}^{\infty} |x_k + y_k|^p = 0$, then $x_k + y_k = 0$ for all $k$. Thus, $\|x\|_p = \|y\|_p = 0$ and the inequality holds trivially. Now we assume $\sum_{k = 1}^{\infty} |x_k + y_k|^p > 0$. 
 \par Let us first show that for $x = (x_i), y = (y_i) \in l_p$, we have \[ \sqrt[\frac{1}{p}]{|x_k + y_k|^p} \le \sqrt[\frac{1}{p}]{|x_k|^p} + \sqrt[\frac{1}{p}]{|y_k|^p} \] 
 \par For every summand, we have 
 \begin{align*}
@@ -45,19 +96,23 @@ So we have
 \[
     \sum_{k=1}^{n} |x_k| \cdot |x_k + y_k|^{p-1} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
 \]
-\par On the other hand, let $a_k = |y_k|, b_k = |x_k + y_k|^{p-1}$, we have
+On the other hand, let $a_k = |y_k|, b_k = |x_k + y_k|^{p-1}$, we have
 \[
     \sum_{k=1}^{n} |y_k| \cdot |x_k + y_k|^{p-1} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p} \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
 \]
-\par Combining these two inequalities, we have
+Combining these two inequalities, we have
 \begin{equation}
     \sum_{k=1}^{n} |x_k + y_k|^p \le \left( \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} + \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p} \right) \sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}
 \end{equation}
+\par Let $S_n = \sum_{k = 1}^{n} |x_k + y_k|^p$, then $
+    S_n \le C S_n^{\frac{1}{q}}$
+If $S_n = 0$, then $S_n \le C^p$. If $S_n > 0$, then $S_n^{1 - \frac{1}{q}} = S_n^{\frac{1}{p}} \le C$ which implies $S_n \le C^p$. So $S_n$ is increasing and bounded above. Thus, $\lim_{n \to \infty} S_n = \sum_{k=1}^{\infty} |x_k + y_k|^p$ exists and is finite.
 \par Dividing both sides by $\sqrt[\frac{1}{q}]{\sum_{k=1}^{n} |x_k + y_k|^p}$, we have
 \begin{equation}
     \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k + y_k|^p} \le \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |x_k|^p} + \sqrt[\frac{1}{p}]{\sum_{k=1}^{n} |y_k|^p}
 \end{equation}
-\par Taking limit $n \to \infty$, we have the desired result.
+\par It's easy to show that each term on the right-hand side converges as $n \to \infty$ because $x, y \in l_p$ and we know that a monotonically increasing sequence bounded above converges. So we have that the both sides converge as $n \to \infty$. 
+\par Taking limit $n \to \infty$, by continuity of $n$-th root, we have the desired result.
 \\ \null \hfill $\blacksquare$ 
 
 \par Let $X$ be a metric space. Let $x\in X$. We have the following definitions.

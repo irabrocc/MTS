@@ -1,0 +1,94 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{10}
+
+\chapter{Lecture11}
+\label{chap:chapter11}
+
+\par \noindent \textbf{Exercise} Let $U_{\epsilon}(x) = \{y\in X| d(x, y) < \epsilon\}$. Prove that the collection of all such $U_{\epsilon}(x)$ forms a basis for a topology on $X$. 
+\begin{definition}
+    A topological space $(X, \mathcal{T})$ is metrizable if there exists a metric $d$ on $X$ such that the topology induced by $d$ is equal to $\mathcal{T}$.
+\end{definition} 
+
+\begin{lemma}
+    Let $d$ and $d'$ be two metrics on $X$ defining the topologies $\mathcal{T}$ and $\mathcal{T}'$ respectively. Then $\mathcal{T}'$ is finer than $\mathcal{T}$ if and only if for each $x \in X$ and each $\epsilon > 0$, there exists $\delta > 0$ such that 
+    \begin{equation}
+        U_{\delta}^{d'}(x) \subseteq U_{\epsilon}^{d}(x)
+    \end{equation}
+\end{lemma}
+
+\begin{property}
+    The metrics $d_1, d_2, d_{\infty}$ define the same topology on $\mathbb{R}^n$. This is the product topology(or box as $n$ is finite) on $\mathbb{R}^n = \mathbb{R} \times \mathbb{R} \times \cdots \times \mathbb{R}$ ($n$ times). 
+\end{property}
+\par \noindent \textbf{Proof} Some graphs are shown below to illustrate the idea. See the pictures.
+\par In the following, we will define a metric that is used to bound another metric. Let $d$ be a metric on $X$. Define
+\begin{equation}
+    \bar{d}(x, y) = \min\{d(x, y), 1\}
+\end{equation}
+\begin{theorem}
+    $\bar{d}$ is a metric on $X$ defining the same topology as $d$.
+\end{theorem}
+\par First, we need to check that $\bar{d}$ is a metric. The only non-trivial part is the triangle inequality. For any $x, y, z \in X$, we want to show that
+\begin{equation}
+    \bar{d}(x, z) \leq \bar{d}(x, y) + \bar{d}(y, z)
+\end{equation}
+If $\bar{d}(x, y)$ or $\bar{d}(y, z)$ equals 1, then the right hand side is at least 1, and the inequality holds. If both $\bar{d}(x, y)$ and $\bar{d}(y, z)$ are less than 1, then $\bar{d}(x, y) = d(x, y)$ and $\bar{d}(y, z) = d(y, z)$. By the triangle inequality of $d$, we have
+\begin{equation}
+    \bar{d}(x, z) = \min\{d(x, z), 1\} \leq d(x, z) \leq d(x, y) + d(y, z) = \bar{d}(x, y) + \bar{d}(y, z)
+\end{equation}
+
+\par We want to define a metric on $\mathbb{R}^{\omega}$. 
+\begin{definition}
+    For $x = (x_1, x_2, \ldots), y = (y_1, y_2, \ldots) \in \mathbb{R}^{\omega}$, define
+    \begin{equation}
+        \bar{d}(x, y) = \min(\sup(|x_i - y_i|), 1)
+    \end{equation}
+    which is called the uniform metric on $\mathbb{R}^{\omega}$.
+\end{definition}
+Also we can generalize the metric for $\mathbb{R}^{J}$ for any $J$. (sup(min) or min(sup) does not matter)
+\begin{theorem}
+    Uniform topology on $\mathbb{R}^{J}$ is: 
+    \begin{itemize}
+        \item (strictly) finer than the direct product topology;
+        \item (strictly) coarser than the box topology. 
+    \end{itemize}
+\end{theorem}
+provided that $J$ is infinite.
+\par \noindent \textbf{Proof} 
+\par First, we show that the uniform topology is finer than the product topology. Let $x \in \mathbb{R}^{J}$ and let $U$ be a basic open set in the product topology containing $x$. Then
+\begin{equation}
+    U = \prod_{\alpha \in J} U_{\alpha}
+\end{equation}
+where $U_{\alpha}$ is an open set in $\mathbb{R}$ and $U_{\alpha} = \mathbb{R}$ for all but finitely many $\alpha$. Let $K$ be the finite set of indices $\alpha$ such that $U_{\alpha} \neq \mathbb{R}$. For each $\alpha \in K$, there exists $1 > \epsilon_{\alpha} > 0$ such that
+\begin{equation}
+    U_{\epsilon_{\alpha}}(x_{\alpha}) \subseteq U_{\alpha}
+\end{equation}
+Let $\epsilon = \min_{\alpha \in K} \epsilon_{\alpha}$. Then the open ball $U_{\epsilon}^{\bar{d}}(x)$ in the uniform topology is contained in $U$. Thus the uniform topology is finer than the product topology. 
+\par Next, we show that the uniform topology is coarser than the box topology. Let $x \in \mathbb{R}^{J}$ and let $U$ be a basic open set in the box topology containing $x$. Then
+\begin{equation}
+    U = \prod_{\alpha \in J} U_{\alpha}
+\end{equation}
+where $U_{\alpha}$ is an open set in $\mathbb{R}$. For each $\alpha \in J$, there exists $1 > \epsilon_{\alpha} > 0$ such that
+\begin{equation}
+    U_{\epsilon_{\alpha}}(x_{\alpha}) \subseteq U_{\alpha}
+\end{equation} 
+Let $\epsilon = \inf_{\alpha \in J} \epsilon_{\alpha}$. Then the open ball $U_{\epsilon}^{\bar{d}}(x)$ in the uniform topology is contained in $U$. Thus the uniform topology is coarser than the box topology.
+\par For the strictness of the two sides, we can use some examples. 
+
+\par Recall that for two metric spaces $(X, d)$ and $(Y, d')$, a function $f: X \rightarrow Y$ is continuous if and only if for each $x \in X$ and each $\epsilon > 0$, there exists $\delta > 0$ such that
+\begin{equation}
+    d(x, y) < \delta \Rightarrow d'(f(x), f(y)) < \epsilon
+\end{equation}
+
+\begin{theorem}
+    [The sequence lemma] 
+    Let $X$ be a topological space, $A \subseteq X$. If there is a sequence of points $x_n \in A$ with $\lim_{n \rightarrow \infty} x_n = x$, then $x \in \bar{A}$. The converse holds if $X$ is metrizable.
+\end{theorem}
+
+\par \noindent \textbf{Proof} If $x_n \in A$ and $\lim_{n \rightarrow \infty} x_n = x$, then for each open set $U$ containing $x$, we have $U\cap A$ contains all but finitely many $x_n$, so $U \cap A \neq \emptyset$. Thus $x \in \bar{A}$.
+\par For the converse, suppose $X$ is metrizable with metric $d$. If $x \in \bar{A}$, then for each $n \in \mathbb{N}$, the open ball $U_{1/n}(x)$ intersects $A$. Thus we can choose $x_n \in U_{1/n}(x) \cap A$. Then $\lim_{n \rightarrow \infty} x_n = x$($\forall \epsilon > 0, \exists N > \frac{1}{\epsilon}$, such that $d(x_n, x) < \epsilon$ for all $n > N$). 
+
+\end{document}

@@ -1,0 +1,91 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{19}
+
+\chapter{Later}
+\label{chap:chapter20}
+
+\section{The tychonoff theorem}
+\begin{theorem}
+    If $X, Y$ are compact sets, then $X \times Y$ is also compact.
+\end{theorem}
+
+\begin{theorem}
+    If $X_{\alpha}$'s with $\alpha \in J$ are compact sets, then $\prod_{\alpha \in J} X_{\alpha}$ is also compact.
+\end{theorem}
+\section{Closed set formulation of compactness} 
+\par Let $X$ be a topological space. Let $\mathcal{C}$ be a family of closed sets in $X$.  
+\begin{definition}
+    We say $\mathcal{C}$ has the finite intersection property if for any finite closed sets $C_1, C_2, \ldots, C_n \in \mathcal{C}$, we have
+    \[
+        C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
+    \]
+\end{definition}
+\begin{theorem}
+    A topological space $X$ is compact if and only if for any family $\mathcal{C}$ of closed sets in $X$ with the finite intersection property, we have
+    \[
+        \bigcap_{C \in \mathcal{C}} C \neq \varnothing.
+    \]
+\end{theorem}
+\par \noindent \textbf{Exercise} Prove the above theorem(It has been proved long time ago).
+\begin{example}
+    Let $X = (0, 1), C_n = (0, \frac{1}{n}]$ for $n \in \mathbb{N}$. Then $\{C_n\}_{n=1}^{\infty}$ has the finite intersection property, but
+    \[
+        \bigcap_{n=1}^{\infty} C_n = \varnothing.
+    \]
+\end{example} 
+
+\par \noindent \textbf{Recall Zorn's lemma} 
+\begin{theorem}
+    [Zorn's lemma]
+    Let $(A, \leq)$ be a partially ordered set. If every chain in $A$ has an upper bound in $A$, then $A$ contains at least one maximal element.
+\end{theorem}
+
+\begin{lemma}
+    Let $X$ be a set, $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Then there exists a family $\mathcal{D}$ of subsets of $X$ such that 
+    \begin{enumerate}
+        \item $\mathcal{A} \subseteq \mathcal{D}$;
+        \item $\mathcal{D}$ has the finite intersection property;
+        \item $\mathcal{D}$ is maximal with respect to (ii), i.e., if $\mathcal{E}$ is a family of subsets of $X$ such that $\mathcal{D} \subsetneq \mathcal{E}$, then $\mathcal{E}$ does not have the finite intersection property. 
+    \end{enumerate}
+\end{lemma}
+\par \noindent \textbf{Proof} 
+\par Let $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Let
+\begin{equation}
+    \mathbb{A} = \{ \mathcal{B} \supseteq \mathcal{A} | \mathcal{B} \text{ has finite intersection property }\}
+\end{equation}
+Let $\subsetneq$ be the partial order on $\mathbb{A}$. Let $\mathbb{B} \subseteq \mathbb{A}$ be a chain. We need to show that $\mathbb{B}$ has an upper bound in $\mathbb{A}$. Let
+\begin{equation}
+    \mathcal{C} = \bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}. 
+\end{equation}
+\par To be done. 
+
+
+\begin{lemma}
+    Let $X$ be a set, $\mathcal{D}$ be a maximal family of subsets of $X$ with the finite intersection property(obtain by the previous lemma). Then we have 
+    \begin{enumerate}
+        \item $\mathcal{D}$ is closed under finite intersections, i.e., for any finite subsets $D_1, D_2, \ldots, D_n \in \mathcal{D}$, we have 
+        \[
+            D_1 \cap D_2 \cap \ldots \cap D_n \in \mathcal{D};
+        \]
+        \item If $A \subseteq X$ satisfies $A \cap D \neq \varnothing$ for all $D \in \mathcal{D}$, then $A \in \mathcal{D}$. 
+    \end{enumerate}
+\end{lemma}
+
+\par \noindent \textbf{Proof} 
+\par Take $C_1, C_2, \ldots, C_n \in \mathcal{D}$. Since $\mathcal{D}$ has the finite intersection property, we have
+\[
+    C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
+\]
+Suppose $C_1 \cap C_2 \cap \ldots \cap C_n \notin \mathcal{D}$. Let $\mathcal{E} = \mathcal{D} \cup \{C_1 \cap C_2 \cap \ldots \cap C_n\}$. 
+\par Take $D_1', D_2', \ldots, D_m' \in \mathcal{D}$. Then 
+\[
+    (C_1 \cap C_2 \cap \ldots \cap C_n) \cap D_1' \cap D_2' \cap \ldots \cap D_m' \neq \varnothing.
+\]
+Thus $\mathcal{E}$ has the finite intersection property, contradicting the maximality of $\mathcal{D}$. Thus $C_1 \cap C_2 \cap \ldots \cap C_n \in \mathcal{D}$. 
+
+
+\end{document}

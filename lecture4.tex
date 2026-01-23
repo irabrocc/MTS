@@ -1,0 +1,83 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{3}
+
+\chapter{Later}
+\label{chap:chapter4}
+
+\begin{definition}
+    A continuous bijective map $f: X \rightarrow Y$ is called a homeomorphism if $f^{-1} $ is also continuous. 
+\end{definition}
+\par \noindent \textbf{Remark} "homeomorphism" is not the same as "homomorphism".  
+\begin{definition}
+    $X \simeq Y$ are homeomorphic or topological equivalent if there exists a homeomorphism $f: X \rightarrow Y$
+\end{definition}
+
+\begin{definition}
+    Two metric spaces $(X,d_X)$ and $(Y,d_Y)$ are called isometric if there exists a bijective map $f: X \rightarrow Y$ such that for all $x_1, x_2 \in X$, $d_Y(f(x_1), f(x_2)) = d_X(x_1, x_2)$. ($f$ is called an isometry)
+\end{definition}
+\par \noindent \textbf{Exercise} Prove that every isometry is a homeomorphism, but some homeomorphisms are not isometries. 
+\begin{example}
+    Let $D = \{(x,y) \in \mathbb{R}^2 | x^2 + y^2 \leq 1\}$ be the unit disk in $\mathbb{R}^2$ with the Euclidean metric. Let $S^1 = \{(x,y) \in \mathbb{R}^2 | \max{|x|, |y|} = 1\}$ be the unit square in $\mathbb{R}^2$ with the Euclidean metric. Then $D$ and $S^1$ are homeomorphic but not isometric.
+\end{example}
+\par \noindent \textbf{Proof}
+\par The idea of prove homeomorphism is to map every radius of the disk to the corresponding line segment of the square. 
+
+\par Assume there exists an isometry $f: D \rightarrow S^1$. Note that the diameter of $D$ is $2$, while the diameter of $S^1$ is $2\sqrt{2}$. This contradicts the definition of isometry. Thus, no such isometry exists. 
+
+\begin{example}
+    Another example of homeomorphism is the linear map from the interval $(0, 1)$ to $(a, b)$ (by stretching and compressing).
+\end{example}
+
+\begin{example}
+    $(0, 1) \simeq (-\dfrac{\pi}{2}, \dfrac{\pi}{2})\simeq \mathbb{R}$ by the tangent function. 
+\end{example}
+\par The above example can be described graphically by a bowl(a circle centered at $(0, \frac{1}{2})$ with radius $\frac{1}{2}$ without the upper half) with radius $\dfrac{1}{2}$ on the real line.
+
+
+\begin{property}
+    If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are continuous, then $g \circ f: X \rightarrow Z$ is continuous.
+\end{property}
+
+\begin{corollary}
+    If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are homeomorphisms, then $g \circ f: X \rightarrow Z$ is a homeomorphism. 
+\end{corollary}
+
+\begin{property}
+    Homeomorphism $\simeq $ is an equivalence relation. 
+\end{property}
+
+\begin{definition}
+    $X$ is said to be path-connected if any two points $x,y \in X$ can be joined by a path: there exists a continuous map $f: [0,1] \rightarrow X$ such that $f(0) = x$ and $f(1) = y$.
+\end{definition}
+
+\begin{property}
+    If $X$ is path-connected and $f: X \rightarrow Y$ is a homeomorphism, then $Y$ is also path-connected. 
+\end{property}
+\par \noindent \textbf{Proof} Let $y_1, y_2 \in Y$. Since $f$ is bijective, there exist $x_1, x_2 \in X$ such that $f(x_1) = y_1$ and $f(x_2) = y_2$. Since $X$ is path-connected, there exists a continuous map $g: [0,1] \rightarrow X$ such that $g(0) = x_1$ and $g(1) = x_2$. Consider the map $h = f \circ g: [0,1] \rightarrow Y$. Since both $f$ and $g$ are continuous, $h$ is continuous. Moreover, $h(0) = f(g(0)) = f(x_1) = y_1$ and $h(1) = f(g(1)) = f(x_2) = y_2$. Thus, there exists a continuous path in $Y$ connecting $y_1$ and $y_2$, proving that $Y$ is path-connected. 
+\\ \null \hfill $\blacksquare$
+
+\begin{theorem}
+    [Intermediate Value Theorem] Let $f: [a,b] \rightarrow \mathbb{R}$ be continuous. For any $c$ between $f(a)$ and $f(b)$, there exists some $x \in [a,b]$ such that $f(x) = c$. 
+\end{theorem}
+
+\begin{example}
+    $\mathbb{R}\setminus \{0\}$ is not path-connected. 
+\end{example}
+\par \noindent \textbf{Proof} By IVT. 
+
+\begin{theorem}
+    [Intermediate Value Theorem for Path-Connectedness] Let $X$ be a path-connected space and $f: X \rightarrow \mathbb{R}$ be continuous. Suppose there exist $x_1, x_2 \in X$ such that $f(x_1) = c_1$ and $f(x_2) = c_2$. Then for any $c$ between $c_1$ and $c_2$, there exists some $x \in X$ such that $f(x) = c$.
+\end{theorem}
+\par \noindent \textbf{Proof} Since $X$ is path-connected, there exists a continuous map $g: [0,1] \rightarrow X$ such that $g(0) = x_1$ and $g(1) = x_2$. Consider the map $h = f \circ g: [0,1] \rightarrow \mathbb{R}$. Since both $f$ and $g$ are continuous, $h$ is continuous. Moreover, $h(0) = f(g(0)) = f(x_1) = c_1$ and $h(1) = f(g(1)) = f(x_2) = c_2$. By the Intermediate Value Theorem, for any $c$ between $c_1$ and $c_2$, there exists some $t \in [0,1]$ such that $h(t) = c$. Let $x = g(t)$. Then $f(x) = f(g(t)) = h(t) = c$. Thus, there exists some $x \in X$ such that $f(x) = c$. 
+\\ \null \hfill $\blacksquare$
+
+\par \noindent \textbf{Remark} IVT holds for $X$ doesn't implies $X$ is path-connected. 
+
+
+
+
+\end{document}

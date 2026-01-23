@@ -89,7 +89,7 @@ ensures that $det(B) > 0$. Thus, $U_{\epsilon} (A) \subseteq \{A \in Mat(n)| det
 \begin{property}
     $M \subseteq X$ is closed $\Longleftrightarrow$ $\forall y\in X\setminus M, \exists \epsilon > 0$ such that $U_{\epsilon} (y) \cap M = \emptyset$. (any point can be seperated from $M$). 
 \end{property}
-\par \noindent \textbf{Proof} Suppose $\exists y \in X\setminus M$ that cannot be seperated from $M$. Then $\forall \epsilon > 0, U_{\epsilon} ^(y) \cap M \neq \emptyset$. But $y\notin M$, so $U_{\epsilon}^{\ast} (y) \cap M \neq \emptyset$. So $y$ is a limit point of $M$ which implies that $y\in \overline{M}$. Since $M$ is closed, we have a contradiction. 
+\par \noindent \textbf{Proof} Suppose $\exists y \in X\setminus M$ that cannot be seperated from $M$. Then $\forall \epsilon > 0, U_{\epsilon} (y) \cap M \neq \emptyset$. But $y\notin M$, so $U_{\epsilon}^{\ast} (y) \cap M \neq \emptyset$. So $y$ is a limit point of $M$ which implies that $y\in \overline{M}$. Since $M$ is closed, we have a contradiction. 
 \par Suppose every $y\in X\setminus M$ can be seperated from $M$. Let $x$ be a limit point of $M$. If $x \notin M$, then by assumption, there exists $\epsilon > 0$ such that $U_{\epsilon} (x) \cap M = \emptyset$. This contradicts the definition of limit point. 
 
 \begin{example}

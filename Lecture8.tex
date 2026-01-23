@@ -1,0 +1,78 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{7}
+
+\chapter{Lecture 8}
+\label{chap:Lecture8}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $x\in \bar{A} \Longleftrightarrow $ every open set $U \subseteq X$ with $x \in U$ satisfies $U \cap A \neq \emptyset$.
+        \item For a basis $\mathcal{B}$ of $\mathcal{T}$, we have $x \in \bar{A} \Longleftrightarrow$ every basis element $B \in \mathcal{B}$ with $x \in B$ satisfies $B \cap A \neq \emptyset$. 
+    \end{enumerate}
+\end{theorem}
+
+\par \noindent \textbf{Proof}
+\begin{enumerate}
+    \item See P113. 
+    \item $\cdots$
+\end{enumerate}
+
+\par \noindent \textbf{Exercise} Finish the proof of (2). 
+
+\begin{definition}
+    For $A \subseteq X$, $x\in X$ is a limit point of $A$ if every open set $U \subseteq X$ containing $x$ contains a point of $A$ different from $x$ itself. We denote $A'$ as the set of all limit points of $A$.
+\end{definition}
+
+\begin{theorem}
+    $\bar{A} = A \cup A'$
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par We need to show that $\bar{A} \subseteq A \cup A'$ and $A \cup A' \subseteq \bar{A}$.
+\par $(\supseteq)$ If $x\in A'$, then every neighborhood $U$ of $x$ intersects $A$. Then $x\in \bar{A}$ by the previous theorem. If $x\in A$, then obviously $x\in \bar{A}$. Thus $A \cup A' \subseteq \bar{A}$.
+\par $(\subseteq)$ Let $x\in \bar{A}$. If $x\in A$, then $x\in A \cup A'$. If $x \in \bar{A}\setminus A$, then every neighborhood $U$ of $x$ intersects $A$ at $y$ such that $y \neq x$. Thus $x\in A'$. Therefore, $\bar{A} \subseteq A \cup A'$.
+
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{corollary}
+    A set $A$ is closed if and only if $A' \subseteq A$.
+\end{corollary}
+
+\begin{definition}
+    For a sequence $\{ x_n \}$ in $X$, we say that $a$ is a limit of the sequence if for every open set $U$ containing $a$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $x_n \in U$. A sequence is convergent if it has a limit.
+\end{definition}
+
+\par \noindent \textbf{Remark} This is equivalent to the following: every open set $U$ containing $a$ contains almost all elements of the sequence except finitely many. And Notice that "all but finitely many" is not the same as "infinitely many".
+
+\begin{example}
+    Let $X$ be a topological space with the discrete topology. Then a sequence $\{ x_n \}$ converges to $a$ if and only if there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $x_n = a$.
+\end{example}
+
+\begin{example}
+    Let $X = \mathbb{Q}$ with the topology defined by the usual metric. Then the sequence: $3, 3.1, 3.14, 3.141, 3.1415, \ldots$ does not converge in $X$ since its limit $\pi$ is not in $\mathbb{Q}$.
+\end{example}
+
+\begin{example}
+    Let $X = \mathbb{R}_l$ with the lower limit topology($[a, b)$ are basis open sets). Then we say that a sequence converges in $\mathbb{R}^l$ if and only if it converges to $a$ in $\mathbb{R}$ with an extra condition: $x_n \ge a, \forall n \ge N$ for some $N\in \mathbb{N}$.  
+\end{example}
+
+\par \noindent \textbf{Exercise} Show that if $x_n$ converges in $\mathcal{T}$, then $x_n$ converges in any coarser topology $\mathcal{T}' \subseteq \mathcal{T}$.
+
+\begin{example}
+    $X = \mathbb{N}$, the basis $U_m = \{0, 1, 2 \cdots, m\}$. $\mathcal{T} = \{U_m | m\in \mathbb{N}, \mathbb{N}, \emptyset\}$. Then $x_n$ converges to $a$ if and only if $a$ is essential upper bound of $\{ x_n \}$. In this case, the limit is not unique. 
+\end{example}
+
+\begin{example}
+    Finite complement topology on $\mathbb{R}$. For example take $\mathcal{T} = \{ \mathbb{R}, \emptyset, \mathbb{R}\setminus \{p_1, p_2, \cdots, p_m\}\}$. 
+    \begin{enumerate}
+        \item If $x_n$ is eventually constant with value $a$, then $x_n$ converges to $a$. It can't not converge to $b \neq a$ because we can take the open set $\mathbb{R} \setminus \{a\}$ which contains $b$ but does not contain almost all elements of the sequence.
+        \item If $x_n = (- 1)^n$, then $x_n$ does not converge. If $x_n = a$ for infinitely many $n$ and $x_n = b$ for infinitely many $n$ ($a \neq b$), then $x_n$ does not converge. 
+        \item If $x_n = \dfrac{(-1)^n}{n}$, then $x_n$ converges to any real number. Because for any open set $U$, $U$ contains all but finitely many real numbers. So $U$ contains almost all elements of the sequence. 
+        \item If $x_n$ assumes every value finitely many times, then $x_n$ converges to any real number.  
+    \end{enumerate}
+\end{example}
+
+\end{document}

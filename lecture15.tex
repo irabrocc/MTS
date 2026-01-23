@@ -1,0 +1,99 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{14}
+
+\chapter{Later}
+\label{chap:chapter15}
+
+\begin{definition}
+    Two norms $||\cdot||_a$ and $||\cdot||_b$ are equivalent if there exist positive constants $C_1$ and $C_2$ such that for all vectors $x$,
+    \[
+    C_1 ||x||_a \leq ||x||_b \leq C_2 ||x||_a.
+    \]
+\end{definition}
+
+\begin{property}
+    Equivalence of norms is an equivalence relation.
+\end{property}
+
+\begin{theorem}
+    All norms on $\mathbb{R}^n$ are equivalent.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Given $||\cdot||_a$ and $||\cdot||_b$ are two norms on $\mathbb{R}^n$. We define a function $f: \mathbb{R}^n\backslash\{0\} \to \mathbb{R}$ by 
+\begin{equation}
+    f(x) = \frac{||x||_b}{||x||_a} > 0.
+\end{equation}
+which is continuous on $\mathbb{R}^n\backslash\{0\}$. 
+\par Since $f(x) = f(\lambda x) $ for any $\lambda > 0$, we say that $f(x) $ is conpletely determined by its values on the unit sphere $S = \{x \in \mathbb{R}^n: ||x||_a = 1\}$. Note that $S$ is compact, so $f(x)$ attains its minimum and maximum on $S$, say $m$ and $M$. Thus, for any $x \in \mathbb{R}^n\backslash\{0\}$, we have
+\begin{equation}
+    0 < m \leq f(x) \le M < \infty,
+\end{equation}
+which implies
+\begin{equation}
+    m ||x||_a \leq ||x||_b \leq M ||x||_a.
+\end{equation}
+So the two norms are equivalent. \hfill $\blacksquare$
+\par \noindent \textbf{Remark} In $\infty$-dimensional space, the sphere is not compact. However, it is closed and bounded. 
+\par \noindent \textbf{Exercise} Give an example of norms on $l_1$ (convergent series) $l_1 = \{(x_1, x_2, \cdots)| \sum |x_i| < \infty \}$.
+
+\par Back to uniform Continuity. 
+\par Goal: Prove that any continuous map $f: (X, d_X) \to (Y, d_Y)$ with $X$ compact is uniformly continuous. 
+
+\begin{definition}
+    Let $X$ be a metric space. $A \subseteq X$. Then $diam(A) = \sup\{d(x, y): x, y \in A\}$ is called the diameter of $A$. 
+\end{definition}
+
+\begin{lemma}
+    [the Lebesgue Number Lemma]
+    Let $(X, d)$ be a compact metric space, and let $\mathcal{A}$ be an open cover of $X$. Then there exists a positive number $\delta > 0$ (called a Lebesgue number for the cover $\mathcal{A}$) such that for every subset $Y \subseteq X$ with diameter less than $\delta$ (i.e., for all $x, y \in Y$, $d(x, y) < \delta$), there exists an open set $A \in \mathcal{A}$ that contains $Y$.
+\end{lemma}
+
+\begin{example}
+    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
+\end{example}
+
+\par \noindent \textbf{Proof of the Lemma}
+\par If $X\in \mathcal{A}$, there's nothing to prove. 
+\par Otherwise take a finite subcovering $\{A_1, A_2, \cdots, A_n\}$ of $\mathcal{A}$. For each $i$, let $C_i = X \backslash A_i$ which is closed. We know that a closed subset of a compact set is compact, so each $C_i$ is compact. So $\forall x \in X$, we have $d(x, C_i) \ge 0$. Define 
+\begin{equation}
+    f(x) = \frac{1}{n} \sum_{i = 1}^{n} d(x, C_i)
+\end{equation}
+be the average distance from $x$ to the closed sets $C_i$. 
+\par We show that $f(x) > 0$ for all $x \in X$. 
+\par For all $x\in X$, we choose $A_i$ such that $x \in A_i$. Choose $\epsilon > 0$ such that $U_{\epsilon}(x) \subseteq A_i$ and $d(x, C_i) \ge \epsilon > 0$. So $f(x) \ge \frac{1}{n} d(x, C_i) \ge \frac{\epsilon}{n}$. Let $\delta = \min_{x \in X} f(x) > 0$ (because $f$ is continuous on compact set $X$). Then $\delta$ is a Lebesgue number. 
+\par Take $B \subseteq X$ with $diam(B) < \delta$. Then we can take $x_0 \in B$ with $B \subseteq U_{\delta}(x_0)$. 
+Then we can take $C_m$ such that  
+\begin{equation}
+    \delta  \le f(x_0) \le d(x_0, C_m).
+\end{equation}
+for some $m$. So we have 
+\begin{equation}
+    U_{\delta}(x_0) \subseteq A_m = X\backslash C_m.
+\end{equation}
+So $B \subseteq A_m$. \hfill $\blacksquare$
+
+\begin{definition}
+    $f: (X, d_X) \to (Y, d_Y)$. A function between two metric spaces is said to be uniformly continuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x_1, x_2 \in X$, if $d_X(x_1, x_2) < \delta$, then $d_Y(f(x_1), f(x_2)) < \epsilon$.
+\end{definition}
+
+\begin{theorem}
+    Let $f: X \rightarrow Y$ be a continuous function between two metric spaces. If $X$ is compact, then $f$ is uniformly continuous.
+\end{theorem}
+\par \noindent \textbf{Proof} To be done. 
+
+\begin{theorem}
+    Let $X$ be a non-empty compact Hausdorff space without isolated points. Then $X$ is uncountable. 
+\end{theorem}
+\par \noindent \textbf{Proof} To be done. 
+
+
+\begin{corollary}
+    $[a, b] \subseteq \mathbb{R}$ is uncountable. 
+\end{corollary}
+
+\end{document}

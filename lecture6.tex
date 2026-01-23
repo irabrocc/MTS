@@ -1,0 +1,241 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{5}
+
+\chapter{Lecture5}
+\label{chap:chapter6}
+
+\section{Topological Spaces in general}
+
+\begin{definition}
+    A \textbf{topological space} is a pair $(X, \mathcal{U})$ where $X$ is a set and $\mathcal{U} \subseteq 2^X$ such that:
+   \begin{enumerate}
+        \item $\emptyset, X \in \mathcal{U}$. 
+        \item If $U_{\alpha} \in \mathcal{U}$ for all $\alpha \in A$, then $\bigcup_{\alpha \in A} U_{\alpha} \in \mathcal{U}$.
+        \item If $U_1, U_2, \ldots, U_n \in \mathcal{U}$, then $\bigcap_{i=1}^n U_i \in \mathcal{U}$.
+   \end{enumerate} 
+   \par $\mathcal{U}$ is called a \textbf{topology} on $X$. The elements of $\mathcal{U}$ are called \textbf{open sets}.
+\end{definition}
+
+\begin{example}
+    Any metric space $(X, d)$ is a topological space, with $\mathcal{U}$ defined as: 
+    \begin{equation}
+        U\in \mathcal{U} \iff \forall x \in U, \exists r > 0 \text{ such that } B(x, r) \subseteq U.
+    \end{equation}
+    Open sets defined in this topology are the same as open sets defined by the metric. 
+\end{example}
+\begin{example}
+    Let $X$ be any non-empty set. The \textbf{discrete topology} on $X$ is defined as $\mathcal{U} = 2^X$. Every subset of $X$ is open. 
+\end{example}
+\begin{example}\label{Not metric1}
+    Let $X$ be any non-empty set. The \textbf{anti-discrete topology} on $X$ is defined as $\mathcal{U} = \{\emptyset, X\}$. Only $\emptyset$ and $X$ are open. \textbf{This example is not defined by a metric. }
+\end{example}
+\begin{example}
+    [Finite complement topology]\label{Not metric2}
+    Let $X$ be an infinite set, say, $\mathbb{R}$. Define  
+    \begin{equation}
+        U \in \mathcal{U} \Longleftrightarrow X \setminus U \text{ is finite or } U = \emptyset. 
+    \end{equation}
+\end{example}
+\begin{property}
+    Let $(X, d)$ be a metric space. Let $x, y\in X$, then there exists open sets $U, V$ such that $x \in U$, $y \in V$ and $U \cap V = \emptyset$. 
+\end{property}
+
+\begin{definition}
+    Let $(X, \mathcal{U})$ is a Hausdorff space(separable space) if for any $x, y \in X$, there exists open sets $U, V \in \mathcal{U}$ such that $x \in U$, $y \in V$ and $U \cap V = \emptyset$. 
+\end{definition}
+\par \noindent \textbf{Remark} Finite complement topology in \ref{Not metric2} is not Hausdorff. If we take any two non-empty open sets $U, V$, then both $X \setminus U$ and $X \setminus V$ are finite. Thus, $X \setminus (U \cap V) = (X \setminus U) \cup (X \setminus V)$ is also finite, which means $U \cap V \neq \emptyset$. So it is not Hausdorff. 
+\par \noindent \textbf{Remark} Also we see that \ref{Not metric1} is not Hausdorff. 
+
+\begin{example}
+    Let $X = \mathbb{N}$. Let $U_n = \{i\in X| i\le n\}$ for some $n$. Let $\mathcal{U} = \{\emptyset, X\} \cup \{U_n | n \in \mathbb{N}\}$. Then $(X, \mathcal{U})$ is a topological space. 
+\par For finite Union, let $U_{n_1}, U_{n_2}, \ldots, U_{n_k} \in \mathcal{U}$, then 
+    \begin{equation}
+        \bigcup_{i=1}^k U_{n_i} = U_{\max\{n_1, n_2, \ldots, n_k\}} \in \mathcal{U}.
+    \end{equation}
+\par For infinite Union, let $\{U_{n_{\alpha}}\}_{\alpha \in A} \subseteq \mathcal{U}$, then 
+    \begin{equation}
+        \bigcup_{\alpha \in A} U_{n_{\alpha}} = \mathbb{N}
+    \end{equation}
+\par For finite Intersection, let $U_{n_1}, U_{n_2}, \ldots, U_{n_k} \in \mathcal{U}$, then 
+    \begin{equation}
+        \bigcap_{i=1}^k U_{n_i} = U_{\min\{n_1, n_2, \ldots, n_k\}} \in \mathcal{U}.
+    \end{equation}
+\par This set is not Hausdorff. 
+\end{example}
+
+\par Alternatively, topology can be defined by closed sets: $Y \subseteq X$ is closed if $X\setminus Y$ is open. So we can rewrite the definition of Topology space: 
+\begin{enumerate}
+    \item $\emptyset, X$ are closed.
+    \item If $F_{\alpha}$ is closed for all $\alpha \in A$, then $\bigcap_{\alpha \in A} F_{\alpha}$ is closed.
+    \item If $F_1, F_2, \ldots, F_n$ are closed, then $\bigcup_{i=1}^n F_i$ is closed.
+\end{enumerate}
+\par \noindent \textbf{Question} Is there an infinite collection of open sets such that their intersection is not open? 
+\section{Zariski Topology} 
+\par Let $X = \mathbb{C}^n$(or $\mathbb{K}^n$). $Y \subseteq \mathbb{C}^n$ is closed if $Y$ is a solution of 
+\begin{equation}
+    \begin{cases}
+    f_1(x_1, x_2, \ldots, x_n) = 0 \\
+    f_2(x_1, x_2, \ldots, x_n) = 0 \\
+    \vdots \\
+    f_m(x_1, x_2, \ldots, x_n) = 0\\
+    \vdots 
+    \end{cases}
+\end{equation} 
+\par $X$ is defined by $0 = 0$. $\emptyset$ is defined by $1 = 0$. Any points in $\mathbb{C}^n$ is defined by
+\begin{equation}
+    \begin{cases}
+    x_1 - a_1 = 0 \\
+    x_2 - a_2 = 0 \\
+    \vdots \\
+    x_n - a_n = 0\\
+    \end{cases}
+\end{equation}
+A circle in $\mathbb{C}^2$ is defined by $x^2 + y^2 - 1 = 0$. 
+\par Any intersection of closed sets is the set of solutions of all the polynomials that define each closed set, so it is still closed. 
+\par Any union of finite closed sets is also closed since we can use the product of all polynomials that define each closed set to define the union. 
+\par For $n = 1$, since any polynomial with degree at least 1 has finitely many roots, recalling the finite complement topology in \ref{Not metric2}, we see that Zariski topology on $\mathbb{C}$ is the finite complement topology. But this is not Hausdorff. 
+
+\section{Basis of a topology} 
+\begin{definition}
+    Let $X$ be a set. A \textbf{basis} $\mathcal{B}$ is a is a set in $2^{X}$ such that
+    \begin{enumerate}
+        \item For any $x \in X$, $\exists B \in \mathcal{B}$ such that $x \in B$. 
+        \item For any $x\in X$, if $x \in B_1$ and $x \in B_2$ where $B_1, B_2 \in \mathcal{B}$, then $\exists B_3 \in \mathcal{B}$ such that $x \in B_3 \subseteq B_1 \cap B_2$.
+    \end{enumerate}
+\end{definition}
+\begin{property}
+    The collection of all unions of elements in $\mathcal{B}$ forms a topology on $X$, called the topology \textbf{generated} by $\mathcal{B}$.
+\end{property}
+\par \noindent \textbf{Proof} 
+\begin{enumerate}
+    \item $\emptyset, X$ are in the topology generated by $\mathcal{B}$.
+    \item Let $\{U_{\alpha}\}_{\alpha \in A}$ be a collection of open sets in the topology generated by $\mathcal{B}$. Then for each $\alpha$, we have $U_{\alpha} = \bigcup_{i \in I_{\alpha}} B_i$ where $B_i \in \mathcal{B}$. Thus,
+    \begin{equation}
+        \bigcup_{\alpha \in A} U_{\alpha} = \bigcup_{\alpha \in A} \bigcup_{i \in I_{\alpha}} B_i,
+    \end{equation}
+    which is still a union of elements in $\mathcal{B}$. So $\bigcup_{\alpha \in A} U_{\alpha}$ is in the topology generated by $\mathcal{B}$.
+    \item Let $U_1, U_2\in \mathcal{U}$ be two open sets in the topology generated by $\mathcal{B}$. Then let $x\in U_1 \cap U_2$, we have $\exists B_1, B_2 \in \mathcal{B}$ such that $x \in B_1 \subseteq U_1$ and $x \in B_2 \subseteq U_2$. By the second property of basis, there exists $B_3 \in \mathcal{B}$ such that $x \in B_3 \subseteq B_1 \cap B_2 \subseteq U_1 \cap U_2$. Similarly, for any $x \in U_1 \cap U_2$, we can find such $B_3$. Thus, $U_1 \cap U_2$ is also in the topology generated by $\mathcal{B}$. 
+\end{enumerate}
+\begin{example}\label{basis1}
+    For a metric space $(X, d)$, the collection of all open balls $\{B(x, r) | x \in X, r > 0\}$ is a basis of the topology induced by $d$.
+\end{example}
+\begin{example}\label{basis2}
+    All the rectangles in $\mathbb{R}^2$ with sides parallel to the axes form a basis of the standard topology on $\mathbb{R}^2$.
+\end{example}
+
+\begin{example}
+    Let $X$ be any set. Let $\mathcal{B} = \{\{x\} | x \in X\}$. Then $\mathcal{B}$ is a basis of the discrete topology on $X$.
+\end{example}
+
+\begin{theorem}
+    If $\mathcal{B}$ is a basis of a topology $\mathcal{U}$ on $X$, then for any open set $U \in \mathcal{U}$, we have $U = \bigcup_{B \in \mathcal{B}, B \subseteq U} B$. (The Proof is based on the wrong definition of basis in the previous version.)
+\end{theorem}
+\par \noindent \textbf{Proof}
+\par ``$\subseteq$'': For any $x \in U$, since $\mathcal{B}$ is a basis, there exists $B \in \mathcal{B}$ such that $x \in B$. There exists $B' \in \mathcal{B}$ such that $x \in B' \subseteq B \cap U$. Thus, $B' \subseteq U$ and $x \in \bigcup_{B \in \mathcal{B}, B \subseteq U} B$.
+\par ``$\supseteq$'': For any $x \in \bigcup_{B \in \mathcal{B}, B \subseteq U} B$, there exists $B \in \mathcal{B}$ such that $x \in B \subseteq U$. Thus, $x \in U$.
+\begin{example}
+    \begin{enumerate}
+        \item Balls in $d_1, d_2, d_{\infty}$ metrics in $\mathbb{R}^n$ form bases of the standard topology on $\mathbb{R}^n$. 
+        \item $\{U_{\epsilon}(x)| \epsilon > 0, x\in \mathbb{Q}^n\}$is a countable basis of the standard topology on $\mathbb{R}^n$. 
+    \end{enumerate}
+\end{example}
+\par \noindent \textbf{Exercise} Find a metric space not admitting countable basis of topology. 
+
+\begin{lemma}
+    Let $X$ be a topological space. Let $\mathcal{C}$ be a collection of open sets of $X$ such that: let $x$ be a point in $X$, then for any open set $U$ containing $x$, there exists $C \in \mathcal{C}$ such that $x \in C \subseteq U$. Then $\mathcal{C}$ is a basis of the topology on $X$. 
+\end{lemma}
+\par \noindent \textbf{Proof} 
+\begin{enumerate}
+    \item For any $x \in X$, since $X$ is open and contains $x$, there exists $C \in \mathcal{C}$ such that $x \in C \subseteq X$. 
+    \item Let $x \in C_1 \cap C_2$ where $C_1, C_2 \in \mathcal{C}$. Since $C_1 \cap C_2$ is open and contains $x$, there exists $C_3 \in \mathcal{C}$ such that $x \in C_3 \subseteq C_1 \cap C_2$.
+    \item Let $\mathcal{T}$ be the topology generated by $\mathcal{C}$. Let $\mathcal{U}$ be the initial topology on $X$. For any $U \in \mathcal{U}$, for any $x \in U$, there exists $C \in \mathcal{C}$ such that $x \in C \subseteq U$. So, \begin{equation}
+        U = \bigcup_{C \in \mathcal{C}, C \subseteq U} C,
+    \end{equation}
+    which means $U \in \mathcal{T}$. Thus, $\mathcal{U} \subseteq \mathcal{T}$. 
+    \item And we also have $\mathcal{T} \subseteq \mathcal{U}$ because: since $\mathcal{C} \subseteq \mathcal{U}$, any union of elements in $\mathcal{C}$ is also in $\mathcal{U}$. Thus, $\mathcal{T} \subseteq \mathcal{U}$.
+    \item Combining the above two results, we have $\mathcal{T} = \mathcal{U}$.
+\end{enumerate}
+
+\begin{definition}
+    If $\mathcal{T}, \mathcal{U}$ are two topologies on $X$, we say that $\mathcal{T}$ is \textbf{finer} than $\mathcal{U}$ (or $\mathcal{U}$ is \textbf{coarser} than $\mathcal{T}$) if $\mathcal{U} \subseteq \mathcal{T}$.
+\end{definition}
+
+\begin{example}
+    Let $X$ be any set. The discrete topology on $X$ is the finest topology on $X$. The anti-discrete topology on $X$ is the coarsest topology on $X$. 
+\end{example}
+
+\begin{lemma}
+    Let $\mathcal{B}, \mathcal{C}$ be two bases of topologies $\mathcal{T}, \mathcal{U}$ on $X$ respectively. Then the following are equivalent:
+    \begin{enumerate}
+        \item $\mathcal{U}$ is finer than $\mathcal{T}$. 
+        \item For any $x \in X$, for any $B \in \mathcal{B}$ containing $x$, there exists $C \in \mathcal{C}$ such that $x \in C \subseteq B$.
+    \end{enumerate}
+\end{lemma}
+
+\par \noindent \textbf{Proof} 
+\begin{enumerate}
+    \item ``(1) $\Rightarrow$ (2)'': Let $x \in X$. Let $B \in \mathcal{B}$ such that $x \in B$. Since $\mathcal{U}$ is finer than $\mathcal{T}$, we have $B \in \mathcal{U}$. Since $\mathcal{C}$ is a basis of $\mathcal{U}$, there exists $C \in \mathcal{C}$ such that $x \in C \subseteq B$.
+    \item ``(2) $\Rightarrow$ (1)'': Let $U \in \mathcal{T}$. For any $x \in U$, since $\mathcal{B}$ is a basis of $\mathcal{T}$, there exists $B \in \mathcal{B}$ such that $x \in B \subseteq U$. By (2), there exists $C \in \mathcal{C}$ such that $x \in C \subseteq B \subseteq U$. Thus, for any $x \in U$, we can find such $C$. By the previous lemma($\mathcal{C}$ is a basis of $\mathcal{U}$), we have $U \in \mathcal{U}$. Therefore, $\mathcal{U}$ is finer than $\mathcal{T}$.
+\end{enumerate}
+
+\begin{example}
+    By the above lemma, we see that the topology generated by the basis in \ref{basis1} is finer than the topology generated by the basis in \ref{basis2}. And similarly, the topology generated by the basis in \ref{basis2} is finer than the topology generated by the basis in \ref{basis1}. Thus, they are the same topology.
+\end{example}
+\begin{example}
+    [Lower limit topology on $\mathbb{R}$]
+    Let $\mathcal{B} = \{[a, b) | a < b, a, b \in \mathbb{R}\}$. Then $\mathcal{B}$ is a basis of a topology on $\mathbb{R}$, called the \textbf{lower limit topology} called $\mathbb{R}_l$.
+    \par One can show that the lower limit topology is finer than the standard topology on $\mathbb{R}$ since for $a < x < b$, we have $x \in [x, b) \subseteq (a, b)$. But the lower limit topology is not equal to the standard topology since take $0\in [0, 1)$, there is no open interval $(a, b)$ such that $0 \in (a, b) \subseteq [0, 1)$.
+    \par We say that $\mathbb{R}_l$ is strictly finer than the standard topology on $\mathbb{R}$. 
+\end{example}
+\par \noindent \textbf{Exercise} Prove that $\mathbb{R}_l$ does not have a countable basis. 
+\begin{example}
+    [Order Topology] 
+    Let $X$ be a simply ordered set. 
+    \begin{equation}
+        \mathcal{B} = \{(a, b) | a < b, a, b \in X\} \cup \{[a_0, b)| a_0 < b\} \cup \{(a, b_0] | a < b_0\}
+    \end{equation} 
+    where $a_0$ is the smallest element of $X$ if it exists, and $b_0$ is the largest element of $X$ if it exists. Then $\mathcal{B}$ is a basis of a topology on $X$, called the \textbf{order topology}.
+\end{example}
+\par \noindent \textbf{Remark} Let $(X, \mathcal{U})$, $(Y, \mathcal{Y})$ be two topological spaces. Then $\mathcal{U}\times \mathcal{V}$ may not be a topology on $X \times Y$. For example, the union of two rectangles may not be a rectangle. The correct idea is to define the basis of the product topology as:
+\begin{equation}
+    \mathcal{B} = \{U \times V | U \in \mathcal{U}, V \in \mathcal{V}\}.
+\end{equation}
+Furthermore, we see that for $U_1, U_2\in \mathcal{U}$ and $V_1, V_2 \in \mathcal{V}$, we have
+\begin{equation}
+    (U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2),
+\end{equation}
+\begin{definition}
+    The topology on $X\times Y$ defined by basis $\mathcal{U}\times \mathcal{V}$ is called the product topology on $X\times Y$. 
+\end{definition}
+\begin{theorem}
+    Let $\mathcal{B} \subseteq \mathcal{U}$ be a basis of $\mathcal{U}$ and let $\mathcal{C} \subseteq \mathcal{V}$ be a basis of $\mathcal{V}$. Then $\mathcal{D} = \{B \times C | B \in \mathcal{B}, C \in \mathcal{C}\}$ is a basis of the product topology on $X \times Y$.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par We need to show: for every open set $W \subseteq X\times Y$ and for every $(x, y) \in W$, there exists $B\times C$ with $B \in \mathcal{B}$, $C \in \mathcal{C}$ such that $(x, y) \in B \times C \subseteq W$.
+\par Since $W$ is open in the product topology, there exists $U \in \mathcal{U}$ and $V \in \mathcal{V}$ such that $(x, y) \in U \times V \subseteq W$. Since $\mathcal{B}$ is a basis of $\mathcal{U}$, there exists $B \in \mathcal{B}$ such that $x \in B \subseteq U$. Since $\mathcal{C}$ is a basis of $\mathcal{V}$, there exists $C \in \mathcal{C}$ such that $y \in C \subseteq V$. Thus, we have $(x, y) \in B \times C \subseteq U \times V \subseteq W$.
+
+\begin{example}
+    Let $\pi_1: X \times Y \to X$ and $\pi_2: X \times Y \to Y$ be the projection maps defined by $\pi_1(x, y) = x$ and $\pi_2(x, y) = y$. Then we have 
+    \begin{equation}
+        \pi_1^{-1}(U) = U \times Y \text{ for any } U \in \mathcal{U},
+    \end{equation}
+    \begin{equation}
+        \pi_2^{-1}(V) = X \times V \text{ for any } V \in \mathcal{V}.
+    \end{equation}
+    which means that both $\pi_1$ and $\pi_2$ are continuous. And we have 
+    \begin{equation}
+        U\times V = \pi_1^{-1}(U) \cap \pi_2^{-1}(V).
+    \end{equation}
+    is open in the product topology. And we have 
+    \begin{equation}
+        S = \{\pi_1^{-1}(U)| U \subseteq \mathcal{U}\} \cup \{\pi_2^{-1}(V) | V \subseteq \mathcal{V}\} 
+    \end{equation}
+    is a basis of the product topology on $X \times Y$. 
+\end{example}
+
+\end{document}

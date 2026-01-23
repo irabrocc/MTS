@@ -1,0 +1,115 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{11}
+
+\chapter{Later}
+\label{chap:chapter1}
+
+\begin{definition}
+    A collection $\mathcal{A}$ of subsets of a space $X$ is called "a covev" or "a covering" if the union of the elements of $\mathcal{A}$ is $X$; it is called an open covering if all these sets are open. 
+\end{definition}
+
+\begin{definition}
+    $X$ is called a compact space if every open covering $\mathcal{A}$ contains a finite subcollection which also covers $X$. 
+\end{definition}
+\par \noindent \textbf{Remark} Begin compact depends on the topology: For example, consider $X$ with the antidiscrete topology, i.e., $\mathcal{T} = \{\emptyset, X\}$. Then $X$ is compact. 
+\begin{example}
+    $\mathbb{R}$ with the standard topology is not compact. Consider the open covering $\mathcal{A} = \{(-n, n) | n \in \mathbb{N}\}$. 
+\end{example}
+\begin{example}
+    $(0, 1]$ with the standard topology is not compact. Consider the open covering $\mathcal{A} = \{(1/n, 1] | n \in \mathbb{N}\}$.
+\end{example}
+\begin{example}
+    \begin{itemize}
+        \item $\{0\}\cup \bigcup \{\dfrac{1}{n}\} \subseteq \mathbb{R}$ is compact because $\{0\}$ is the limit point and any open covering must contain an open set containing $0$, which covers all but finite points.
+        \item $\bigcup \{\dfrac{1}{n}\}$ is not compact. Consider the open covering $\mathcal{A} = \{(1/n - \epsilon, 1/n + \epsilon) | n \in \mathbb{N}\}$. (Similarly, for infinite $X$ with discrete topology, $X$ is not compact.)
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    $Y \subseteq X$ is compact if every open covering of $Y$ by sets open in $X$ contains a finite subcollection covering $Y$.
+\end{definition}
+\begin{lemma}
+    $Y \subseteq X$ is compact if and only if every open covering of $Y$ by sets open in $Y$ contains a finite subcollection covering $Y$.
+\end{lemma}
+\par \noindent \textbf{Proof}
+\par ($\Rightarrow$) To be done.  
+\par ($\Leftarrow$)
+
+\begin{theorem}
+    Every closed subspace of a compact space is compact. 
+\end{theorem}
+\par \noindent \textbf{Proof} Let $X$ be a compact space and let $Y$ be a closed subspace of $X$. Let $\mathcal{A}$ be an open covering of $Y$ by sets open in $X$. Since $Y$ is closed, $X\setminus Y$ is open in $X$. Thus, $\mathcal{A} \cup \{X\setminus Y\}$ is an open covering of $X$. By the compactness of $X$, there exists a finite subcollection $\mathcal{A}' \subseteq \mathcal{A}$ such that $\mathcal{A}' \cup \{X\setminus Y\}$ covers $X$. Therefore, $\mathcal{A}'$ covers $Y$. Hence, $Y$ is compact.
+\begin{theorem}
+    Every compact subspace of a Hausdorff space is closed. 
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par It suffices to show that for any $x \in X \setminus Y$, there exists an open set $U$ containing $x$ such that $U \cap Y = \emptyset$. For each $y \in Y$, since $X$ is Hausdorff, there exist disjoint open sets $U_y$ and $V_y$ such that $x \in U_y$ and $y \in V_y$. Then $\{V_y | y \in Y\}$ is an open covering of $Y$. By the compactness of $Y$, there exists a finite subcollection $\{V_{y_1}, V_{y_2}, \ldots, V_{y_n}\}$ that covers $Y$. Let
+\begin{equation}
+    U = \bigcap_{i=1}^{n} U_{y_i}
+\end{equation}
+Then $U$ is an open set containing $x$. Moreover
+\begin{equation}
+    U \cap Y  = \bigcap_{i=1}^{n} (U_{y_i}) \cap Y \subseteq U_{y_i} \cap V_{y_i} = \emptyset 
+\end{equation}
+Thus, $U \cap Y = \emptyset$. Hence, $Y$ is closed. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\begin{lemma}
+    $Y$ is a compact subspace of Hausdorff space $X$. And $x \in X \setminus Y$. Then there exist open sets $U$ and $V$ such that $x \in U$, $Y \subseteq V$ and $U \cap V = \emptyset$.
+\end{lemma}
+\par \noindent \textbf{Proof} Proved inside the proof of the theorem. 
+
+\begin{theorem}
+    The imageof a compact set under a continuous map is compact. 
+\end{theorem}
+\par \noindent \textbf{Proof} Let $f: X \rightarrow Y$ be a continuous map. Consider any open covering $\mathcal{A}$ of $f(X)$ by sets open in $Y$. Then $\{f^{-1}(U) | U \in \mathcal{A}\}$ is an open covering of $X$ by sets open in $X$. By the compactness of $X$, there exists a finite subcollection $\{f^{-1}(U_1), f^{-1}(U_2), \ldots, f^{-1}(U_n)\}$ that covers $X$. Thus, $\{U_1, U_2, \ldots, U_n\}$ is a finite subcollection of $\mathcal{A}$ that covers $f(X)$. Hence, $f(X)$ is compact.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    Let $f: X \rightarrow Y$ be a bijective continuous map. If $X$ is compact and $Y$ is Hausdorff, then $f$ is a homeomorphism.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par We just combine the above theorems. 
+\par It suffices to show that images of closed sets under $f$ are closed. Consider any closed set $D$ in $X$. By the theorem, $D$ is compact. Thus, by the previous theorem, $f(D)$ is compact. Since $Y$ is Hausdorff, by another theorem, $f(D)$ is closed. Hence, $f$ is a homeomorphism.
+\mbox{} \\ \null \hfill $\blacksquare$  
+
+\begin{lemma}
+    [tube lemma]
+    Let $x_0\in X$, suppose $\{x_0\}\times Y$ is convered by open sets $W_i$ in $X \times Y$. Then one can bhoose a finite subcovering $W_1, W_2, \ldots, W_n$ of $\{x_0\}\times Y$ and find an open nbhd $U$ of $x_0$ such that $U \times Y \subseteq \bigcup_{i=1}^{n} W_i$.
+\end{lemma}
+\par \noindent \textbf{Proof} One may assume that $W_i = U_i \times V_i$ where $U_i$ is open in $X$ and $V_i$ is open in $Y$. Then $\{V_i\}$ is an open covering of $Y$. By the compactness of $Y$, there exists a finite subcollection $\{V_1, V_2, \ldots, V_n\}$ that covers $Y$. 
+
+\par To be done. 
+
+\begin{theorem}
+    The product of finitely many compact spaces is compact. 
+\end{theorem}
+\par \noindent \textbf{Proof} It is enough to prove for two sets. Let $X$ and $Y$ be compact spaces. 
+\par We can cover $X\times Y$ by finitly many tubes by the tube lemma. And each tube can be covered by finitly many open sets. Thus $X \times Y$ is compact.
+\par To be done. 
+
+\begin{definition}
+    A collection $\mathcal{C}$ of sets has the finite intersection property if for any finite subcollection $\{C_1, C_2, \ldots, C_n\} \subseteq \mathcal{C}$, we have
+    \begin{equation}
+        C_1 \cap C_2 \cap \ldots \cap C_n \neq \emptyset
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    $X$ is a topological space. Then $X$ is compact if and only if for every collection $\mathcal{C}$ of closed sets in $X$ with the finite intersection property, we have
+    \begin{equation}
+        \bigcap_{C \in \mathcal{C}} C \neq \emptyset
+    \end{equation}
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Let $\mathcal{A}$ be a collection of open sets in $X$. Then $\mathcal{C} = \{X \setminus A | A \in \mathcal{A}\}$ is a collection of closed sets in $X$. 
+\par Then $\mathcal{A}$ is an open covering of $X$ if and only if $\bigcap_{C \in \mathcal{C}} C = \emptyset$. 
+\par Then a finite subcollection of $\mathcal{A}$ covers $X$ if and only if the corresponding finite subcollection of $\mathcal{C}$ has empty intersection. 
+\par Now the theorem follows directly.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\end{document}

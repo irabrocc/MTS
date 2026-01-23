@@ -1,0 +1,128 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{18}
+
+\chapter{19}
+\label{chap:chapter19}
+
+\begin{definition}
+    Matrices $A\in \mathbb{C}^{n\times n}$ and $B\in \mathbb{C}^{m\times m}$ are called similar if there exists an invertible matrix $P\in \mathbb{C}^{n\times m}$ such that
+    \begin{equation}
+        A = PBP^{-1}
+    \end{equation}
+    We write $A \sim B$.
+\end{definition}
+
+\begin{property}
+    Similarity is an equivalence relation on the set of all square matrices.
+\end{property}
+
+\begin{theorem}
+    If $A \sim B$, then $A$ and $B$ have the same characteristic polynomial, and thus the same eigenvalues with the same algebraic multiplicities.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par We have 
+\begin{equation}
+    P(\lambda) = \det(\lambda I - A) = \det(\lambda I - PBP^{-1}) = \det(P(\lambda I - B)P^{-1}) = \det(\lambda I - B)
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$
+
+\section{Schur's decomposition} 
+\par \noindent \textbf{Idea} The idea of diagonalization may be problematic as: 
+
+\begin{itemize}
+    \item Diagonalization is not always possible. 
+    \item It is neccessary to compute the inverse of $P$. 
+    \item Computing the decompostition is much easier if $P$ is unitary(called orthogonal if real).
+\end{itemize}
+
+\begin{theorem}
+    [Shur's decomposition]
+    For all $A \in \mathbb{C}^{n \times n}$, there exists an upper triangular $T\in \mathbb{C}^{n \times n}$ and a unitary $U \in \mathbb{C}^{n \times n}$ such that
+    \begin{equation}
+        A = UTU^*
+    \end{equation}
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Let $\lambda_1$ be an eigenvalue of $A$. We choose orthogonal bases $\{q_1, q_2, \ldots, q_k\} = E_{\lambda_1}$ of the eigenspace of $\lambda_1$ and $E_{\lambda_1}^{\perp}$ respectively. Let $Q_1 = [q_1, q_2, \ldots, q_n]$ and thus $Q_1$ is unitary. 
+We obtain 
+\begin{equation}
+    A = Q_1 \begin{bmatrix}
+        \lambda_1 I_k & B_1 \\
+        0 & A_1
+    \end{bmatrix} Q_1^*
+\end{equation}
+\par Repeating the process on $A_1$, we obtain a unitary $Q_2$ such that
+\begin{equation}
+    A_1 = Q_2 \begin{bmatrix}
+        \lambda_2 I_{k_2} & B_2 \\
+        0 & A_2
+    \end{bmatrix} Q_2^*
+\end{equation}
+\par Continuing this process, we eventually obtain
+\begin{equation}
+    A = U T U^*
+\end{equation}
+where $U = Q_1 Q_2 \cdots Q_m$ is unitary
+and $T$ is upper triangular.
+\mbox{} \\ \null \hfill $\blacksquare$
+
+\begin{definition}
+    A matrix $A\in \mathbb{C}^{n\times n}$ is called normal if $AA^* = A^*A$.
+\end{definition}
+\par \noindent \textbf{Remark} A Hermitian matrix is normal since $A^*A = A^2 = AA^*$. A unitary matrix is normal since $AA^* = I = A^*A$. 
+
+\begin{theorem}
+    A matrix $A\in \mathbb{C}^{n\times n}$ is normal if and only if it is unitarity diagonalizable, i.e., there exists a unitary matrix $U$ and a diagonal matrix $\Lambda$ such that
+    \begin{equation}
+        A = U \Lambda U^*
+    \end{equation}
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Suppose $A = U T U^*$ is the Schur decomposition of $A$. If $A$ is normal, then
+\begin{equation}
+    (UTU^*)(UTU^*)^* = (UTU^*)^*(UTU^*)
+\end{equation}
+\par This implies that $TT^* = T^*T$. Since $T$ is upper triangular, $T$ must be diagonal. Thus, $A$ is unitarily diagonalizable.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\par \noindent \textbf{Remark} A matrix that is diagonalizable but not unitarily diagonalizable is
+\begin{equation}
+    A = \begin{bmatrix}
+        1 & 1 \\
+        0 & 2
+    \end{bmatrix}
+\end{equation}
+The eigenvalues of $A$ are $1$ and $2$, but $AA^* \neq A^*A$. (Exercise)
+
+\begin{corollary}
+    For a normal matrix, eigenvectors corresponding to distinct eigenvalues are orthogonal, or can be normalized to be orthonormal. The eigenvectors related to the same eigenvalue can be orthogonalized by using Gram-Schmidt process. 
+\end{corollary}
+
+\section{Singular Value Decomposition} 
+\begin{theorem}
+    [Singular Value Decomposition]
+    For any matrix $A \in \mathbb{C}^{m \times n}$, it can be represented in the form 
+    \begin{equation}
+        A = U \Sigma V^*
+    \end{equation}
+    where $U \in \mathbb{C}^{m \times p}$ and $V \in \mathbb{C}^{n \times p}$ have orthonormal columns(so $U$ is unitary if $m = p$ and $V$ is unitary if $n = p$), $\Sigma \in \mathbb{C}^{p \times p}$ satisfies
+    \begin{equation}
+        \Sigma = \begin{bmatrix}
+            \sigma_1 & 0 & \cdots & 0 \\
+            0 & \sigma_2 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \sigma_p \\
+        \end{bmatrix}
+    \end{equation}
+    where $p = \min\{m, n\}$, such that $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_p \ge 0$ are the singular values of $A$ .
+\end{theorem}
+
+
+
+
+\end{document}
