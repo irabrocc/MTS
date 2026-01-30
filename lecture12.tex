@@ -15,7 +15,7 @@
 \begin{definition}
     $X$ is called a compact space if every open covering $\mathcal{A}$ contains a finite subcollection which also covers $X$. 
 \end{definition}
-\par \noindent \textbf{Remark} Begin compact depends on the topology: For example, consider $X$ with the antidiscrete topology, i.e., $\mathcal{T} = \{\emptyset, X\}$. Then $X$ is compact. 
+\par \noindent \textbf{Remark} Being compact depends on the topology: For example, consider $X$ with the antidiscrete topology, i.e., $\mathcal{T} = \{\emptyset, X\}$. Then $X$ is compact. 
 \begin{example}
     $\mathbb{R}$ with the standard topology is not compact. Consider the open covering $\mathcal{A} = \{(-n, n) | n \in \mathbb{N}\}$. 
 \end{example}
@@ -24,8 +24,8 @@
 \end{example}
 \begin{example}
     \begin{itemize}
-        \item $\{0\}\cup \bigcup \{\dfrac{1}{n}\} \subseteq \mathbb{R}$ is compact because $\{0\}$ is the limit point and any open covering must contain an open set containing $0$, which covers all but finite points.
-        \item $\bigcup \{\dfrac{1}{n}\}$ is not compact. Consider the open covering $\mathcal{A} = \{(1/n - \epsilon, 1/n + \epsilon) | n \in \mathbb{N}\}$. (Similarly, for infinite $X$ with discrete topology, $X$ is not compact.)
+        \item $\{0\}\cup \{\dfrac{1}{n}| n\in \mathbb{Z}^{+}\} \subseteq \mathbb{R}$ is compact because $\{0\}$ is the limit point and any open covering must contain an open set containing $0$, which covers all but finite points.
+        \item $\{\dfrac{1}{n}| n\in \mathbb{Z}^+\}$ is not compact. Consider the open covering $\mathcal{A} = \{(1/n - \epsilon, 1/n + \epsilon) | n \in \mathbb{N}\}$. (Similarly, for infinite $X$ with discrete topology, $X$ is not compact.)
     \end{itemize}
 \end{example}
 
@@ -36,8 +36,7 @@
     $Y \subseteq X$ is compact if and only if every open covering of $Y$ by sets open in $Y$ contains a finite subcollection covering $Y$.
 \end{lemma}
 \par \noindent \textbf{Proof}
-\par ($\Rightarrow$) To be done.  
-\par ($\Leftarrow$)
+\par Trivial. 
 
 \begin{theorem}
     Every closed subspace of a compact space is compact. 
@@ -53,7 +52,7 @@
 \end{equation}
 Then $U$ is an open set containing $x$. Moreover
 \begin{equation}
-    U \cap Y  = \bigcap_{i=1}^{n} (U_{y_i}) \cap Y \subseteq U_{y_i} \cap V_{y_i} = \emptyset 
+    U \cap Y  = (\bigcap_{i=1}^{n} U_{y_i}) \cap Y = \emptyset 
 \end{equation}
 Thus, $U \cap Y = \emptyset$. Hence, $Y$ is closed. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
@@ -63,7 +62,7 @@ Thus, $U \cap Y = \emptyset$. Hence, $Y$ is closed.
 \par \noindent \textbf{Proof} Proved inside the proof of the theorem. 
 
 \begin{theorem}
-    The imageof a compact set under a continuous map is compact. 
+    The image of a compact set under a continuous map is compact. 
 \end{theorem}
 \par \noindent \textbf{Proof} Let $f: X \rightarrow Y$ be a continuous map. Consider any open covering $\mathcal{A}$ of $f(X)$ by sets open in $Y$. Then $\{f^{-1}(U) | U \in \mathcal{A}\}$ is an open covering of $X$ by sets open in $X$. By the compactness of $X$, there exists a finite subcollection $\{f^{-1}(U_1), f^{-1}(U_2), \ldots, f^{-1}(U_n)\}$ that covers $X$. Thus, $\{U_1, U_2, \ldots, U_n\}$ is a finite subcollection of $\mathcal{A}$ that covers $f(X)$. Hence, $f(X)$ is compact.
 \mbox{} \\ \null \hfill $\blacksquare$ 
@@ -78,7 +77,7 @@ Thus, $U \cap Y = \emptyset$. Hence, $Y$ is closed.
 
 \begin{lemma}
     [tube lemma]
-    Let $x_0\in X$, suppose $\{x_0\}\times Y$ is convered by open sets $W_i$ in $X \times Y$. Then one can bhoose a finite subcovering $W_1, W_2, \ldots, W_n$ of $\{x_0\}\times Y$ and find an open nbhd $U$ of $x_0$ such that $U \times Y \subseteq \bigcup_{i=1}^{n} W_i$.
+    Let $x_0\in X$, suppose $\{x_0\}\times Y$ is convered by open sets $W_i$ in $X \times Y$. Then one can choose a finite subcovering $W_1, W_2, \ldots, W_n$ of $\{x_0\}\times Y$ and find an open neighbor $U$ of $x_0$ such that $U \times Y \subseteq \bigcup_{i=1}^{n} W_i$.
 \end{lemma}
 \par \noindent \textbf{Proof} One may assume that $W_i = U_i \times V_i$ where $U_i$ is open in $X$ and $V_i$ is open in $Y$. Then $\{V_i\}$ is an open covering of $Y$. By the compactness of $Y$, there exists a finite subcollection $\{V_1, V_2, \ldots, V_n\}$ that covers $Y$. 
 

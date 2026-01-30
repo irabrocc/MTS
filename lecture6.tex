@@ -132,7 +132,7 @@ A circle in $\mathbb{C}^2$ is defined by $x^2 + y^2 - 1 = 0$.
 \end{example}
 
 \begin{theorem}
-    If $\mathcal{B}$ is a basis of a topology $\mathcal{U}$ on $X$, then for any open set $U \in \mathcal{U}$, we have $U = \bigcup_{B \in \mathcal{B}, B \subseteq U} B$. (The Proof is based on the wrong definition of basis in the previous version.)
+    If $\mathcal{B}$ is a basis of a topology $\mathcal{U}$ on $X$, then for any open set $U \in \mathcal{U}$, we have $U = \bigcup_{B \in \mathcal{B}, B \subseteq U} B$. (The Proof is based on the wrong definition of basis in the previous version, but the right version is not hard. )
 \end{theorem}
 \par \noindent \textbf{Proof}
 \par ``$\subseteq$'': For any $x \in U$, since $\mathcal{B}$ is a basis, there exists $B \in \mathcal{B}$ such that $x \in B$. There exists $B' \in \mathcal{B}$ such that $x \in B' \subseteq B \cap U$. Thus, $B' \subseteq U$ and $x \in \bigcup_{B \in \mathcal{B}, B \subseteq U} B$.
@@ -233,9 +233,9 @@ Furthermore, we see that for $U_1, U_2\in \mathcal{U}$ and $V_1, V_2 \in \mathca
     \end{equation}
     is open in the product topology. And we have 
     \begin{equation}
-        S = \{\pi_1^{-1}(U)| U \subseteq \mathcal{U}\} \cup \{\pi_2^{-1}(V) | V \subseteq \mathcal{V}\} 
+        S = \{\pi_1^{-1}(U)| U \in \mathcal{U}\} \cup \{\pi_2^{-1}(V) | V \in \mathcal{V}\} 
     \end{equation}
-    is a basis of the product topology on $X \times Y$. 
+    is a subbasis of the product topology on $X \times Y$(Note: We have not defined subbasis). 
 \end{example}
 
 \end{document}

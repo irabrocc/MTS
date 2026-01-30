@@ -23,7 +23,7 @@
 \begin{property}
     The metrics $d_1, d_2, d_{\infty}$ define the same topology on $\mathbb{R}^n$. This is the product topology(or box as $n$ is finite) on $\mathbb{R}^n = \mathbb{R} \times \mathbb{R} \times \cdots \times \mathbb{R}$ ($n$ times). 
 \end{property}
-\par \noindent \textbf{Proof} Some graphs are shown below to illustrate the idea. See the pictures.
+\par \noindent \textbf{Proof} This can be shown using graphs. 
 \par In the following, we will define a metric that is used to bound another metric. Let $d$ be a metric on $X$. Define
 \begin{equation}
     \bar{d}(x, y) = \min\{d(x, y), 1\}
@@ -39,6 +39,8 @@ If $\bar{d}(x, y)$ or $\bar{d}(y, z)$ equals 1, then the right hand side is at l
 \begin{equation}
     \bar{d}(x, z) = \min\{d(x, z), 1\} \leq d(x, z) \leq d(x, y) + d(y, z) = \bar{d}(x, y) + \bar{d}(y, z)
 \end{equation}
+\par Now we note that in any metric space, the collection of $\epsilon$-balls with $\epsilon < 1$ forms a basis for the topology induced by the metric. It follows that $\bar{d}$ and $d$ induce the same topology on $X$, because the collections of $\epsilon$-balls with $\epsilon < 1$ are the same for both metrics.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \par We want to define a metric on $\mathbb{R}^{\omega}$. 
 \begin{definition}
@@ -46,7 +48,7 @@ If $\bar{d}(x, y)$ or $\bar{d}(y, z)$ equals 1, then the right hand side is at l
     \begin{equation}
         \bar{d}(x, y) = \min(\sup(|x_i - y_i|), 1)
     \end{equation}
-    which is called the uniform metric on $\mathbb{R}^{\omega}$.
+    which is called the uniform metric on $\mathbb{R}^{\omega}$. And the topology it induces is called the uniform topology.
 \end{definition}
 Also we can generalize the metric for $\mathbb{R}^{J}$ for any $J$. (sup(min) or min(sup) does not matter)
 \begin{theorem}
@@ -67,21 +69,45 @@ where $U_{\alpha}$ is an open set in $\mathbb{R}$ and $U_{\alpha} = \mathbb{R}$ 
     U_{\epsilon_{\alpha}}(x_{\alpha}) \subseteq U_{\alpha}
 \end{equation}
 Let $\epsilon = \min_{\alpha \in K} \epsilon_{\alpha}$. Then the open ball $U_{\epsilon}^{\bar{d}}(x)$ in the uniform topology is contained in $U$. Thus the uniform topology is finer than the product topology. 
-\par Next, we show that the uniform topology is coarser than the box topology. Let $x \in \mathbb{R}^{J}$ and let $U$ be a basic open set in the box topology containing $x$. Then
+\par On the other hand, let 
 \begin{equation}
-    U = \prod_{\alpha \in J} U_{\alpha}
+    U = \prod_{\alpha \in J} (x_{\alpha} - \epsilon, x_{\alpha} + \epsilon)
 \end{equation}
-where $U_{\alpha}$ is an open set in $\mathbb{R}$. For each $\alpha \in J$, there exists $1 > \epsilon_{\alpha} > 0$ such that
-\begin{equation}
-    U_{\epsilon_{\alpha}}(x_{\alpha}) \subseteq U_{\alpha}
-\end{equation} 
-Let $\epsilon = \inf_{\alpha \in J} \epsilon_{\alpha}$. Then the open ball $U_{\epsilon}^{\bar{d}}(x)$ in the uniform topology is contained in $U$. Thus the uniform topology is coarser than the box topology.
+with $\epsilon < 1$ which is a basis element in the uniform topology. And $U$ is also a basis element in the box topology. Thus the uniform topology is coarser than the box topology.
 \par For the strictness of the two sides, we can use some examples. 
-
+\par Since the uniform topology is finer than the product topology and the the box topology is finer than the uniform topology, we have that for a sequence $(x_n)$ in $\mathbb{R}^{J}$, if $x_n \rightarrow x$ in the box topology, then $x_n \rightarrow x$ in the uniform topology, and if $x_n \rightarrow x$ in the uniform topology, then $x_n \rightarrow x$ in the product topology. 
+\par So for the strictness, it suffices to find a sequence that converges in one topology but not in the other. 
+\par Let $\{w_i\}_{i=1}^{\infty}$ be a sequence in $\mathbb{R}^{\omega}$ defined as 
+\begin{equation}
+    w_1 = (1, 1, 1, \ldots), w_2 = (0, 2, 2, \ldots), w_3 = (0, 0, 3, 3, \ldots), \ldots
+\end{equation}
+Then $w_n \rightarrow 0$ in the product topology. But it diverges in the uniform topology and the box topology. Thus the uniform topology is strictly finer than the product topology. 
+\par Let $\{x_i\}_{i=1}^{\infty}$ be a sequence in $\mathbb{R}^{\omega}$ defined as
+\begin{equation}
+    x_1 = (1, 1, 1, \ldots), x_2 = (0, \frac{1}{2}, \frac{1}{2}, \ldots), x_3 = (0, 0, \frac{1}{3}, \frac{1}{3}, \ldots), \ldots
+\end{equation}
+\par Then w.l.o.g. if $\epsilon < 1$, the ball in the uniform topology 
+\begin{equation}
+    U_{\epsilon}^{\bar{d}}(0) = \{y \in \mathbb{R}^{\omega} | \sup(|y_i - 0|) < \epsilon\} = \{y \in \mathbb{R}^{\omega} | |y_i| < \epsilon, \forall i\}
+\end{equation}
+contains all but finitely many $x_n$. Thus $x_n \rightarrow 0$ in the uniform topology. However, for the box topology, consider 
+\begin{equation}
+    (-1, 1) \times (-\frac{1}{2}, \frac{1}{2}) \times (-\frac{1}{3}, \frac{1}{3}) \times \cdots
+\end{equation}
+which is a basis element in the box topology containing $0$. This set does not contain any $x_n$ for all $n$. Thus $x_n$ does not converge to $0$ in the box topology. Therefore, the uniform topology is strictly coarser than the box topology. 
+\par Consider the sequence $\{y_n\}_{n=1}^{\infty}$ in $\mathbb{R}^{\omega}$ defined as 
+\begin{equation}
+    y_1 = (1, 0, 0, 0, \ldots), y_2 = (\frac{1}{2}, \frac{1}{2}, 0, 0, \ldots), y_3 = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, 0, 0, \ldots), \ldots
+\end{equation}
+\par Then $y_n \rightarrow 0$ in all three topologies.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \par Recall that for two metric spaces $(X, d)$ and $(Y, d')$, a function $f: X \rightarrow Y$ is continuous if and only if for each $x \in X$ and each $\epsilon > 0$, there exists $\delta > 0$ such that
 \begin{equation}
     d(x, y) < \delta \Rightarrow d'(f(x), f(y)) < \epsilon
 \end{equation}
+
+\par \noindent \textbf{Problem} If $x_n \rightarrow 0$ in the box topology on $\mathbb{R}^{\omega}$, what can be said about $x_n$? Is the guess: $\exists M, \forall m \ge M, x_n^{(m)} = 0$ correct? 
+\par \noindent \textbf{Answer} Not sure. 
 
 \begin{theorem}
     [The sequence lemma] 
@@ -90,5 +116,7 @@ Let $\epsilon = \inf_{\alpha \in J} \epsilon_{\alpha}$. Then the open ball $U_{\
 
 \par \noindent \textbf{Proof} If $x_n \in A$ and $\lim_{n \rightarrow \infty} x_n = x$, then for each open set $U$ containing $x$, we have $U\cap A$ contains all but finitely many $x_n$, so $U \cap A \neq \emptyset$. Thus $x \in \bar{A}$.
 \par For the converse, suppose $X$ is metrizable with metric $d$. If $x \in \bar{A}$, then for each $n \in \mathbb{N}$, the open ball $U_{1/n}(x)$ intersects $A$. Thus we can choose $x_n \in U_{1/n}(x) \cap A$. Then $\lim_{n \rightarrow \infty} x_n = x$($\forall \epsilon > 0, \exists N > \frac{1}{\epsilon}$, such that $d(x_n, x) < \epsilon$ for all $n > N$). 
+
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \end{document}

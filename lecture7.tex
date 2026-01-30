@@ -77,7 +77,7 @@ is a basis for the order topology on $X$. Notice that $[a_0, b)$ refers to the s
 \par Take $(a, +\infty), (-\infty, b) \subseteq X$ which form a basis for the order topology on $X$. Take $Y \subseteq X$ convex. 
 \begin{enumerate}
     \item If $a\in Y$, then \((a, +\infty) \cap Y = \{y| y\in Y \text{ and } a < y\}\).  
-    \item If $a \notin Y$, then there are two cases:
+    \item If $a \notin Y$, then there are only two cases because $Y$ is convex:
     \begin{enumerate}
         \item If $a$ is a lower bound for $Y$, then \((a, +\infty) \cap Y = Y\)
         \item If $a$ is an upper bound for $Y$, then $(a, +\infty) \cap Y = \emptyset$
@@ -115,7 +115,8 @@ which is open in $Y$. So $A$ is closed in $Y$.
     If $U \subseteq X$ is open and $x \in U$ then $U$ is a neighborhood of $x$.
 \end{definition}
 \begin{definition}
-    $Int(A) = \bigcup \{U \subseteq X | U \text{ is open and } U \subseteq A\}$ is the interior of $A$.
+    $Int(A) = \bigcup \{U \subseteq X | U \text{ is open and } U \subseteq A\}$ is the interior of $A$. 
+    \par 
     $\bar{A} = \bigcap \{C \subseteq X | C \text{ is closed and } A \subseteq C\}$ is the closure of $A$.
 \end{definition}
 \par \noindent \textbf{Remark} $Int(A) \subseteq A \subseteq \bar{A}$. 
@@ -126,8 +127,9 @@ which is open in $Y$. So $A$ is closed in $Y$.
 \end{theorem}
 \par \noindent \textbf{Proof} 
 \par Let $B$ be the closure of $A$ in $Y$. We prove the two inclusions. 
-\par Let $B$ be the closure of $A$ in $Y$. $\bar{A}$ is closed in $X$. So $\bar{A} \cap Y$ is closed in $Y$. Then $\bar{A} \cap Y \supseteq A$. So $B \subseteq \bar{A} \cap Y$. 
+\par Let $B$ be the closure of $A$ in $Y$. $\bar{A}$ is closed in $X$. So $\bar{A} \cap Y$ is closed in $Y$. Then $\bar{A} \cap Y \supseteq A$(Since we are talking about the closure in $Y$, we must have $A \subseteq Y$). So $B \subseteq \bar{A} \cap Y$($B$ is the smallest closed set containing $A$). 
 \par Since $B$ is closed in $Y$, there exists a closed set $C$ in $X$ such that \(B = C \cap Y\). Hence $C \supseteq A$ which is closed in $X$. So $C \supseteq \bar{A}$. Then $\bar{A} \cap Y \subseteq C \cap Y = B$. 
+\par Hence the two inclusions imply that $B = \bar{A} \cap Y$. 
 \\ \null \hfill $\blacksquare$  
 
 \end{document}

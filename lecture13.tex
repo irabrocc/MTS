@@ -22,7 +22,8 @@
 \par \noindent \textbf{Poof}
 \par ($\Rightarrow$) Let $f$ be continuous. Let $V\ni f(x)$ be open in $Y$. Then $f^{-1}(V)$ is open in $X$ and contains $x$. Since $x_n \to x$, $\exists N$ such that $\forall n \geq N$, $x_n \in f^{-1}(V)$. Thus, $\forall n \geq N$, $f(x_n) \in V$. Hence, $f(x_n) \to f(x)$.
 \par ($\Leftarrow$) Recall that $f$ is continuous if and only if for all $A \subseteq X$, $f(\overline{A}) \subseteq \overline{f(A)}$. 
-\par Let $A \subseteq X$. Let $x\in \bar{A}$. 
+\par Let $A \subseteq X$. Let $x\in \bar{A}$. Since $X$ is metrizable, by the sequence lemma, there exists a sequence $\{x_n\} \subseteq A$ such that $x_n \to x$. By the assumption, $f(x_n) \to f(x)$. Thus, by the sequence lemma again, $f(x) \in \overline{f(A)}$. So $f(\overline{A}) \subseteq \overline{f(A)}$. Hence, $f$ is continuous. 
+\mbox{} \\ \null \hfill $\blacksquare$
 
 \begin{definition}
     $X$ is first-countable if it has a countable basis at each $x\in X$. Given $x \in X$, there exists a countable collection of open sets $\{U_n\}$ such that for any open set $U$ containing $x$, $\exists n$ such that $U_n \subseteq U$. (From this we can construct $\tilde{U}_n = \bigcap_{i=1}^{n} U_i$ such that $\{\tilde{U}_n\}$ is also a countable basis at $x$ with $\tilde{U}_{n + 1} \subseteq \tilde{U_n}$.)
@@ -45,7 +46,7 @@
 \end{example}
 
 \begin{example}
-    $X$ is uncountable with discrete topology. Then $\forall x\in X$, the set $\{ \{x\} \}$ is open. So any basis of $X$ must contain $\{x\}$ for all $x\in X$. So $X$ is not second-countable. But $X$ is metrizable thus first-countable. 
+    $X$ is uncountable with discrete topology. Then $\forall x\in X$, the set $\{x\} $ is open. So any basis of $X$ must contain $\{x\}$ for all $x\in X$. So $X$ is not second-countable. But $X$ is metrizable thus first-countable. 
 \end{example}
 
 \begin{example}
@@ -63,30 +64,50 @@
 \end{example}
 
 \begin{property}
-    $\mathbb{R}^{\omega}$ with box topology is not metrizable. (Hence $\mathbb{R}^J$ with box topology is not metrizable for infinite $J$.)
+    $\mathbb{R}^{\omega}$ with box topology is not metrizable. (Hence $\mathbb{R}^J$ with box topology is not metrizable for infinite $J$. )
 \end{property}
-\par \noindent \textbf{Proof} Let's prove that there doesn't exist a first-countable basis at $0$. 
-\par We assume the contrary that there exists a countable basis $\{V_n\}$ at $0$. Since each $V_m$ is open in box topology, $\exists$ open intervals $U_{m, i}$ in $\mathbb{R}$ such that \begin{equation}
-    \prod_{i = 1}^{\infty} U_{m, i} \subseteq V_m 
-\end{equation}
-We can take $a_{m, i} > 0$ such that $(-a_{m, i}, a_{m, i}) \subseteq U_{m, i}$. 
-\par But we can construct an open set $U = \prod_{i=1}^{\infty} (-b_i, b_i)$ containing $0$ such that 
+\par \noindent \textbf{Proof} 
+\par We let 
 \begin{equation}
-    b_i = \frac{a_{i, i}}{2}
+    A = \{(x_1, x_2, \ldots) | x_i > 0, \forall i\}
 \end{equation}
-Then 
+Then $0 \in \bar{A}$ in the box topology. 
+\par We let 
 \begin{equation}
-    \forall m, \prod_{i = 1}^{\infty} (-a_{m, i}, a_{m, i}) \nsubseteq \prod_{i=1}^{\infty} (-b_i, b_i) \Longrightarrow V_m \nsubseteq U 
+    B = (a_1, b_1) \times (a_2, b_2) \times \cdots 
 \end{equation}
-This contradicts the assumption that $\{V_n\}$ is a basis at $0$. Hence, $\mathbb{R}^{\omega}$ with box topology is not first-countable, thus not metrizable.
+such that $a_i < 0 < b_i$ for all $i$. Then $B$ is a basis element in the box topology containing $0$. And the intersection of $B$ and $A$ is not empty. 
+
+We assert that there is no sequence in $A$ converging to $0$. Let $\{a_n \}_{n=1}^{\infty}$ be a sequence in $A$, where 
+\begin{equation}
+    a_n = (a_n^{(1)}, a_n^{(2)}, \ldots)
+\end{equation}
+with $a_n^{(i)} > 0$ for all $i, n$. We can construct a basis element $B'$ in the box topology containing $0$: 
+\begin{equation}
+    B' = (-a_1^{(1)}, a_1^{(1)}) \times (-a_2^{(2)}, a_2^{(2)}) \times \cdots
+\end{equation}
+Then $B'$ does not contain any $a_n$. Thus $\{a_n\}$ does not converge to $0$. 
+\par So the sequence lemma tells us that $\mathbb{R}^{\omega}$ with box topology is not metrizable. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+
 \begin{property}
-    Let $J$ be uncountable. Then $\mathbb{R}^J$ with product topology is not metrizable. 
+    Let $J$ be uncountable. Then $\mathbb{R}^{J}$ in product topology is not metrizable. 
 \end{property}
-\par \noindent \textbf{Proof} Let's prove that there doesn't exist a countable basis at $0$. 
-\par We assume the contrary that there exists a countable basis $\{V_n\}$ at $0$. 
-\par To be completed. (A similar proof)
-
-
+\par \noindent \textbf{Proof} 
+\par Take 
+\begin{equation}
+    A = \{(x_1, x_2, \cdots)| x_{\alpha} = 1 \text{ for all but finitely many coordinates}\}
+\end{equation}
+Then $0 \in \bar{A}$ in the product topology(Easy to verify). 
+\par Given $n$, let $J_n$ denotes the subset of $J$ consisting of those indices $\alpha$ such that the $\alpha$-th coordinate of $a_n$ is different from $1$. Since $J_n$ is finite for each $n$, then the union $\bigcup_{n=1}^{\infty} J_n$ is countable. However, $J$ is uncountable, so there exists $\beta \in J$ such that $\beta \notin \bigcup_{n=1}^{\infty} J_n$. That is, for all $n$, the $\beta$-th coordinate of $a_n$ is equal to $1$. 
+\par Let $\{a_n\}_{n=1}^{\infty}$ be a sequence in $A$, where there exists $\beta \in J$ such that $a_{\beta}^{(n)} = 1$ for all $n$. Then we can take 
+\begin{equation}
+    U = \pi_{\beta}^{-1}((- 1, 1))
+\end{equation}
+which is a basis element in the product topology containing $0$. However, $U$ does not contain any $a_n$. Thus $\{a_n\}$ does not converge to $0$.
+\par By the sequence lemma, $\mathbb{R}^{J}$ in product topology is not metrizable.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 
 \end{document}

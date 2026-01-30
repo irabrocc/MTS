@@ -20,18 +20,19 @@
 \end{theorem}
 
 \par \noindent \textbf{Remark} If $X$ is path-connected, then it is connected. The converse is not necessarily true.
-
-\begin{example}
-    Let $X = \{(x, y)| y = \sin(x)\} \cup  \{(0, y)| y \in [-1, 1]\} \subset \mathbb{R}^2$ with the Euclidean metric. Then $X$ is connected but not path-connected.
-\end{example}
-\par \noindent \textbf{Proof} 
-\par First we prove that $X$ is path-connected. Let $p_1, p_2 \in X$ such that $P_1 = (0, 0)$ and $P_2 = (1, \sin(1))$. Let $\gamma: [0,1] \rightarrow X$ with $\gamma(t) = (x(t), y(t))$ such that $\gamma(0) = P_1$ and $\gamma(1) = P_2$. Since $\gamma$ is continuous, both $x(t)$ and $y(t)$ are continuous. 
-\par Let $U = \{\tau| x(t) = 0\} \subseteq [0,1]$. Since $U$ is a preimage of a closed set under a continuous map, $U$ is closed. Thus, $t_0 = \sup U$ exists. Note that $t_0 < 1$ since $x(1) = 1$.
-\par Let $\varPhi(t) = \dfrac{1}{x(t)}$ which is well-defined on for $t > t_0$. Notice that $\varPhi(t) \rightarrow +\infty$ as $t \rightarrow t_0^+$. Then, for $t > t_0$, $y(t) = \sin(\varPhi(t))$. Take the interval $(t_0, t_0 + \epsilon)$, then $y(t)$ oscillates between $-1$ and $1$ infinitely many times. So $y(t)$ is not continuous at $t_0$. This is a contradiction. Thus, no such path $\gamma$ exists and $X$ is not path-connected.
 \begin{lemma}
     The closure of a connected set is connected.
 \end{lemma}
 \par \noindent \textbf{Proof} Let $A$ be a connected set and $\bar{A}$ be its closure. Suppose $\bar{A} = U_1 \cup U_2$ where $U_1$ and $U_2$ are nonempty disjoint open sets in $\bar{A}$. Then $A = (A \cap U_1) \cup (A \cap U_2)$ is non-trivial: let $U_1\cap A = \emptyset$, then $U_1 \subseteq \bar{A} \setminus A$ which is impossible. 
+
+\begin{example}
+    Let $X = \{(x, y)| y = \sin(\frac{1}{x}), x > 0\} \cup  \{(0, y)| y \in [-1, 1]\} \subset \mathbb{R}^2$ with the Euclidean metric. Then $X$ is connected but not path-connected.
+\end{example}
+\par \noindent \textbf{Proof} 
+\par First we prove that $X$ is not path-connected. Let $p_1, p_2 \in X$ such that $P_1 = (0, 0)$ and $P_2 = (1, \sin(1))$. Let $\gamma: [0,1] \rightarrow X$ with $\gamma(t) = (x(t), y(t))$ such that $\gamma(0) = P_1$ and $\gamma(1) = P_2$. Since $\gamma$ is continuous, both $x(t)$ and $y(t)$ are continuous. 
+\par Let $U = \{\tau| x(t) = 0\} \subseteq [0,1]$. Since $U$ is a preimage of a closed set under a continuous map, $U$ is closed. Thus, $t_0 = \sup U$ exists. Note that $t_0 < 1$ since $x(1) = 1$.
+\par Let $\varPhi(t) = \dfrac{1}{x(t)}$ which is well-defined on for $t > t_0$. Notice that $\varPhi(t) \rightarrow +\infty$ as $t \rightarrow t_0^+$. Then, for $t > t_0$, $y(t) = \sin(\varPhi(t))$. Take the interval $(t_0, t_0 + \epsilon)$, then $y(t)$ oscillates between $-1$ and $1$ infinitely many times. So $y(t)$ is not continuous at $t_0$. This is a contradiction. Thus, no such path $\gamma$ exists and $X$ is not path-connected.
+
 
 \par Second, we prove that $X$ is connected. Let $X = Y \cup \{(0, y)| y\in [-1, 1]\}$. We know that $\bar{Y} = X$ and $Y$ is path-connected (thus connected). Then using the property that the closure of a connected set is connected, we have $X$ is connected.
 
@@ -102,6 +103,24 @@
     \item $||\cdot||_1$, $||\cdot||_2$, and $||\cdot||_\infty$ on $\mathbb{R}^n$ are equivalent.
     \item [*] All norms on $\mathbb{R}^n $ are equivalent. 
 \end{enumerate}
+
+\par The notes below is not for this lecture. 
+
+\begin{theorem}
+    All norms on $\mathbb{R}^n$ are equivalent. 
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Given $\|\cdot\|_a, \|\cdot\|_b$ two norms on $\mathbb{R}^n$. We define a function $f: \mathbb{R}^n \setminus \{0\} \rightarrow \mathbb{R}$ by $f(x) = \dfrac{||x||_a}{||x||_b}$ which is a continuous function. And $f(x) = f(\lambda x)$ for any $\lambda > 0$. So $f$ is completely determined by its values on the unit sphere $S^{n-1} = \{x \in \mathbb{R}^n | ||x||_a = 1\}$. Since $S^{n-1}$ is compact, $f$ attains its maximum and minimum on $S^{n-1}$, denoted as $m$ and $M$. Thus, for any $x \neq 0$, we have:
+\begin{equation}
+    0 < m \leq \dfrac{||x||_a}{||x||_b} \leq M < +\infty
+\end{equation}
+\par Therefore, $\|x\|_b$ and $\|x\|_a$ are equivalent. 
+
+\par \noindent \textbf{Remark} In infinite-dimensional vector spaces, $S^{n-1}$ is not compact(However, it is closed and bounded). 
+
+\par \noindent \textbf{Exercise} Give an example of norms on $l_1$(convergent series, i.e., $l_1 = \{(a_n) | \sum_{n=1}^{\infty} |a_n| < +\infty\}$).
+\par \noindent \textbf{Solution} The trivial one is $||x|| = \sum_{n=1}^{\infty} |a_n|$. It is easy to verify as it is convergent. 
+
 
 
 \end{document}

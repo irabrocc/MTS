@@ -9,19 +9,20 @@
 \label{chap:Lecture8}
 
 \begin{theorem}
+    Let $A$ be a subset of the topological space $X$. 
     \begin{enumerate}
         \item $x\in \bar{A} \Longleftrightarrow $ every open set $U \subseteq X$ with $x \in U$ satisfies $U \cap A \neq \emptyset$.
         \item For a basis $\mathcal{B}$ of $\mathcal{T}$, we have $x \in \bar{A} \Longleftrightarrow$ every basis element $B \in \mathcal{B}$ with $x \in B$ satisfies $B \cap A \neq \emptyset$. 
     \end{enumerate}
 \end{theorem}
 
-\par \noindent \textbf{Proof}
-\begin{enumerate}
-    \item See P113. 
-    \item $\cdots$
-\end{enumerate}
+\par \noindent \textbf{Proof to 1} 
+\par We transform each implication to its contrapositive, thereby obtaining the logically equivalent statement $(\lnot P) \Longleftrightarrow (\lnot Q)$. Written out, it is the follwoing statement. $x\notin \bar{A}$ if and only if there exists an open set $U$ containing $x$ that does not intersect $A$. 
+\par If $x \notin \bar{A}$, then the set $U = X - \bar{A}$ is an open set containing $x$ that does not intersect $A$.
+\par Conversely, if there exists an open set $U$ containing $x$ which does not intersect $A$, then $X-U$ is a closed set containing $A$. Then $\bar{A} \subseteq X - U$. Since $x \notin X - U$, $x\notin \bar{A}$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
-\par \noindent \textbf{Exercise} Finish the proof of (2). 
+\par \noindent \textbf{Exercise} Finish the proof of 2. 
 
 \begin{definition}
     For $A \subseteq X$, $x\in X$ is a limit point of $A$ if every open set $U \subseteq X$ containing $x$ contains a point of $A$ different from $x$ itself. We denote $A'$ as the set of all limit points of $A$.
@@ -62,11 +63,12 @@
 \par \noindent \textbf{Exercise} Show that if $x_n$ converges in $\mathcal{T}$, then $x_n$ converges in any coarser topology $\mathcal{T}' \subseteq \mathcal{T}$.
 
 \begin{example}
-    $X = \mathbb{N}$, the basis $U_m = \{0, 1, 2 \cdots, m\}$. $\mathcal{T} = \{U_m | m\in \mathbb{N}, \mathbb{N}, \emptyset\}$. Then $x_n$ converges to $a$ if and only if $a$ is essential upper bound of $\{ x_n \}$. In this case, the limit is not unique. 
+    $X = \mathbb{N}$, the basis $U_m = \{0, 1, 2 \cdots, m\}$. $\mathcal{T} = \{U_m | m\in \mathbb{N}\}\cup \{ \mathbb{N}, \emptyset\}$. Then $x_n$ converges to $a$ if and only if $a$ is essential upper bound of $\{ x_n \}$. In this case, the limit is not unique. 
 \end{example}
 
 \begin{example}
-    Finite complement topology on $\mathbb{R}$. For example take $\mathcal{T} = \{ \mathbb{R}, \emptyset, \mathbb{R}\setminus \{p_1, p_2, \cdots, p_m\}\}$. 
+    Finite complement topology on $\mathbb{R}$. 
+    \par For example take $\mathcal{T} = \{ \mathbb{R}, \emptyset\}\cup \{ \mathbb{R}\setminus \{p_1, p_2, \cdots, p_m\}| p_1, p_2, \cdots, p_m \in \mathbb{R}, m \in \mathbb{N}\}$. 
     \begin{enumerate}
         \item If $x_n$ is eventually constant with value $a$, then $x_n$ converges to $a$. It can't not converge to $b \neq a$ because we can take the open set $\mathbb{R} \setminus \{a\}$ which contains $b$ but does not contain almost all elements of the sequence.
         \item If $x_n = (- 1)^n$, then $x_n$ does not converge. If $x_n = a$ for infinitely many $n$ and $x_n = b$ for infinitely many $n$ ($a \neq b$), then $x_n$ does not converge. 

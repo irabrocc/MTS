@@ -30,10 +30,12 @@
 \end{definition}
 \par \noindent \textbf{Remark} If $X$ is Hausdorff(T2), then $X$ is T1. The converse is not true. 
 \begin{property}
-    $X$ is T1 if and only if $\forall x, y\in X, \exists U\ni x$ a open set such that $y \notin U$.
+    $X$ is T1 if and only if $\forall x, y\in X, \exists U\ni x$ a open set such that $y \notin U$. That is, for all $x, y\in X$, there exists an open set containing $x$ but not containing $y$.
 \end{property}
 \par \noindent \textbf{Exercise} Prove this property. 
 \par \noindent \textbf{Exercise} Let $X$ satisfy the following: for $x, y\in X$ with $x \neq y$, either $\exists U \ni x$ open set such that $y \notin U$, or $\exists V \ni y$ open set such that $x \notin V$. Is it true that $X$ is T1? 
+\par \noindent \textbf{Solution} No. Consider $X = \{a, b\}$ with the topology $\mathcal{T} = \{\emptyset, X, \{a\}\}$. 
+
 \begin{theorem}
     Let $X$ be T1, and $A \subseteq X$. Then $x \in A'$ if and only if every open set $U \ni x$ contains infinitely many points of $A$.
 \end{theorem}

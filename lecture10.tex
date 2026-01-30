@@ -83,7 +83,56 @@
 \end{definition}
 
 \begin{theorem}
-    Let $A_{\alpha} \subseteq X_{\alpha}$ 
+    Let $\mathcal{J}$ be a set of indices. Let $X_{\alpha}$ be a topological space for each $\alpha \in \mathcal{J}$. Let $A_{\alpha} \subseteq X_{\alpha}$ with subspace topology for each $\alpha \in \mathcal{J}$. Then the product/box topology on $\prod_{\alpha \in \mathcal{J}} A_{\alpha}$ is the subspace topology inherited from the product/ box topology on $\prod_{\alpha \in \mathcal{J}} X_{\alpha}$. 
+    \par In other words, let $A_{\alpha}$ be a subspace of $X_{\alpha}$ for each $\alpha \in \mathcal{J}$. Then $\prod_{\alpha \in \mathcal{J}} A_{\alpha}$ is a subspace of $\prod_{\alpha \in \mathcal{J}} X_{\alpha}$ with the product/box topology.  
 \end{theorem}
+
+\begin{theorem}
+    Let $\mathcal{J}$ be a set of indices. Let $X_{\alpha}$ be a Hausdorff topological space for each $\alpha \in \mathcal{J}$. Then the product/ box topology on $\prod_{\alpha \in \mathcal{J}} X_{\alpha}$ is Hausdorff.
+\end{theorem}
+
+\begin{theorem}
+    Let $\mathcal{J}$ be a set of indices. Let $X_{\alpha}$ be a topological space for each $\alpha \in \mathcal{J}$. Let $A_{\alpha} \subseteq X_{\alpha}$ with subspace topology for each $\alpha \in \mathcal{J}$. Then $\prod_{\alpha \in \mathcal{J}} \bar{A}_{\alpha} = \overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}}$ with the product/ box topology.
+\end{theorem}
+
+\par \noindent \textbf{Proof}
+\par We give a proof for the box topology case. The product topology case is similar. 
+\par Take $(x_{\alpha})_{\alpha \in \mathcal{J}} = x \in \prod_{\alpha \in \mathcal{J}} \bar{A}_{\alpha}$. Let $\prod_{\alpha \in \mathcal{J}} U_{\alpha}$ be a basis open set containing $x$ where $U_{\alpha}$ is open in $X_{\alpha}$. Since $x_{\alpha} \in \bar{A}_{\alpha}$, there exists $y_{\alpha} \in U_{\alpha} \cap A_{\alpha}$ for each $\alpha \in \mathcal{J}$. Thus, $(y_{\alpha})_{\alpha \in \mathcal{J}} \in \prod_{\alpha \in \mathcal{J}} U_{\alpha} \cap \prod_{\alpha \in \mathcal{J}} A_{\alpha}$. Therefore, $x \in \overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}}$. So we have $\prod_{\alpha \in \mathcal{J}} \bar{A}_{\alpha} \subseteq \overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}}$. 
+\par Conversely, take $x = (x_{\alpha})_{\alpha \in \mathcal{J}} \in \overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}}$. Let $\beta$ be an arbitrary index in $\mathcal{J}$. Take $V_{\beta}$ be an open set containing $x_{\beta}$. Then its preimage $\pi_{\beta}^{-1}(V_{\beta})$ is open in $\prod_{\alpha \in \mathcal{J}} X_{\alpha}$. Since $x\in \overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}}$, there exists $y = (y_{\alpha})_{\alpha \in \mathcal{J}} \in \pi_{\beta}^{-1}(V_{\beta}) \cap \prod_{\alpha \in \mathcal{J}} A_{\alpha}$. So $y_{\beta} \in V_{\beta} \cap A_{\beta}$. Thus, $x_{\beta} \in \bar{A}_{\beta}$. Since $\beta$ is arbitrary, we have $x \in \prod_{\alpha \in \mathcal{J}} \bar{A}_{\alpha}$. Therefore, $\overline{\prod_{\alpha \in \mathcal{J}} A_{\alpha}} \subseteq \prod_{\alpha \in \mathcal{J}} \bar{A}_{\alpha}$.
+
+\par Two inclusions together give the desired equality. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    Let $f: A \rightarrow \prod_{\alpha \in \mathcal{J}} X_{\alpha}$ be given by $f(a) = (f_{\alpha}(a))_{\alpha \in \mathcal{J}}$ where $f_{\alpha}: A \rightarrow X_{\alpha}$ for each $\alpha \in \mathcal{J}$. Then $f$ is continuous if and only if each $f_{\alpha}$ is continuous. 
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Let $\pi_{\beta}$ be the projecction of the product onto its $\beta$-th factor. Then function $\pi_{\beta} $ is continuous because for any open set $U_{\beta}$ in $X_{\beta}$, we have $\pi_{\beta}^{-1}(U_{\beta})$ is a subbaisis element for the product topology. Since $f_{\beta} = \pi_{\beta} \circ f$, if $f$ is continuous, then each $f_{\beta}$ is continuous. 
+\par Conversely, To prove $f$ is continuous, it suffices to show that the preimage of each subbasis element is open in $A$. Take any subbasis element $\pi_{\beta}^{-1}(U_{\beta})$ where $U_{\beta}$ is open in $X_{\beta}$. Then
+\begin{equation}
+    f^{-1}(\pi_{\beta}^{-1}(U_{\beta})) = f_{\beta}^{-1}(U_{\beta})
+\end{equation}
+Since $f_{\beta}$ is continuous, $f_{\beta}^{-1}(U_{\beta})$ is open in $A$. Thus, $f$ is continuous.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{example}
+    For box topology, the above theorem may fail. 
+    \par Consider $\mathbb{R}^{\omega}$, the countably infinite product of $\mathbb{R}$ with itself. Let us define $f: \mathbb{R} \rightarrow \mathbb{R}^{\omega}$ by
+    \begin{equation}
+        f(t) = (t, t, t, \ldots)
+    \end{equation}
+    Then each coordinate function $f_n: \mathbb{R} \rightarrow \mathbb{R}$ defined by $f_n(t) = t$ is continuous; therefore the function $f$ is continuous given the product topology on $\mathbb{R}^{\omega}$. However, $f$ is not continuous when $\mathbb{R}^{\omega}$ is given the box topology. Consider, the basis element
+    \begin{equation}
+        B = \prod_{n=1}^{\infty} \left( -\frac{1}{n}, \frac{1}{n} \right) 
+    \end{equation}
+    for the box topology on $\mathbb{R}^{\omega}$. 
+    \par We assert that $f^{-1}(B)$ is not open in $\mathbb{R}$. If it were open, then there would exist $\epsilon > 0$ such that $(-\epsilon, \epsilon) \subseteq f^{-1}(B)$. This would mean $f((-\epsilon, \epsilon)) \subseteq B$, so that 
+    \begin{equation}
+        f_n((-\epsilon, \epsilon)) = (-\epsilon, \epsilon) \subseteq \left( -\frac{1}{n}, \frac{1}{n} \right)
+    \end{equation}
+    for each $n$. But this is impossible for $n$ sufficiently large that $\frac{1}{n} < \epsilon$. Thus, $f^{-1}(B)$ is not open, and $f$ is not continuous.
+\end{example}
+
 
 \end{document}
