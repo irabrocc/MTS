@@ -15,7 +15,7 @@
 
 \begin{definition}
     [def2: Frechet compactness]
-    $X$ is limit point compact if every infinite set $A \subseteq X$ has a limit point in $X$. 
+    $X$ is limit point compact if every infinite subset of $X$ has a limit point in $X$. 
 \end{definition}
 
 \begin{definition}
@@ -26,6 +26,8 @@
 \begin{theorem}
     If $X$ is a metric space, then $X$ is compact if and only if it is limit point compact if and only if it is sequentially compact.
 \end{theorem}
+\par \noindent \textbf{Proof} 
+\par The proof is quite long and technical. We will only some directions in the following. 
 
 \begin{theorem}
     For an arbitrary topological space, compactness implies limit point compactness. The converse is not true in general.
@@ -33,10 +35,11 @@
 \par \noindent \textbf{Proof} 
 \par Let $X$ be compact, and let $A \subseteq X$ be infinite. 
 \par We assume that $A$ has no limit point. Then $A = \bar{A}$. 
-So $X\setminus A$ is open. 
-\par Let $a\in A$ such that $U_a = X\setminus (A\setminus \{a\})$ is open and contains $a$. Then $\{U_a: a \in A\} \cup \{X\setminus A\}$ is an open covering of $X$. Since $X$ is compact, there exists a finite subcovering, say $\{U_{a_1}, U_{a_2}, \cdots, U_{a_n}\} \cup \{X\setminus A\}$. Thus,
-\[ X = \bigcup_{i=1}^n U_{a_i} \cup (X\setminus A) = X\setminus (A\setminus \{a_1, a_2, \cdots, a_n\}), \]
-which implies that $A$ is finite, a contradiction. Hence, $A$ has a limit point in $X$. \hfill $\blacksquare$
+So $X\setminus A$ is open. Furthermore, for each $a \in A$, we can choose a neighborhood $U_a$ of $a$ such that $U_a \cap (A\setminus \{a\}) = \emptyset$.
+\par Then $\{U_a: a \in A\} \cup \{X\setminus A\}$ is an open covering of $X$. Since $X$ is compact, there exists a finite subcovering, say $\{U_{a_1}, U_{a_2}, \cdots, U_{a_n}\} \cup \{X\setminus A\}$. Thus,
+\[ X = \bigcup_{i=1}^n U_{a_i} \cup (X\setminus A) = (X\setminus A)\cup \{a_1, a_2, \cdots, a_n\}, \]
+which implies that $A$ is finite, a contradiction. Hence, $A$ has a limit point in $X$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{example}
     [Counterexample for the converse]
@@ -45,7 +48,7 @@ which implies that $A$ is finite, a contradiction. Hence, $A$ has a limit point 
 
 \begin{example}
     [Limit point compact but not sequentially compact]
-    Let $X = \mathbb{N} \times \{p\}$ has no convergent subsequence. So $X$ is not sequentially compact. 
+    Let $X$ be defined as the above example. Consider the sequence $\{(n, p)\}_{n=1}^{\infty}$. This sequence has no convergent subsequence. Because for any point $(m, p)$, the open set $\{m\} \times Y$ contains only finitely many terms of the sequence; for any point $(m, q)$, the open set $\{m\} \times Y$ also contains only finitely many terms of the sequence. So $X$ is not sequentially compact.
 \end{example}
 
 \begin{theorem}

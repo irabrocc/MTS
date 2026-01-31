@@ -73,6 +73,7 @@ which implies that
     y_i \in (x_i - \epsilon_i, x_i + \epsilon_i) \subseteq U_i
 \end{equation}
 So $y\in U$. Hence, $U_D(x, \epsilon) \subseteq U$. So $U$ is open in the metric topology.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{definition}
     $(X, \le )$ has a least upper bound property or supremum property if every non-empty subset of $X$ that is bounded above has a least upper bound in $X$. (For example, $\mathbb{R}$ has the least upper bound property)
@@ -90,9 +91,11 @@ So $y\in U$. Hence, $U_D(x, \epsilon) \subseteq U$. So $U$ is open in the metric
     \item If not. Take $ x\in A$ with $A \in \mathcal{A}$ such that $\exists c\in X, x < c \le b, [x, c) \subseteq A$. Take any $y \in (x, c)$. Then $[x, y] \subseteq A$ is covered by one element from $\mathcal{A}$. 
 \end{enumerate} 
 \par \noindent \textbf{Step 2} Let $C$ be the set of points $y$ with $a\le y\le b$ such that $[a, y]$ has a finite subcovering from $\mathcal{A}$. Since $a \in C$, $C$ is non-empty. Let $c = \sup C$. 
-\par \noindent \textbf{Step 3} Show that $c\in C$. Let $c\in A, A\in \mathcal{A}, \exists d\in A$ such that $d < c, [d, c] \subseteq A$. Since $[a, d]$ can be covered by finite elements(say $N$) from $\mathcal{A}$, $[a, c]$ can be covered by $N + 1$ elements from $\mathcal{A}$. So $c\in C$.
+\par \noindent \textbf{Step 3} Show that $c\in C$. 
+\par We know from the first step that $c \neq a$. 
+\par Choose $A\in \mathcal{A}$ such that $c\in A$. Then $\exists d \in [a, b]$ such that $(d, c] \subseteq A$. If $c\notin C$, then there must be some point $z \in (d, c)$ with $z \in C$. Then $[a, z]$ can be covered by finite elements(say $M$) from $\mathcal{A}$. Thus, $[a, c] \subseteq [a, z] \cup (d, c]$ can be covered by at most $M + 1$ elements from $\mathcal{A}$. So $c\in C$ which contradicts the assumption that $c \notin C$. Hence, $c\in C$. 
 \par \noindent \textbf{Step 4} Show that $c = b$. If not, by Step 1, $\exists e > c$ such that $[c, e]$ can be covered by two elements from $\mathcal{A}$. Since $[a, c]$ can be covered by finite elements(say $M$) from $\mathcal{A}$, $[a, e]$ can be covered by at most $M + 2$ elements from $\mathcal{A}$. So $e\in C$ which contradicts the assumption that $c = \sup C$. Hence, $c = b$.  
-
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{corollary}
     $[a, b] \subseteq \mathbb{R}$ is compact. 
 \end{corollary}
@@ -109,7 +112,8 @@ So $y\in U$. Hence, $U_D(x, \epsilon) \subseteq U$. So $U$ is open in the metric
 \begin{equation}
     \bigcup U_N(0)
 \end{equation} 
-which is the union of open balls centered at $0$ with radius $N$ for $N \in \mathbb{Z}_{>0}$. Since $A$ is compact, there exists a finite subcovering. Thus, $A \subseteq U_{N_0}(0)$ for $N_0 = \max\{N_1, N_2, \cdots, N_k\}$. So $A$ is bounded.
+which is the union of open balls centered at $0$ with radius $N$ for $N \in \mathbb{Z}_{>0}$. Since $A$ is compact, there exists a finite subcovering. Thus, $A \subseteq U_{N_0}(0)$ for $N_0 = \max\{N_1, N_2, \cdots, N_k\}$. So $A$ is bounded. 
+\par We know that $\mathbb{R}^n$ is a Hausdorff space. So $A$ is closed as a compact subset of a Hausdorff space.
 \par ($\Leftarrow$) Since $A$ is bounded, there exists $n$ such that
 \begin{equation}
     A \subseteq [a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_n, b_n]
@@ -126,7 +130,7 @@ We know that the closed subset of a compact set is compact. So $A$ is compact.
 \par We know that $A = f(X)$ is compact. We want to show that $A$ has a largest element. 
 \par We assume the contrary that $A$ has no largest element. Then $\forall a \in A$, $\exists b \in A$ such that $b > a$. So 
 \begin{equation}
-    A = \bigcup_{a \in A} (a, +\infty)
+    A = \bigcup_{a \in A} (-\infty, a)
 \end{equation}
 which is an open covering of $A$. Since $A$ is compact, there exists a finite subcovering. Let the largest element among the finite elements be $a_0$. Then $a_0$ is not covered. This is a contradiction. So $A$ has a largest element. Similarly, $A$ has a smallest element. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
@@ -142,6 +146,7 @@ which is an open covering of $A$. Since $A$ is compact, there exists a finite su
 \begin{equation}
     d(x, A) \le d(x, a) \le d(x, y) + d(y, a)
 \end{equation}
+for any $a\in A$. 
 Then 
 \begin{equation}
     d(x, A) - d(x, y) \le \inf \{d(y, a)| a\in A\} = d(y, A)

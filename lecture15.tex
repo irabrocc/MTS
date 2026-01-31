@@ -41,8 +41,7 @@ So the two norms are equivalent. \hfill $\blacksquare$
 \par \noindent \textbf{Remark} In $\infty$-dimensional space, the sphere is not compact. However, it is closed and bounded. 
 \par \noindent \textbf{Exercise} Give an example of norms on $l_1$ (convergent series) $l_1 = \{(x_1, x_2, \cdots)| \sum |x_i| < \infty \}$.
 
-\par Back to uniform Continuity. 
-\par Goal: Prove that any continuous map $f: (X, d_X) \to (Y, d_Y)$ with $X$ compact is uniformly continuous. 
+\par Now let's come back to uniform continuity. Goal: Prove that any continuous map $f: (X, d_X) \to (Y, d_Y)$ with $X$ compact is uniformly continuous. 
 
 \begin{definition}
     Let $X$ be a metric space. $A \subseteq X$. Then $diam(A) = \sup\{d(x, y): x, y \in A\}$ is called the diameter of $A$. 
@@ -53,19 +52,15 @@ So the two norms are equivalent. \hfill $\blacksquare$
     Let $(X, d)$ be a compact metric space, and let $\mathcal{A}$ be an open cover of $X$. Then there exists a positive number $\delta > 0$ (called a Lebesgue number for the cover $\mathcal{A}$) such that for every subset $Y \subseteq X$ with diameter less than $\delta$ (i.e., for all $x, y \in Y$, $d(x, y) < \delta$), there exists an open set $A \in \mathcal{A}$ that contains $Y$.
 \end{lemma}
 
-\begin{example}
-    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
-\end{example}
-
 \par \noindent \textbf{Proof of the Lemma}
 \par If $X\in \mathcal{A}$, there's nothing to prove. 
-\par Otherwise take a finite subcovering $\{A_1, A_2, \cdots, A_n\}$ of $\mathcal{A}$. For each $i$, let $C_i = X \backslash A_i$ which is closed. We know that a closed subset of a compact set is compact, so each $C_i$ is compact. So $\forall x \in X$, we have $d(x, C_i) \ge 0$. Define 
+\par Otherwise take a finite subcovering $\{A_1, A_2, \cdots, A_n\}$ of $\mathcal{A}$. For each $i$, let $C_i = X \backslash A_i$ which is closed. We know that a closed subset of a compact set is compact, so each $C_i$ is compact. Define 
 \begin{equation}
     f(x) = \frac{1}{n} \sum_{i = 1}^{n} d(x, C_i)
 \end{equation}
 be the average distance from $x$ to the closed sets $C_i$. 
 \par We show that $f(x) > 0$ for all $x \in X$. 
-\par For all $x\in X$, we choose $A_i$ such that $x \in A_i$. Choose $\epsilon > 0$ such that $U_{\epsilon}(x) \subseteq A_i$ and $d(x, C_i) \ge \epsilon > 0$. So $f(x) \ge \frac{1}{n} d(x, C_i) \ge \frac{\epsilon}{n}$. Let $\delta = \min_{x \in X} f(x) > 0$ (because $f$ is continuous on compact set $X$). Then $\delta$ is a Lebesgue number. 
+\par For all $x\in X$, we choose $A_i$ such that $x \in A_i$. Choose $\epsilon > 0$ such that $U_{\epsilon}(x) \subseteq A_i$. Then $d(x, C_i) \ge \epsilon > 0$. So $f(x) \ge \frac{1}{n} d(x, C_i) \ge \frac{\epsilon}{n}$. Let $\delta = \min_{x \in X} f(x) > 0$ (because $f$ is continuous on compact set $X$). We show that $\delta$ is a Lebesgue number. 
 \par Take $B \subseteq X$ with $diam(B) < \delta$. Then we can take $x_0 \in B$ with $B \subseteq U_{\delta}(x_0)$. 
 Then we can take $C_m$ such that  
 \begin{equation}
@@ -77,19 +72,42 @@ for some $m$. So we have
 \end{equation}
 So $B \subseteq A_m$. \hfill $\blacksquare$
 
+\begin{example}
+    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
+\end{example}
+
 \begin{definition}
-    $f: (X, d_X) \to (Y, d_Y)$. A function between two metric spaces is said to be uniformly continuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x_1, x_2 \in X$, if $d_X(x_1, x_2) < \delta$, then $d_Y(f(x_1), f(x_2)) < \epsilon$.
+    A function between two metric spaces $f: (X, d_X) \to (Y, d_Y)$ is said to be uniformly continuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x_1, x_2 \in X$, if $d_X(x_1, x_2) < \delta$, then $d_Y(f(x_1), f(x_2)) < \epsilon$.
 \end{definition}
 
 \begin{theorem}
     Let $f: X \rightarrow Y$ be a continuous function between two metric spaces. If $X$ is compact, then $f$ is uniformly continuous.
 \end{theorem}
-\par \noindent \textbf{Proof} To be done. 
+\par \noindent \textbf{Proof} 
+\par Given $\epsilon > 0$, take the open covering of $Y$ by balls $B(y, \frac{\epsilon}{2})$ of radius $\frac{\epsilon}{2}$. Let $\mathcal{A}$ be the open covering of $X$ by the inverse images of these balls under $f$. Choose $\delta $ to be a Lebesgue number for the covering $\mathcal{A}$. Then if $x_1$ and $x_2$ are any two points in $X$ with $d_X(x_1, x_2) < \delta$, the set $\{x_1, x_2\}$ has diameter less than $\delta$, so there exists an open set $U = f^{-1}(B(y, \frac{\epsilon}{2}))$ in $\mathcal{A}$ that contains both $x_1$ and $x_2$. So $f(x_1)$ and $f(x_2)$ both lie in $B(y, \frac{\epsilon}{2})$, which implies that
+\begin{equation}
+    d_Y(f(x_1), f(x_2)) < \epsilon.
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{definition}
+    If $X$ is a space, a point $x$ of $X$ is said to be an isolated point of $X$ if the one-point set $\{x\}$ is open in $X$.
+\end{definition}
 
 \begin{theorem}
-    Let $X$ be a non-empty compact Hausdorff space without isolated points. Then $X$ is uncountable. 
+    Let $X$ be a non-empty compact Hausdorff space. If $X$ has no isolated points, then $X$ is uncountable.
 \end{theorem}
-\par \noindent \textbf{Proof} To be done. 
+\par \noindent \textbf{Proof} 
+
+\par \noindent \textbf{Step 1} We show first that given any non-empty open set $U$ of $X$ and any point $x$ of $X$, there exists a non-empty open set $V$ contained in $U$ such that $x \notin \bar{V}$. 
+\par Choose a point $y$ of $U$ different from $x$; this is possible if $x$ is in $U$ because $x$ is not an isolated point of $X$ and it is possible if $x$ is not in $U$ simply because $U$ is non-empty. Since $X$ is Hausdorff, there exist disjoint open sets $W_x$ and $W_y$ containing $x$ and $y$, respectively. Then the open set $V = U \cap W_y$ is non-empty, is contained in $U$, and its closure $\bar{V}$ is contained in the complement of $W_x$, so $x \notin \bar{V}$. 
+\par \noindent \textbf{Step 2} We show that given $f: \mathbb{Z}_{+} \to X$, the function $f$ is not surjective. It follows that $X$ is uncountable. 
+\par Let $x_n = f(n)$. Apply Step 1 to the non-empty open set $X$ to choose a non-empty open set $V_1 \subseteq X$ such that $x_1 \notin \bar{V_1}$. In general, given $V_{n - 1}$ open and non-empty, choose $V_n$ to be a non-empty open set such that $V_n \subseteq V_{n - 1}$ and $x_n \notin \bar{V_n}$. Then we have a sequence of non-empty closed sets $\bar{V_n}$ with
+\begin{equation}
+    \bar{V_1} \supseteq \bar{V_2} \supseteq \bar{V_3} \supseteq \cdots
+\end{equation}
+Since $X$ is compact, any collection of closed subsets of $X$ with the finite intersection property has non-empty intersection. Thus, there exists a point $y$ in the intersection of all the $\bar{V_n}$. By construction, $y \neq x_n$ for all $n$, so $f$ is not surjective. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 
 \begin{corollary}
