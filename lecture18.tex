@@ -8,44 +8,152 @@
 \chapter{Later}
 \label{chap:chapter18}
 
-\begin{theorem}
-    Every second countable regular space is normal.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par Let $X$ be a second countable regular space with $A, B \subseteq X$ closed and $A \cap B = \emptyset$.
-\par For every $x \in A$, since $X$ is regular, there exist open sets $U\ni x$ such that $U\cap B = \emptyset$. 
-\par By the lemma, there exists a open set $V$ such that $x \in V$, $\bar{V} \subseteq U$ and thus $\bar{V} \cap B = \emptyset$. 
-\par Let $\mathcal{B}$ be a countable baisis for $X$. For each $x \in A$, there exists $U_x \in \mathcal{B}$ such that $x \in U_x \subseteq V$, and thus $\bar{U_x} \subseteq \bar{V} \subseteq U$ and $\bar{U_x} \cap B = \emptyset$. Since $\mathcal{B}$ is countable, the collection $\{\bar{U_x}: x \in A\}$ has a countable subcollection $\{\bar{U_n}: n \in \mathbb{N}\}$ covering $A$ such that $\bar{U_n} \cap B = \emptyset$ for each $n$. 
+\section{Countability} 
+\begin{definition}
+    $X$ is first countable if for every $x\in X$, there exists a countable basis at $x$. That is, there exists $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ a collection of open sets containing $x$ such that for any open set $U$ containing $x$, there exists $B_n \in \mathcal{B}$ such that $B_n \subseteq U$.
+\end{definition}
+
+\begin{definition}
+    $X$ is second countable if there exists a countable basis $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ for the topology of $X$. That is, for every $x$ and every open set $U$ containing $x$, there exists $B_n \in \mathcal{B}$ such that $x \in B_n \subseteq U$. 
+\end{definition}
+
+\par \noindent \textbf{Exercise} $\mathbb{R}^n$ with standard topology, $B_n = \{U_{\epsilon}(x)| x\in \mathbb{Q}^n, \epsilon \in \mathbb{Q}_{>0}\}$. $B_n$ is a countable basis. So $\mathbb{R}^n$ is second countable. Show the details. 
+
+\par \noindent \textbf{Exercise} Show that if $X_n$'s are first(second) countable, then $\prod X_n$ with product topology is first(second) countable.
 
 \begin{theorem}
-    Every metrizable space $X$ is normal.
+    Let $X$ be second countable. Then 
+    \begin{enumerate}
+        \item Every open cover of $X$ has a countable subcovering($X$ is Lindelöf space).
+        \item There is a countable subset $A \subseteq X$ such that $\bar{A} = X$($A \subseteq X$ is called dense and $X$ is called separable). 
+    \end{enumerate}
 \end{theorem}
 
-\par \noindent \textbf{Proof} Let $d$ be the metric on $X$. Given two closed disjoint subsets $A, B \subseteq X$. 
-\par For each $a\in A$, there exists $r_a > 0$ such that $B(a, r_a) \cap B = \emptyset$. 
-\par Similarly, for each $b \in B$, there exists $s_b > 0$ such that $B(b, r_b) \cap A = \emptyset$.
-\par Let $U = \bigcup_{a \in A} B(a, r_{\frac{a}{2}})$ and $V = \bigcup_{b \in B} B(b, r_{\frac{b}{2}})$. Then $U$ and $V$ are open sets containing $A$ and $B$ respectively. 
-\par We claim that $U \cap V = \emptyset$. Assume the contrary that there exists $x \in U \cap V$. Then there exist $a \in A$ and $b \in B$ such that $x \in B(a, r_{\frac{a}{2}})$ and $x \in B(b, r_{\frac{b}{2}})$. Without loss of generality, assume that $r_{\frac{a}{2}} \leq r_{\frac{b}{2}}$. Then
-\begin{equation}
-    d(a, b) \leq d(a, x) + d(x, b) < r_{\frac{a}{2}} + r_{\frac{b}{2}} \leq r_a
-\end{equation}
-This implies that $b \in B(a, r_a)$, which contradicts the choice of $r_a$. Thus, $U \cap V = \emptyset$. Hence, $X$ is normal. 
-\begin{theorem}
-    Every compact Hausdorff space is normal.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par Let $x\in X$ and $B \subseteq X$ be closed such that $x \notin B$.
-\par For each $y\in B$, since $X$ is Hausdorff, there exist disjoint open sets $U_y$ and $V_y$ such that $x \in U_y$ and $y \in V_y$. Then $\{V_y | y \in B\}$ is an open covering of $B$. By the compactness of $B$, there exists a finite subcollection $\{V_{y_1}, V_{y_2}, \ldots, V_{y_n}\}$ that covers $B$. 
-Let $V = \bigcup V_{y_i}$ and $U = \bigcap U_{y_i}$. Then $U$ and $V$ are disjoint open sets containing $x$ and $B$ respectively. So $X$ is regular. 
-\par Let $A, B \subseteq X$ be closed and $A \cap B = \emptyset$. For each $a\in A$, since $X$ is regular, there exist disjoint open sets $U_a$ and $V_a$ such that $a \in U_a$ and $B \subseteq V_a$. Then $\{U_a | a \in A\}$ is an open covering of $A$. By the compactness of $A$, there exists a finite subcollection $\{U_{a_1}, U_{a_2}, \ldots, U_{a_m}\}$ that covers $A$. 
-Let $U = \bigcup U_{a_i}$ and $V = \bigcap V_{a_i}$. Then $U$ and $V$ are disjoint open sets containing $A$ and $B$ respectively. So $X$ is normal. 
+\par \noindent \textbf{Proof to 1}
+\par Let $\mathcal{A}$ be an open cover of $X$. Let $\mathcal{A}$ be an open covering of $X$. For each positive integer $n$ for which it is possible, choose an element $A_n \in \mathcal{A}$ such that $B_n \subseteq A_n$. The collection $\mathcal{A}'$ of all such possible $A_n$ is countable since it is indexed with a subset $J$ of the positive integers. 
+\par Furthermore, $\mathcal{A}'$ covers $X$. To see this, let $x \in X$. Since $\mathcal{A}$ is a covering of $X$, there exists $A \in \mathcal{A}$ such that $x \in A$. Since $\mathcal{B}$ is a basis for the topology of $X$, there exists $B_m \in \mathcal{B}$ such that $x \in B_m \subseteq A$. By construction of $\mathcal{A}'$, there exists $A_m \in \mathcal{A}'$ such that $B_m \subseteq A_m$. Thus, $x \in A_m$. So $\mathcal{A}'$ is a countable subcovering of $\mathcal{A}$. 
+\par \noindent \textbf{Proof to 2} 
+\par From each non-empty basis element $B_n$, choose a point $x_n \in B_n$. Let $D$ be the set of all such points $x_n$. Then $D$ is countable. 
+\par Given any point $x \in X$, every basis element containing $x$ contains a point of $D$, so $x$ is in the closure of $D$. Thus, $\bar{D} = X$. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
+\begin{property}
+    A second countable space is: 
+    \begin{enumerate}
+        \item First countable.
+        \item Separable.
+        \item Lindelöf.
+    \end{enumerate}
+\end{property}
+
+\begin{example}
+    [non-example] 
+    $\mathbb{R}_l$ with lower limit topology(Sorgengrey line) is first countable, Lindelöf, seperable, but not second countable. 
+    \par First-countable: for any $x \in \mathbb{R}_l$, $\{[x, x + \frac{1}{n}): n \in \mathbb{N}\}$ is a countable local basis at $x$. 
+    \par Assume the contrary that $\mathbb{R}_l$ is second countable. Let $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ be a countable basis for $\mathbb{R}_l$. For each $x \in \mathbb{R}$, there exists $B_{n_x} \in \mathcal{B}$ such that $x \in B_{n_x} \subseteq [x, x + 1)$. So $\min B_{n_x} = x$. This implies that the map $f: \mathbb{R} \to \mathcal{B}, f(x) = B_{n_x}$ is injective. However, $\mathbb{R}$ is uncountable while $\mathcal{B}$ is countable, which is a contradiction. So $\mathbb{R}_l$ is not second countable. 
+    \par Separable: $\mathbb{Q} \subseteq \mathbb{R}_l$ is countalbe and dense in $\mathbb{R}_l$. 
+    \par Lindelöf: See the below property. 
+\end{example}
+
+\begin{property}
+    [Lindelöf property of $\mathbb{R}_l$] 
+    Any open cover of $\mathbb{R}_l$ has a countable subcover.
+\end{property} 
+
+\par \noindent \textbf{Proof} 
+\par Let $\mathcal{A}$ be a covering of $\mathbb{R}_l$ by $[a_{\alpha}, b_{\alpha})$'s. We need to show that there exists a countable subcovering of $\mathcal{A}$ covering $\mathbb{R}_l$. 
+\par Let $C = \bigcup(a_{\alpha}, b_{\alpha})$ such that $\mathbb{R}\setminus C$ is not empty. Let $x\in \mathbb{R}\setminus C$. Then $x = a_{\beta}$ for some $\beta$ such that $x\notin (a_{\beta}, b_{\beta})$. Take $q_x \in (a_{\beta}, b_{\beta}) \cap \mathbb{Q}$ thus $x < q_x$. 
+\par Take $x, y\in \mathbb{R}$ with $x < y$. Then $q_x < q_y$ or we make a contradiction(why?). The map $x \mapsto q_x$ is injective from $\mathbb{R}\setminus C$ to $\mathbb{Q}$. So $\mathbb{R}\setminus C$ is countable. 
+\par Now we show that some countable subcollection of $\mathcal{A}$ covers $\mathbb{R}$. To begin, choose for each element $\mathbb{R}\setminus C$ an interval $[a_{\alpha}, b_{\alpha})$ of $\mathcal{A}$ that contains it. Then we have chosen a countable subcollection $\mathcal{A}'$ of $\mathcal{A}$ covering $\mathbb{R}\setminus C$. 
+\par Now take the set $C$ and topologize it as a subspace of $\mathbb{R}$($C$ is open in $\mathbb{R}$, topologizing means taking the intersection of $C$ with open sets in $\mathbb{R}$ as the open sets of $C$). Then $C$ is second countable(since $\mathbb{R}$ is second countable). Now $C$ is covered by the open intervals $(a_{\alpha}, b_{\alpha})$ which are open in $\mathbb{R}$ and hence open in $C$. So there exists a countable subcovering of $C$ by $(a_{\alpha}, b_{\alpha})$'s. Suppose this subcollection is indexed by $\alpha = \alpha_1, \alpha_2, \cdots$. Then the collection 
+\begin{equation}
+    \mathcal{A}'' = \{[a_{\alpha}, b_{\alpha}): \alpha = \alpha_1, \alpha_2, \cdots\}
+\end{equation}
+is a countable subcollection of $\mathcal{A}$ that covers $C$. 
+\par Hence the countable collection $\mathcal{A}' \cup \mathcal{A}''$ is a countable subcollection of $\mathcal{A}$ that covers $\mathbb{R}_l$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{property}
+    $\mathbb{R}_l \times \mathbb{R}_l$ is not Lindelöf. The space $\mathbb{R}_l \times \mathbb{R}_l$ with the product topology is called the Sorgenfrey plane. (The proof can be shown by a picture not drawn here.)
+\end{property}
+\par \noindent \textbf{Proof} 
+The space $\mathbb{R}_l^2$ has as basis all sets of the form $[a, b) \times [c, d)$ where $a < b$ and $c < d$. To show that $\mathbb{R}_l^2$ is not Lindelöf, we consider the subspace 
+\begin{equation}
+    L = \{(x, -x) | x \in \mathbb{R}_l\} \subseteq \mathbb{R}_l^2.
+\end{equation}
+It is easy to check that $L$ is closed in $\mathbb{R}_l^2$. Let's cover $\mathbb{R}_l^2$ by the open set $\mathbb{R}_l^2 \setminus L$ and by all basis elements of the form  
+\begin{equation}
+    [a, b) \times [-a, d)
+\end{equation}
+\par Each of these open sets intersects $L$ in at most one point. Since $L$ is uncountable, no countable subcollection covers $\mathbb{R}_l^2$. Thus, $\mathbb{R}_l^2$ is not Lindelöf. 
+\mbox{} \\ \null \hfill $\blacksquare$
+
+\begin{example}
+    Subspace of Lindelöf space is not necessarily Lindelöf. The ordered square $I_0^2$ is compact thus is Lindelöf. But the subspace $A = I_0 \times (0, 1)$ is not Lindelöf. For $A$ is the union of disjoint sets $U_x = \{x\} \times (0, 1)$, each of which is open in $A$. This collection of sets $\{U_x | x \in I_0\}$ is uncountable, and no proper subcollection covers $A$.
+\end{example}
+
+\section{Separation Axioms}
+\par Topological space $X$ can satisfy the following separability axioms:
+\begin{enumerate}
+    \item $T1$(Frechet): Given two distinct points $x, y \in X$, there exists an open set $U$ such that $x \in U$ and $y \notin U$. (Equivalently, all singleton sets are closed. Easy exercise)
+    \item $T2$(Hausdorff): Given two distinct points $x, y \in X$, there exist open sets $U, V$ such that $x \in U, y \in V$ and $U \cap V = \emptyset$.
+    \item $T3$(Regular): $X$ is $T1$ and given a closed set $F \subseteq X$ and a point $x \notin F$, there exist open sets $U, V$ such that $x \in U, F \subseteq V$ and $U \cap V = \emptyset$.
+    \item $T4$(Normal): $X$ is $T1$ and given two disjoint closed sets $F_1, F_2 \subseteq X$, there exist open sets $U, V$ such that $F_1 \subseteq U, F_2 \subseteq V$ and $U \cap V = \emptyset$.
+\end{enumerate}
+
 \begin{lemma}
-    [Urysohn's lemma]
-    Given a normal space $X$ and two closed disjoint subsets $A, B \subseteq X$, there exists a continuous map $f: X \to [0, 1]$ such that $f(A) = \{0\}$ and $f(B) = \{1\}$.
+    Let $X$ be a $T1$ topological space. Then
+    \begin{enumerate}
+        \item $X$ is regular if and only if for every point $x \in X$ and every neighborhood $U$ of $x$, there exists a neighborhood $V$ of $x$ such that $\bar{V} \subseteq U$. 
+        \item $X$ is normal if and only if for every closed set $F \subseteq X$ and every neighborhood $U$ of $F$, there exists a neighborhood $V$ of $F$ such that $\bar{V} \subseteq U$.
+    \end{enumerate}
 \end{lemma}
+
+\par \noindent \textbf{Proof} 
+\par $\Rightarrow$ Let $X$ be regular. 
+\par If $U = X$, there is nothing to prove.
+\par Suppose $U \neq X$. Then $F = X \setminus U$ is closed and $x \notin F$. By regularity of $X$, there exist open sets $V, W$ such that $x \in V, F \subseteq W$ and $V \cap W = \emptyset$. Now we need to show $\bar{V} \subseteq U$. 
+\par If $y\in F$, then $y \in W$. Since $V \cap W = \emptyset$, $y \notin \bar{V}$ because we find a neighborhood $W$ of $y$ such that $W \cap V = \emptyset$. Thus, $\bar{V} \subseteq X \setminus F = U$.
+\par $\Leftarrow$ Suppose that the point $x$ and the closed set $B$ not containing $X$ are given. Let $U = X \setminus B$. By hypothesis, there is a neighborhood $V$ of $x$ such that $\bar{V} \subseteq U$. The open sets $V$ and $X \setminus \bar{V}$ then separate $x$ and $B$. 
+
+\par The proof of 2. is similar. 
+
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $X$ is Hausdorff, then $Y \subseteq X$ with subspace topology is Hausdorff.
+        \item $X_{\alpha}$ is Hausdorff, then $\prod X_{\alpha}$ with product topology is Hausdorff.
+        \item $X$ is regular, then $Y \subseteq X$ with subspace topology is regular. 
+        \item $X_{\alpha}$ is regular, then $\prod X_{\alpha}$ with product topology is regular. 
+    \end{enumerate}
+\end{theorem}
 \par \noindent \textbf{Proof}
+\par (a) is obvious. 
+\par (b) Let $x = (x_{\alpha}), y = (y_{\alpha}) \in \prod X_{\alpha}$ with $x \neq y$. Then there exists $\beta$ such that $x_{\beta} \neq y_{\beta}$. Since $X_{\beta}$ is Hausdorff, there exist open sets $U_{\beta}, V_{\beta} \subseteq X_{\beta}$ such that $x_{\beta} \in U_{\beta}, y_{\beta} \in V_{\beta}$ and $U_{\beta} \cap V_{\beta} = \emptyset$. Then $\pi_{\beta}^{-1}(U_{\beta}), \pi_{\beta}^{-1}(V_{\beta})$ are open in $\prod X_{\alpha}$, $x \in \pi_{\beta}^{-1}(U_{\beta}), y \in \pi_{\beta}^{-1}(V_{\beta})$ and $\pi_{\beta}^{-1}(U_{\beta}) \cap \pi_{\beta}^{-1}(V_{\beta}) = \emptyset$. So we are done.
+
+\par (c) (It is easy to verify the subspace of $T_1$ space is $T_1$. )Let $Y \subseteq X$ with subspace topology. Let $y \in Y$ and $B$ be a closed set in $Y$ such that $y \notin B$. Then there exists a closed set $F$ in $X$ such that $B = F \cap Y$. Since $y \notin B$, $y \notin F$. Since $X$ is regular, there exist open sets $U, V \subseteq X$ such that $y \in U, F \subseteq V$ and $U \cap V = \emptyset$. Then $U \cap Y, V \cap Y$ are open in $Y$, $y \in U \cap Y, B \subseteq V \cap Y$ and $(U \cap Y) \cap (V \cap Y) = \emptyset$. So we are done. 
+
+\par (d) Let $\{X_{\alpha}\}$ be a family of regular spaces. Let $X = \prod X_{\alpha}$. $X_{\alpha}$ is regular implies that $X_{\alpha}$ is Hausdorff. By (b), $X$ is Hausdorff thus is $T_1$. 
+\par Let $x = (x_{\alpha}) \in X$ and let $U$ be a neighborhood of $x$ in $X$. Choose a basis element $\prod U_{\alpha} \subseteq U$ containing $x$. By the previous lemma, we can choose, for each $\alpha$, a neighborhood $V_{\alpha}$ of $x_{\alpha}$ in $X_{\alpha}$ such that $\bar{V_{\alpha}} \subseteq U_{\alpha}$. If it happens that $U_{\alpha} = X_{\alpha}$ for some $\alpha$, we choose $V_{\alpha} = X_{\alpha}$. Then $V = \prod V_{\alpha}$ is a neighborhood of $x$ in $X$. 
+Recall from lecture 11, that $\bar{V} = \prod \bar{V_{\alpha}}$. It follows at once that $\bar{V} \subseteq \prod U_{\alpha} \subseteq U$. By the previous lemma, $X$ is regular. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\par \noindent \textbf{Remark} $X$ is normal does not imply that $Y \subseteq X$ with subspace topology is normal. $X_1, X_2$ are normal does not imply that $X_1 \times X_2$ with product topology is normal. 
+
+\par \noindent \textbf{Exercise} Show that $\mathbb{R}_l$ is normal. 
+\par \noindent \textbf{Solution} It is immediate that one-point sets are closed in $\mathbb{R}_l$, since the topology of $\mathbb{R}_l$ is finer than the standard topology on $\mathbb{R}$. Let $A$ and $B$ are disjoint closed sets in $\mathbb{R}_l$. For each $a \in A$, since $B$ is closed and $a \notin B$, there exists a basis element $[a, x_a)$ such that $[a, x_a) \cap B = \emptyset$. For each $b \in B$, since $A$ is closed and $b \notin A$, there exists a basis element $[b, y_b)$ such that $[b, y_b) \cap A = \emptyset$. Then the open sets 
+\begin{equation}
+    U = \bigcup_{a \in A} [a, x_a), \quad V = \bigcup_{b \in B} [b, y_b)
+\end{equation}
+are disjoint open sets containing $A$ and $B$ respectively. So we are done. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Fact} (Without Proof, Efforts are required to show this) $\mathbb{R}_l^2$ is not normal. But it is regular( as a product of regular spaces). 
+\par \noindent \textbf{Exercise} $\mathbb{R}_K$ is a topological space with basis given by all open intervals $(a, b)$ and all sets of the form $(a, b) \setminus K$ where $K = \{1/n | n \in \mathbb{N}\}$. $\mathbb{R}_K$ is Hausdorff. But $\mathbb{R}_K$ is not regular. 
+\par The set $K$ is closed in $\mathbb{R}_K$ and it does not contain the point $0$. Suppose that there exist disjoint open sets $U$ and $V$ such that $0\in U$ and $K \subseteq V$. Choose a basis element containing $0$ and lying in $U$. It must be a basis element of the form $(a, b) \setminus K$, since each basis element of the form $(a, b)$ contains intersects $K$. Choose $1/n \in K$ such that $1/n < b$. Then there exists a basis element of the form $(c, d)$ such that $1/n \in (c, d) \subseteq V$. Finally, the basis elements $(a, b) \setminus K$ and $(c, d)$ intersect, since $c < 1/n < b$. So $U$ and $V$ are not disjoint. 
+\mbox{} \\ \null \hfill $\blacksquare$   
+
+
 
 
 \end{document}

@@ -88,7 +88,7 @@ That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$
 \section{Locally Compact} 
 
 \begin{definition}
-    $X$ is said to be locally compact at $x\in X$ if there exists an neighborhood $U$ of $x$ and there exists a compact subspace $C$ of $X$ containing $U$. $X$ is locally compact if it's locally compact at each $x\in X$. 
+    A space $X$ is said to be locally compact at $x$ if there is some compact subspace $C$ of $X$ containing a neighborhood $U$ of $x$. If $X$ is locally compact at each of its points, then $X$ is said to be locally compact.
 \end{definition}
 
 \begin{example}
@@ -105,110 +105,14 @@ That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$
 \end{example}
 
 \par \noindent \textbf{Exercise} Show the above example. 
+\par \noindent \textbf{Solution} Let $C$ be a compact subspace of $\mathbb{Q}$ containing a neighborhood $U$ of $x \in \mathbb{Q}$. Since $U$ is open in $\mathbb{Q}$, there exists an interval $(a, b) \subseteq \mathbb{R}$ such that $U = (a, b) \cap \mathbb{Q}$. We know $Q$ is dense in $\mathbb{R}$, so there exists an irrational number $y \in (a, b)$. Let $\{q_n\} \subseteq (a, b) \cap \mathbb{Q}$ be a sequence converging to $y$. Since $C$ is compact, so $\{q_n\}$ has a subsequence converging to a point in $C$. But a convergent sequence in $\mathbb{R}$ has a unique limit, so the subsequence converges to $y$, which is not in $\mathbb{Q}$ thus not in $C$. This is a contradiction. Hence, $\mathbb{Q}$ is not locally compact.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{example}
     [non example] 
-    $\mathbb{R}^{\omega}$ with product topology is not locally compact. Let $U = (a_1, b_1) \times (a_2, b_2) \times \cdots$. If $U \subseteq C$ where $C$ is compact, then $\overline{U} = [a_1, b_1] \times [a_2, b_2] \times \cdots \subseteq C$. We know a closed subset of a compact set is compact, so $\overline{U}$ is compact. But this is not true. 
+    $\mathbb{R}^{\omega}$ with product topology is not locally compact. If $U$ is open, then $U$ contains a basis element $(a_1, b_1) \times \cdots \times (a_n, b_n) \times \mathbb{R} \times \mathbb{R} \times \cdots$. Then $U$ is not contained in any compact set $C$($C$ contains one factor of $\mathbb{R}$, then the projection to some factor space is $\mathbb{R}$, but a projection is continuous, which means $\mathbb{R}$ is compact. This is definitely not true). 
 \end{example}
 
-\par \noindent \textbf{Exercise} Show the above example. 
 
-\begin{theorem}
-    Let $X$ be a topological space. Then $X$ is Hausdorff locally compact if and only if there exists a spcace $Y$ such that
-    \begin{enumerate}
-        \item $X$ is a subspace of $Y$.
-        \item $Y \setminus X$ contains exactly one point $\{p\}$.
-        \item $Y$ is compact Hausdorff. 
-    \end{enumerate}
-    This $Y$ is unique in the following sense: If $Y, Y'$ are two spaces with the above properties and $Y = X \cup \{p\}, Y' = X \cup \{q\}$, then there exists a homeomorphism $h: Y \to Y'$ such that $h(x) = x$ for all $x \in X$ and $h(p) = q$.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par \noindent \textbf{Uniqueness} Let $Y = X \cup \{p\}$, $Y' = X \cup \{q\}$ satisfies the above properties. Define $h: Y \to Y'$ as follows: $h(x) = x$ for all $x \in X$ and $h(p) = q$. We show that $h$ is continuous. But the function is symmetric, so it is enough to show that $h(U)$ is open in $Y'$ for all open set $U$ in $Y$. 
-\par Take $U$ be open. There are two cases. 
-\par If $U \subseteq X$, then we are done. 
-\par Suppose $p\in U$. Then $C = Y \setminus U$ is closed in $Y$. So $C$ is compact. 
-\par \noindent \textbf{Construction} We introduce the topology on $Y = X \cup \{\infty\}$ as follows: 
-\par There are two types of open sets in $Y$: 
-\begin{enumerate}
-    \item $U \subseteq X \subseteq Y$ is open in $X$.
-    \item $U = Y \setminus C$ where $C$ is compact. 
-\end{enumerate}
-
-We need to check that this is a topology. 
-\par For the intersection of two open sets of type 1, we have $U_1 \cap U_2$ is open in $X$ thus is open in $Y$. 
-\par For the intersection of type 1 and type 2, we have $U_1 \cap (Y \setminus C) = U\cap(X \setminus C)$ which is the union of open sets in $X$ thus is open in $Y$. 
-\par For the intersection of two open sets of type
-
-\par It remains to showw $Y$ is compact Hausdorff and if $X \subseteq Y$ with $Y$ satisfied the three properties, then $X$ is locally compact. 
-\par We can show that $X$ is a subspace of $Y$ because: 
-\begin{enumerate}
-    \item If $ U \subseteq X$ and $\infty \notin U$, then 
-    \item $(Y\setminus C) \cap X = X \setminus C$ where $C$ is compact in $X$.
-\end{enumerate}
-
-\par We show that $Y$ is compact. 
-\par Let $\mathcal{A}$ be an open covering of $Y$. Then there exists compact $C$ such that $Y \setminus C \in \mathcal{A}$. The rest of the covering $\mathcal{A}' = \mathcal{A} \setminus \{Y \setminus C\}$ is an open covering of $C$. Since $C$ is compact, there exists a finite subcovering of $\mathcal{A}'$ covering $C$. Thus, adding $Y \setminus C$ gives a finite subcovering of $\mathcal{A}$ covering $Y$. So $Y$ is compact.
-\par We show that $Y$ is Hausdorff.
-\par Take two distinct points $x, y \in Y$. There are two cases.
-\begin{enumerate}
-    \item If $x, y \in X$, since $X$ is Hausdorff, there exist disjoint open sets $U, V$ in $X$ such that $x \in U, y \in V$. Then $U, V$ are open in $Y$ and disjoint.
-    \item If one of them is $\infty$, say $y = \infty$. Since $X$ is locally compact at $x$, there exists an open neighborhood $U$ of $x$ and a compact set $C$ such that $U \subseteq C$. Then $V = Y \setminus C$ is an open neighborhood of $\infty$. Clearly, $U \cap V = \emptyset$.
-\end{enumerate}
-\par We prove the other direction.
-\par To be done. 
-
-\mbox{} \\ \null \hfill $\blacksquare$ 
-
-
-\begin{theorem}
-    Let $X$ be a Hausdorff space. Then $X$ is locally compact if and only if for any $x\in X$ and any neighborhood $U$ of $x$, there exists a neighborhood $V$ of $x$ such that $\bar{V}$ is compact and $\bar{V} \subseteq U$.
-\end{theorem}
-
-\par \noindent \textbf{Proof} 
-\par $\Leftarrow$ $x\in V \subseteq \bar{V} \subseteq U$ and $\bar{V}$ is compact. So $X$ is locally compact at $x$.
-\par $\Rightarrow$ Let $Y$ be the one-point compactification(compact and Hausdorff) of $X$. Let $U$ be a neighborhood of $x$ in $Y$. Then $Y\setminus U:= C$ is a closed subset of $Y$. So $C$ is compact. By lemma 12.0.2, there exists two open sets $V, W$ in $Y$ such that $x \in V$, $C \subseteq W$ and $V \cap W = \emptyset$. Then $\bar{V}$ is compact and $\bar{V} \cap C = \emptyset$. So $\bar{V} \subseteq U$. \hfill $\blacksquare$
-
-\begin{corollary}
-    Let $X$ be locally compact Hausdorff space. $A \subseteq X$ is open or closed. Then $A$ is locally compact.
-\end{corollary}
-
-\par \noindent \textbf{Proof} 
-\par Let $A \subseteq X$ be closed. Given $x\in A$, since $X$ is locally compact, there exists an open neighborhood $U$ of $x$ in $X$ and a compact set $C$ such that $x \in U \subseteq C$. Then $U \cap A$ is an open neighborhood of $x$ in $A$ and $C \cap A$ is compact in $A$. So $A$ is locally compact at $x$.
-
-\par Let $A \subseteq X$ be open. Given $x\in A$, since $X$ is locally compact and $X$ is Hausdorff, by the previous theorem, there exists a neighborhood $V$ of $x$ such that $\bar{V}$ is compact and $\bar{V} \subseteq A$. So $A$ is locally compact at $x$. \hfill $\blacksquare$
-
-\begin{corollary}
-    $X$ is locally compact Hausdorff if and only if $X$ is homeomorphic to an open subspace of a compact Hausdorff space. 
-\end{corollary}
-
-\par \noindent \textbf{Exercise} Show the above corollary. 
-
-\section{Urysohn's Metrization Theorem}
-\begin{theorem}
-    Every $X$ that is regular(T3) and second-countable is metrizable.
-\end{theorem}
-
-\section{Countability} 
-\begin{definition}
-    $X$ is first countable if for every $x\in X$, there exists a countable basis at $x$. That is, there exists $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ a collection of open sets containing $x$ such that for any open set $U$ containing $x$, there exists $B_n \in \mathcal{B}$ such that $B_n \subseteq U$.
-\end{definition}
-
-\begin{definition}
-    $X$ is second countable if there exists a countable basis $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ for the topology of $X$. That is, for every $x$ and every open set $U$ containing $x$, there exists $B_n \in \mathcal{B}$ such that $x \in B_n \subseteq U$. 
-\end{definition}
-
-\par \noindent \textbf{Exercise} $\mathbb{R}^n$ with standard topology, $B_n = \{U_{\epsilon}(x)| x\in \mathbb{Q}^n, \epsilon \in \mathbb{Q}_{>0}\}$. $B_n$ is a countable basis. So $\mathbb{R}^n$ is second countable. Show the details. 
-
-\par \noindent \textbf{Exercise} Show that if $X_n$'s are first(second) countable, then $\prod X_n$ with product topology is first(second) countable.
-
-\begin{theorem}
-    Let $X$ be second countable. Then 
-    \begin{enumerate}
-        \item Every open cover of $X$ has a countable subcovering($X$ is Lindelöf space).
-        \item There is a countable subset $A \subseteq X$ such that $\bar{A} = X$($A \subseteq X$ is dense). 
-    \end{enumerate}
-\end{theorem}
-
-\par \noindent \textbf{Proof} 
 
 \end{document}

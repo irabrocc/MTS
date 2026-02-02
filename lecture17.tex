@@ -8,103 +8,97 @@
 \chapter{Later}
 \label{chap:chapter17}
 
-\begin{theorem}
-    Let $X$ be second countable. Then: 
+\begin{theorem}\label{thm:17.0.1}
+    Let $X$ be a topological space. Then $X$ is Hausdorff locally compact if and only if there exists a space $Y$ such that
     \begin{enumerate}
-        \item Every covering of $X$ by open sets has a countable subcovering($X$ is Lindelöf space). 
-        \item There exists a countable dense subset $A \subseteq X$ such that $\bar{A} = X$. (In this case $X$ is called separable.)
+        \item $X$ is a subspace of $Y$.
+        \item $Y \setminus X$ contains exactly one point $p$.
+        \item $Y$ is compact Hausdorff. 
     \end{enumerate}
+    This $Y$ is unique in the following sense: If $Y, Y'$ are two spaces with the above properties and $Y = X \cup \{p\}, Y' = X \cup \{q\}$, then there exists a homeomorphism $h: Y \to Y'$ such that $h(x) = x$ for all $x \in X$ and $h(p) = q$.
 \end{theorem}
-
-\begin{property}
-    A second countable space is: 
-    \begin{enumerate}
-        \item First countable.
-        \item Separable.
-        \item Lindelöf.
-    \end{enumerate}
-\end{property}
-
-\begin{example}
-    [non-example] 
-    $\mathbb{R}_l$ with lower limit topology(Sorgengrey line) is first countable, Lindelöf, seperable, but not second countable. 
-    \par First-countable: for any $x \in \mathbb{R}_l$, $\{[x, x + \frac{1}{n}): n \in \mathbb{N}\}$ is a countable local basis at $x$. 
-    \par Assume the contrary that $\mathbb{R}_l$ is second countable. Let $\mathcal{B} = \{B_n: n \in \mathbb{N}\}$ be a countable basis for $\mathbb{R}_l$. For each $x \in \mathbb{R}$, there exists $B_{n_x} \in \mathcal{B}$ such that $x \in B_{n_x} \subseteq [x, x + 1)$. So $\min B_{n_x} = x$. This implies that the map $f: \mathbb{R} \to \mathcal{B}, f(x) = B_{n_x}$ is injective. However, $\mathbb{R}$ is uncountable while $\mathcal{B}$ is countable, which is a contradiction. So $\mathbb{R}_l$ is not second countable. 
-    \par Separable: $\mathbb{Q} \subseteq \mathbb{R}_l$ is countalbe and dense in $\mathbb{R}_l$. 
-    \par Lindelöf: See the below property. 
-\end{example}
-
-\begin{property}
-    [Lindelöf property of $\mathbb{R}_l$] 
-    Any open cover of $\mathbb{R}_l$ has a countable subcover.
-\end{property} 
-
 \par \noindent \textbf{Proof} 
-\par Let $\mathcal{A}$ be a covering of $\mathbb{R}_l$ by $[a_{\alpha}, b_{\alpha})$'s. We need to show that there exists a countable subcovering of $\mathcal{A}$ covering $\mathbb{R}_l$. 
-\par Let $C = \bigcup(a_{\alpha}, b_{\alpha})$ such that $\mathbb{R}\setminus C$ is not empty. Let $x = a_{\beta}$ for some $\beta$ such that $x\notin (a_{\alpha}, b_{\alpha})$. Take $q_x \in (a_{\beta}, b_{\beta}) \cap \mathbb{Q}$ thus $x < q_x$. 
-\par Take $x, y\in \mathbb{R}$. Then $q_x < q_y$ or we make a contradiction(why?). The map $x \mapsto q_x$ is injective from $\mathbb{R}\setminus C$ to $\mathbb{Q}$. However
-
-\begin{property}
-    $\mathbb{R}_l \times \mathbb{R}_l$ is not Lindelöf. 
-\end{property}
-\par \noindent \textbf{Proof} 
-
-
-\begin{example}
-    Subspace of Lindelöf space is not necessarily Lindelöf.
-\end{example}
-
-\section{Separation Axioms}
-\par Topological space $X$ can satisfy the following separability axioms:
+\par \noindent \textbf{Uniqueness} Let $Y = X \cup \{p\}$, $Y' = X \cup \{q\}$ satisfies the above properties. Define $h: Y \to Y'$ as follows: $h(x) = x$ for all $x \in X$ and $h(p) = q$. We show that $h$ is continuous. But the function is symmetric, so it is enough to show that $h(U)$ is open in $Y'$ for all open set $U$ in $Y$. 
+\par Take $U$ be open. There are two cases. 
+\par If $U \subseteq X$, then we are done. 
+\par Suppose $p\in U$. Then $C = Y \setminus U$ is closed in $Y$. So $C$ is compact. 
+\par \noindent \textbf{Construction} We introduce the topology on $Y = X \cup \{\infty\}$ as follows: 
+\par There are two types of open sets in $Y$: 
 \begin{enumerate}
-    \item $T1$(Frechet): Given two distinct points $x, y \in X$, there exists an open set $U$ such that $x \in U$ and $y \notin U$. (Equivalently, all singleton sets are closed. Easy exercise)
-    \item $T2$(Hausdorff): Given two distinct points $x, y \in X$, there exist open sets $U, V$ such that $x \in U, y \in V$ and $U \cap V = \emptyset$.
-    \item $T3$(Regular): $X$ is $T1$ and given a closed set $F \subseteq X$ and a point $x \notin F$, there exist open sets $U, V$ such that $x \in U, F \subseteq V$ and $U \cap V = \emptyset$.
-    \item $T4$(Normal): $X$ is $T1$ and given two disjoint closed sets $F_1, F_2 \subseteq X$, there exist open sets $U, V$ such that $F_1 \subseteq U, F_2 \subseteq V$ and $U \cap V = \emptyset$.
+    \item $U \subseteq X \subseteq Y$ is open in $X$.
+    \item $U = Y \setminus C$ where $C$ is compact subspace of $X$. 
 \end{enumerate}
 
-\begin{lemma}
-    Let $X$ be a $T1$ topological space. Then
-    \begin{enumerate}
-        \item $X$ is regular if and only if for every point $x \in X$ and every neighborhood $U$ of $x$, there exists a neighborhood $V$ of $x$ such that $\bar{V} \subseteq U$. 
-        \item $X$ is normal if and only if for every closed set $F \subseteq X$ and every neighborhood $U$ of $F$, there exists a neighborhood $V$ of $F$ such that $\bar{V} \subseteq U$.
-    \end{enumerate}
-\end{lemma}
+We need to check that this is a topology. 
+\par For the intersection of two open sets of type 1, we have $U_1 \cap U_2$ is open in $X$ thus is open in $Y$. 
+\par For the intersection of type 1 and type 2, we have $U_1 \cap (Y \setminus C) = U_1\cap(X \setminus C)$ which is the union of open sets in $X$ thus is open in $Y$ because $C$ is closed in $X$( as a compact subspace of a Hausdorff space). 
+\par For the intersection of two open sets of type $2$, we have $(Y \setminus C_1) \cap (Y \setminus C_2) = Y \setminus (C_1 \cup C_2)$ which is open in $Y$ because $C_1 \cup C_2$ is compact. 
+\par Similarly, one checks that the union of any collection of open sets is open. We have 
+\begin{enumerate}
+    \item $\bigcup U_{\alpha} = U$ is of type 1. 
+    \item $\bigcup (Y \setminus C_{\alpha}) = Y \setminus \bigcap C_{\alpha} = Y \setminus C$ where $C = \bigcap C_{\alpha}$ is compact(Easy to check). This is of type 2. 
+    \item $\bigcup U_{\alpha} \cup \bigcup (Y \setminus C_{\beta}) = U \cup (Y \setminus C) = Y \setminus (C \setminus U)$. This is of type 2 because $C \setminus U = C \cap (X \setminus U)$ is closed in $C$ thus is compact because a closed subset of a compact set is compact.
+\end{enumerate}
+\par Now we show that $X$ is a subspace of $Y$. Given any open set $V$ of $Y$, we show its intersection with $X$ is open in $X$. If $V$ is of type 1, then $V \cap X = V$ which is open in $X$. If $V$ is of type 2, then $V \cap X = (Y \setminus C) \cap X = X \setminus C$ which is open in $X$ because $C$ is closed in $X$ as a compact subspace of a Hausdorff space. Conversely, given any open set $U$ of $X$, $U$ is an open set of $Y$ of type 1. So $X$ is a subspace of $Y$. 
 
-\par \noindent \textbf{Proof} 
-\par $\Rightarrow$ Let $X$ be regular. 
-\par If $U = X$, there is nothing to prove.
-\par Suppose $U \neq X$. Then $F = X \setminus U$ is closed and $x \notin F$. By regularity of $X$, there exist open sets $V, W$ such that $x \in V, F \subseteq W$ and $V \cap W = \emptyset$. Now we need to show $\bar{V} \subseteq U$. 
-\par If $y\in F$, then $y \in W$. Since $V \cap W = \emptyset$, $y \notin \bar{V}$ because we find a neighborhood $W$ of $y$ such that $W \cap V = \emptyset$. Thus, $\bar{V} \subseteq X \setminus F = U$.
-\par $\Leftarrow$ To be done. 
-
-\par The proof of 2. is similar. 
+\par We show that $Y$ is compact. 
+\par Let $\mathcal{A}$ be an open covering of $Y$. The collection $\mathcal{A}$ must contain an open set containing $\infty$. So there exists a compact set $C$ such that $U = Y \setminus C$ with $U \in \mathcal{A}$. Take all the members of $\mathcal{A}$ different from $U$ and intersect them with $X$. This gives a collection of open sets in $X$ which covers $C$. Since $C$ is compact, there exists a finite subcovering of $C$, say $\{V_1, V_2, \cdots, V_n\}$. Then $\{U, V_1, V_2, \cdots, V_n\}$ is a finite subcovering of $Y$. So $Y$ is compact.  
+\par We show that $Y$ is Hausdorff.
+\par Take two distinct points $x, y \in Y$. There are two cases.
+\begin{enumerate}
+    \item If $x, y \in X$, since $X$ is Hausdorff, there exist disjoint open sets $U, V$ in $X$ such that $x \in U, y \in V$. Then $U, V$ are open in $Y$ and disjoint.
+    \item If one of them is $\infty$, say $y = \infty$. Since $X$ is locally compact at $x$, there exists an open neighborhood $U$ of $x$ and a compact set $C$ such that $U \subseteq C$. So $C$ is closed in $X$ thus in $Y$. Then $V = Y \setminus C$ is an open neighborhood of $\infty$. Clearly, $U \cap V = \emptyset$.
+\end{enumerate}
+\par Finally we prove the other direction. Suppose a space $Y$ satisfying conditions (1)-(3) exists. Then $X$ is Hausdorff as a subspace of a Hausdorff space. Given any $x \in X$, we show $X$ is locally compact at $x$. Choose disjoint open sets $U, V$ in $Y$ such that $x \in U$ and $p \in V$. Then $C = Y \setminus V$ is compact as a closed subset of a compact space. Also, $x \in U \subseteq C$. So $X$ is locally compact at $x$. 
 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
-\begin{theorem}
+\begin{definition}
+    If $Y$ and $X$ are as in the above theorem, then $Y$ is called the one-point compactification of $X$. 
+\end{definition}
+
+\begin{example}
     \begin{enumerate}
-        \item $X$ is Hausdorff, then $Y \subseteq X$ with subspace topology is Hausdorff.
-        \item $X_{\alpha}$ is Hausdorff, then $\prod X_{\alpha}$ with product topology is Hausdorff.
-        \item $X$ is regular, then $Y \subseteq X$ with subspace topology is regular. 
-        \item $X_{\alpha}$ is regular, then $\prod X_{\alpha}$ with product topology is regular. 
+        \item The one point compactification of $\mathbb{R}$ is homeomorphic to $S^1$. We denote $\overline{\mathbb{R}} \cong S^1$.
+        \item The one point compactification of $\mathbb{R}^n$ is homeomorphic to $S^n$. We denote $\overline{\mathbb{R}^n} \cong S^n$. 
+        \item The one point compactification of $\overline{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$(Riemann sphere) is homeomorphic to $S^2$. 
     \end{enumerate}
+\end{example}
+
+
+\begin{theorem}
+    Let $X$ be a Hausdorff space. Then $X$ is locally compact if and only if for any $x\in X$ and any neighborhood $U$ of $x$, there exists a neighborhood $V$ of $x$ such that $\bar{V}$ is compact and $\bar{V} \subseteq U$.
 \end{theorem}
-\par \noindent \textbf{Proof}
-\par (a) is obvious. 
-\par (b) Let $x = (x_{\alpha}), y = (y_{\alpha}) \in \prod X_{\alpha}$ with $x \neq y$. Then there exists $\beta$ such that $x_{\beta} \neq y_{\beta}$. Since $X_{\beta}$ is Hausdorff, there exist open sets $U_{\beta}, V_{\beta} \subseteq X_{\beta}$ such that $x_{\beta} \in U_{\beta}, y_{\beta} \in V_{\beta}$ and $U_{\beta} \cap V_{\beta} = \emptyset$. 
 
-\par (c) is obvious. 
+\par \noindent \textbf{Proof} 
+\par $\Leftarrow$ $x\in V \subseteq \bar{V} \subseteq U$ and $\bar{V}$ is compact. So $X$ is locally compact at $x$.
+\par $\Rightarrow$ Let $Y$ be the one-point compactification(compact and Hausdorff) of $X$. Let $U$ be a neighborhood of $x$ in $Y$. Then $Y\setminus U:= C$ is a closed subset of $Y$. So $C$ is compact subspace of $Y$(Hausdorff). By lemma 12.0.2, there exists two open sets $V, W$ in $Y$ such that $x \in V$, $C \subseteq W$ and $V \cap W = \emptyset$. Then $\bar{V}$ is compact and $\bar{V} \cap C = \emptyset$. So $\bar{V} \subseteq U$. \hfill $\blacksquare$
 
-\par (d) To be done. 
+\begin{corollary}\label{coro:17.0.1}
+    Let $X$ be locally compact Hausdorff space. $A \subseteq X$ is open or closed. Then $A$ is locally compact.
+\end{corollary}
 
+\par \noindent \textbf{Proof} 
+\par Let $A \subseteq X$ be closed. Given $x\in A$, since $X$ is locally compact, there exists an open neighborhood $U$ of $x$ in $X$ and a compact set $C$ such that $x \in U \subseteq C$. Then $C \cap A$ is closed in $C$ thus is compact, and it contains the neighborhood $U \cap A$ of $x$ in $A$. So $A$ is locally compact at $x$. 
 
-\par \noindent \textbf{Remark} $X$ is normal does not imply that $Y \subseteq X$ with subspace topology is normal. $X_1, X_2$ are normal does not imply that $X_1 \times X_2$ with product topology is normal. 
+\par Let $A \subseteq X$ be open. Given $x\in A$, since $X$ is locally compact and $X$ is Hausdorff, by the previous theorem, there exists a neighborhood $V$ of $x$ such that $\bar{V}$ is compact and $\bar{V} \subseteq A$. Then $C = \bar{V}$ is a compact set containing the neighborhood $V$ of $x$ in $A$. So $A$ is locally compact at $x$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
-\par \noindent \textbf{Exercise} Show that $\mathbb{R}_l$ is normal. 
+\begin{corollary}
+    $X$ is locally compact Hausdorff if and only if $X$ is homeomorphic to an open subspace of a compact Hausdorff space. 
+\end{corollary}
 
-\par \noindent \textbf{Fact} (Without Proof) $\mathbb{R}_l^2$ is not normal. But it is regular( as a product of regular spaces). 
-\par \noindent \textbf{Exercise} $\mathbb{R}_K$ is a topological space with basis given by all open intervals $(a, b)$ and all sets of the form $(a, b) \setminus K$ where $K = \{1/n | n \in \mathbb{N}\}$. $\mathbb{R}_K$ is Hausdorff. But $\mathbb{R}_K$ is not regular(To be done).  
+\par \noindent \textbf{Exercise} Show the above corollary by \ref{thm:17.0.1} and \ref{coro:17.0.1}.
+\par \noindent \textbf{Solution} 
+\par $\Rightarrow$ Let $Y$ be the one-point compactification of $X$. Recall that Hausdorff is $T_1$. So $X = Y \setminus \{p\}$ is open in $Y$. The identity map $id: X \to X$ is a homeomorphism from $X$ to the open subspace $X$ of $Y$. 
+\par $\Leftarrow$ Let $X$ be homeomorphic to an open subspace $U$ of a compact Hausdorff space $Z$. Since $Z$ is compact Hausdorff, $Z$ is locally compact Hausdorff. By \ref{coro:17.0.1}, $U$ is locally compact Hausdorff. Since $X$ is homeomorphic to $U$, $X$ is locally compact Hausdorff.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\section{Urysohn's Metrization Theorem}
+\begin{theorem}
+    Every $X$ that is regular(T3) and second-countable is metrizable.
+\end{theorem}
+
 
 
 \end{document}

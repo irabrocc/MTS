@@ -8,49 +8,87 @@
 \chapter{Later}
 \label{chap:chapter21}
 
+\section{The tychonoff theorem}
+\begin{theorem}
+    If $X, Y$ are compact sets, then $X \times Y$ is also compact.
+\end{theorem}
+
+\begin{theorem}
+    If $X_{\alpha}$'s with $\alpha \in J$ are compact sets, then $\prod_{\alpha \in J} X_{\alpha}$ is also compact.
+\end{theorem}
+\section{Closed set formulation of compactness} 
+\par Let $X$ be a topological space. Let $\mathcal{C}$ be a family of closed sets in $X$.  
 \begin{definition}
-    A compactification of a Hausdorff space $X$ is a Hausdorff space $Y \supseteq X$ such that $Y = \overline{X}$. We say that compactifications $Y_1$ and $Y_2$ are equivalent if there exists a homeomorphism $h: Y_1 \to Y_2$ such that $h|_{X} = id_{X}$.
+    We say $\mathcal{C}$ has the finite intersection property if for any finite closed sets $C_1, C_2, \ldots, C_n \in \mathcal{C}$, we have
+    \[
+        C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
+    \]
 \end{definition}
-\begin{example}
-    $X = (0, 1)$, $Y = S^1 \subseteq \mathbb{R}^2$, $X\ni x \mapsto (\cos 2\pi x, \sin 2\pi x) \in Y$ is a compactification of $X$. 
-\end{example}
-\begin{example}
-    $X = (0, 1)$, $Y = [0, 1] \subseteq \mathbb{R}$. 
-\end{example}
-
-\begin{property}
-    Let $X \subseteq Y$ and $Y$ be a compact Hausdorff space. Then $X$ is completely regular. 
-\end{property}
-\par \noindent \textbf{Proof} 
-\par Since $Y$ is compact Hausdorff, $Y$ is normal. Then $Y$ is completely regular. Thus $X$ is completely regular as well. \mbox{} \\ \null \hfill $\blacksquare$
-
-\par \noindent \textbf{Claim}
-    If $X$ is completely regular, it has a compactification.
-
 \begin{theorem}
-    Let $X$ be $T1$ space. Suppose $X$ has an indexed family of continuous functions $\{f_{\alpha}: X \rightarrow \mathbb{R}\}_{\alpha \in J}$ such that $\forall x_0 \in X$, and $U \ni x_0$ open, there exists a function $f_{\alpha}$ such that $f_{\alpha}(x_0) = 1$ and $f_{\alpha}(X \setminus U) \equiv 0$. Then $F : X \rightarrow \mathbb{R}^J$ defined by $F(x) = (f_{\alpha}(x))_{\alpha \in J}$ is an embedding $X \hookrightarrow \mathbb{R}^J$. If, additionally, $f_{\alpha}: X \rightarrow [0, 1]$ for all $\alpha \in J$, then $F$ is an embedding $X \hookrightarrow [0, 1]^J$.  
+    A topological space $X$ is compact if and only if for any family $\mathcal{C}$ of closed sets in $X$ with the finite intersection property, we have
+    \[
+        \bigcap_{C \in \mathcal{C}} C \neq \varnothing.
+    \]
 \end{theorem}
-\par \noindent \textbf{Proof} To be done. 
+\par \noindent \textbf{Exercise} Prove the above theorem(It has been proved long time ago).
+\begin{example}
+    Let $X = (0, 1), C_n = (0, \frac{1}{n}]$ for $n \in \mathbb{N}$. Then $\{C_n\}_{n=1}^{\infty}$ has the finite intersection property, but
+    \[
+        \bigcap_{n=1}^{\infty} C_n = \varnothing.
+    \]
+\end{example} 
 
+\par \noindent \textbf{Recall Zorn's lemma} 
 \begin{theorem}
-    $X$ is completely regular if and only if it is homeomorphic to a subspace of a cube $[0, 1]^J$ for some index set $J$.
+    [Zorn's lemma]
+    Let $(A, \leq)$ be a partially ordered set. If every chain in $A$ has an upper bound in $A$, then $A$ contains at least one maximal element.
 \end{theorem}
-\par \noindent \textbf{Proof} Not shown in the lecture. 
 
 \begin{lemma}
-    Let $X$ be a Hausdorff space. Let $h: X\hookrightarrow Z$ be an embedding with $Z$ compact Hausdorff. Then there exists a compacdification $Y$ of $X$ such that there is an embedding $H: Y \hookrightarrow Z$ with $H|_{X} = h$. Such a compactification is uniquely determined. 
+    Let $X$ be a set, $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Then there exists a family $\mathcal{D}$ of subsets of $X$ such that 
+    \begin{enumerate}
+        \item $\mathcal{A} \subseteq \mathcal{D}$;
+        \item $\mathcal{D}$ has the finite intersection property;
+        \item $\mathcal{D}$ is maximal with respect to (ii), i.e., if $\mathcal{E}$ is a family of subsets of $X$ such that $\mathcal{D} \subsetneq \mathcal{E}$, then $\mathcal{E}$ does not have the finite intersection property. 
+    \end{enumerate}
+\end{lemma}
+\par \noindent \textbf{Proof} 
+\par Let $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Let
+\begin{equation}
+    \mathbb{A} = \{ \mathcal{B} \supseteq \mathcal{A} | \mathcal{B} \text{ has finite intersection property }\}
+\end{equation}
+Let $\subsetneq$ be the partial order on $\mathbb{A}$. Let $\mathbb{B} \subseteq \mathbb{A}$ be a chain. We need to show that $\mathbb{B}$ has an upper bound in $\mathbb{A}$. Let
+\begin{equation}
+    \mathcal{C} = \bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}. 
+\end{equation}
+\par To be done. 
+
+
+\begin{lemma}
+    Let $X$ be a set, $\mathcal{D}$ be a maximal family of subsets of $X$ with the finite intersection property(obtain by the previous lemma). Then we have 
+    \begin{enumerate}
+        \item $\mathcal{D}$ is closed under finite intersections, i.e., for any finite subsets $D_1, D_2, \ldots, D_n \in \mathcal{D}$, we have 
+        \[
+            D_1 \cap D_2 \cap \ldots \cap D_n \in \mathcal{D};
+        \]
+        \item If $A \subseteq X$ satisfies $A \cap D \neq \varnothing$ for all $D \in \mathcal{D}$, then $A \in \mathcal{D}$. 
+    \end{enumerate}
 \end{lemma}
 
-\begin{example}
-    Let $X = (0, 1)$. Consider the embedding $h: X \hookrightarrow \mathbb{R}^2$ defined by $h(x) = (x, \sin \frac{1}{x})$. Let $A = \{0\} \times [-1, 1] \cup \{(1, \sin(1))\}$. Then $Y = h(X) \cup A$ is a compactification of $h(X)$.
-\end{example}
+\par \noindent \textbf{Proof} 
+\par Take $C_1, C_2, \ldots, C_n \in \mathcal{D}$. Since $\mathcal{D}$ has the finite intersection property, we have
+\[
+    C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
+\]
+Suppose $C_1 \cap C_2 \cap \ldots \cap C_n \notin \mathcal{D}$. Let $\mathcal{E} = \mathcal{D} \cup \{C_1 \cap C_2 \cap \ldots \cap C_n\}$. 
+\par Take $D_1', D_2', \ldots, D_m' \in \mathcal{D}$. Then 
+\[
+    (C_1 \cap C_2 \cap \ldots \cap C_n) \cap D_1' \cap D_2' \cap \ldots \cap D_m' \neq \varnothing.
+\]
+Thus $\mathcal{E}$ has the finite intersection property, contradicting the maximality of $\mathcal{D}$. Thus $C_1 \cap C_2 \cap \ldots \cap C_n \in \mathcal{D}$. 
 
-\par There's something. 
 
-\begin{theorem}
-    [Stone–Čech compactification]
-    Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ can be extended uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
-\end{theorem}
-\par \noindent \textbf{Proof} To be done. 
+
+
 
 \end{document}

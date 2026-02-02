@@ -8,91 +8,50 @@
 \chapter{Lecture 22}
 \label{chap:chapter22}
 
-\begin{lemma}
-    Let $A \subseteq X$. Let $f: A \rightarrow Z $ be continuous and $Z$ be Hausdorff. Then there exists at most one extension $g: \bar{A} \rightarrow Z, g|_{A} = f$. 
-\end{lemma}
-
-
-\begin{theorem}
-    Let $X$ be completely regular and $Y$ be a compactification of $X$ such that $Y$ satisfies the Stone–Čech property. Then any continuous map $f: X \rightarrow C$ where $C$ is a compact Hausdorff space can be extended to a continuous map $g: Y \rightarrow C$.
-\end{theorem}
-
-\begin{theorem}
-    Let $Y_1, Y_2$ be compactifications of a completely regular space $X$. Suppose both $Y_1$ and $Y_2$ satisfy the Stone–Čech property. Then there exist homeomorphisms $h: Y_1 \rightarrow Y_2$. 
-\end{theorem}
-
-\section{Complete Metric Spaces}
-
 \begin{definition}
-    Let $(X, d)$ be a metric space. A sequence $\{x_n\} \subseteq X$ is called a Cauchy sequence if for every $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $m, n \geq N$, $d(x_n, x_m) < \varepsilon$.
+    A compactification of a Hausdorff space $X$ is a Hausdorff space $Y \supseteq X$ such that $Y = \overline{X}$. We say that compactifications $Y_1$ and $Y_2$ are equivalent if there exists a homeomorphism $h: Y_1 \to Y_2$ such that $h|_{X} = id_{X}$.
 \end{definition}
-\begin{property}
-    Every convergent sequence is a Cauchy sequence.
-\end{property}
-\par \noindent \textbf{Proof} To be done.
-\begin{definition}
-    A metric space $(X, d)$ is called complete if every Cauchy sequence in $X$ converges to a limit in $X$.
-\end{definition}
-
 \begin{example}
-    [non-example] 
-    $(0, 1)$ with the usual metric. Then the sequence $x_n = \frac{1}{n}$ is a Cauchy sequence that does not converge in $(0, 1)$.
+    $X = (0, 1)$, $Y = S^1 \subseteq \mathbb{R}^2$, $X\ni x \mapsto (\cos 2\pi x, \sin 2\pi x) \in Y$ is a compactification of $X$. 
+\end{example}
+\begin{example}
+    $X = (0, 1)$, $Y = [0, 1] \subseteq \mathbb{R}$. 
 \end{example}
 
-\begin{example}
-    [non-example] 
-    $\mathbb{Q}$ with the usual metric is not complete. For example, the sequence defined by the decimal approximations of $\sqrt{2}$ is a Cauchy sequence in $\mathbb{Q}$ that does not converge to a rational number.
-\end{example}
 \begin{property}
-    If $A \subseteq X$ is closed and $(X, d)$ is complete, then $A$ is complete.
+    Let $X \subseteq Y$ and $Y$ be a compact Hausdorff space. Then $X$ is completely regular. 
 \end{property}
-\begin{property}
-    Let $(X, d)$ be a metric space. Take $\bar{d} = \min\{d, 1\}$. Then $(X, d)$ is complete implies $(X, \bar{d})$ is complete.
-\end{property}
+\par \noindent \textbf{Proof} 
+\par Since $Y$ is compact Hausdorff, $Y$ is normal. Then $Y$ is completely regular. Thus $X$ is completely regular as well. \mbox{} \\ \null \hfill $\blacksquare$
+
+\par \noindent \textbf{Claim}
+    If $X$ is completely regular, it has a compactification.
+
+\begin{theorem}
+    Let $X$ be $T1$ space. Suppose $X$ has an indexed family of continuous functions $\{f_{\alpha}: X \rightarrow \mathbb{R}\}_{\alpha \in J}$ such that $\forall x_0 \in X$, and $U \ni x_0$ open, there exists a function $f_{\alpha}$ such that $f_{\alpha}(x_0) = 1$ and $f_{\alpha}(X \setminus U) \equiv 0$. Then $F : X \rightarrow \mathbb{R}^J$ defined by $F(x) = (f_{\alpha}(x))_{\alpha \in J}$ is an embedding $X \hookrightarrow \mathbb{R}^J$. If, additionally, $f_{\alpha}: X \rightarrow [0, 1]$ for all $\alpha \in J$, then $F$ is an embedding $X \hookrightarrow [0, 1]^J$.  
+\end{theorem}
+\par \noindent \textbf{Proof} To be done. 
+
+\begin{theorem}
+    $X$ is completely regular if and only if it is homeomorphic to a subspace of a cube $[0, 1]^J$ for some index set $J$.
+\end{theorem}
+\par \noindent \textbf{Proof} Not shown in the lecture. 
 
 \begin{lemma}
-    $X$ is complete if and only if every Cauchy sequence has a convergent subsequence.
+    Let $X$ be a Hausdorff space. Let $h: X\hookrightarrow Z$ be an embedding with $Z$ compact Hausdorff. Then there exists a compacdification $Y$ of $X$ such that there is an embedding $H: Y \hookrightarrow Z$ with $H|_{X} = h$. Such a compactification is uniquely determined. 
 \end{lemma}
-\par \noindent \textbf{Proof} 
-\par ``$\Rightarrow$'': Trivial.
-\par ``$\Leftarrow$'': To be done.
 
-\begin{theorem}
-    $\mathbb{R}^k$ is complete in $d_1, d_2, d_{\infty}$.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par We show this for $d_{\infty}$. 
-\par Let $\{x_n\} \subseteq \mathbb{R}^k$ be a Cauchy sequence in $d_{\infty}$. 
-Then $\{x_n\}$ is bounded, i.e., there exists $M > 0$ such that for all $n$, $d_{\infty}(x_n, 0) < M$. So such sequence lies in a compact set $[-M, M]^k$. We know in metric spaces, compactness is equivalent to sequential compactness. Thus there exists a convergent subsequence $\{x_{n_k}\}$ that converges to some $x \in [-M, M]^k$. By the lemma, $\{x_n\}$ converges to $x$. 
-\par All these metrics are equivalent, so $\mathbb{R}^k$ is complete in $d_1, d_2$ as well. 
-\mbox{} \\ \null \hfill $\blacksquare$ 
-
-
-\begin{lemma}
-    Let $X = \prod_{\alpha \in J} X_{\alpha}$. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ converges to $x \in X$ if and only if for all $\alpha \in J$, the sequence of $\alpha$-th coordinates $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ in $X_{\alpha}$.
-\end{lemma}
-\par \noindent \textbf{Proof} 
-\par ``$\Rightarrow$'': $\pi_{\alpha}$ is continuous for all $\alpha \in J$.
-\par ``$\Leftarrow$'': Suppose $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ for all $\alpha \in J$. Let $U$ be an open neighborhood of $x$. Then there exists a finite set $K \subseteq J$ and open sets $U_{\alpha} \subseteq X_{\alpha}$ for all $\alpha \in K$ such that $x \in \prod_{\alpha \in K} U_{\alpha} \times \prod_{\alpha \in J \setminus K} X_{\alpha} \subseteq U$. Since $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$, for each $\alpha \in K$, there exists $N_{\alpha} \in \mathbb{N}$ such that for all $n \geq N_{\alpha}$, $\pi_{\alpha}(x_n) \in U_{\alpha}$. Let $N = \max_{\alpha \in K} N_{\alpha}$. Then for all $n \geq N$, $x_n \in U$. Thus $(x_n)$ converges to $x$.
-
-\begin{theorem}
-    There is a metric on $\mathbb{R}^{\omega}$ that makes it complete.
-\end{theorem}
-
-\par \noindent \textbf{Proof}
-\par Define $\bar{d}(a, b) = \min\{1, |a - b| \}$ for all $a, b \in \mathbb{R}$. Define $D(x, y) = \sup_{n \in \mathbb{N}} \{\frac{\bar{d}(x_n, y_n)}{n}\}$ for all $x = (x_n), y = (y_n) \in \mathbb{R}^{\omega}$. Then $D$ is a metric on $\mathbb{R}^{\omega}$.
-\par Let $\{x^m\} \subseteq \mathbb{R}^{\omega}$ be a Cauchy sequence in $D$. Then for all $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $m, l \geq N$, $D(x^m, x^l) < \varepsilon$. In particular, for all $n \in \mathbb{N}$, $\bar{d}(x_n^m, x_n^l) \leq n D(x^m, x^l) < n \varepsilon$. Thus for each fixed $n$, the sequence $\{x_n^m\}_{m=1}^{\infty}$ is a Cauchy sequence in $\mathbb{R}$. Since $\mathbb{R}$ is complete, there exists $x_n \in \mathbb{R}$ such that $x_n^m$ converges to $x_n$ as $m \to \infty$.
-(might not be true, you need to check this )
-
-\section{Uniform Metric} 
-Let $(Y, d)$ be a metric space. Let $\bar{d} = \min\{d, 1\}$. We take the set of functions $Y^J$. There is a metric $\bar{\rho}$ on $Y^J$ defined by $\bar{\rho}(x, y) = \sup_{\alpha \in J} \{\bar{d}(x_{\alpha}, y_{\alpha})\}$. This is a metric(exercise). It is called the uniform metric. 
 \begin{example}
-    Let $J = [0, 1]$ and $Y = \mathbb{R}$. 
-    Define $\bar{d}(f, g) = \sup_{x \in [0,1]} \{\min(1, |f(x) - g(x)|)\}$.
+    Let $X = (0, 1)$. Consider the embedding $h: X \hookrightarrow \mathbb{R}^2$ defined by $h(x) = (x, \sin \frac{1}{x})$. Let $A = \{0\} \times [-1, 1] \cup \{(1, \sin(1))\}$. Then $Y = h(X) \cup A$ is a compactification of $h(X)$.
 \end{example}
 
+\par There's something. 
+
 \begin{theorem}
-    If $Y$ is complete with respect to $d$, then $Y^J$ is complete with respect to the uniform metric $\bar{\rho}$.
+    [Stone–Čech compactification]
+    Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ can be extended uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
 \end{theorem}
+\par \noindent \textbf{Proof} To be done. 
+
 
 \end{document}
