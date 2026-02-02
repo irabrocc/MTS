@@ -3,55 +3,13 @@
 
 \begin{document}
 \pagestyle{plain}
-\setcounter{chapter}{21}
+\setcounter{chapter}{20}
 
-\chapter{Lecture 22}
-\label{chap:chapter22}
+\chapter{Later}
+\label{chap:chapter21}
 
-\begin{definition}
-    A compactification of a Hausdorff space $X$ is a Hausdorff space $Y \supseteq X$ such that $Y = \overline{X}$. We say that compactifications $Y_1$ and $Y_2$ are equivalent if there exists a homeomorphism $h: Y_1 \to Y_2$ such that $h|_{X} = id_{X}$.
-\end{definition}
-\begin{example}
-    $X = (0, 1)$, $Y = S^1 \subseteq \mathbb{R}^2$, $X\ni x \mapsto (\cos 2\pi x, \sin 2\pi x) \in Y$ is a compactification of $X$. 
-\end{example}
-\begin{example}
-    $X = (0, 1)$, $Y = [0, 1] \subseteq \mathbb{R}$. 
-\end{example}
 
-\begin{property}
-    Let $X \subseteq Y$ and $Y$ be a compact Hausdorff space. Then $X$ is completely regular. 
-\end{property}
-\par \noindent \textbf{Proof} 
-\par Since $Y$ is compact Hausdorff, $Y$ is normal. Then $Y$ is completely regular. Thus $X$ is completely regular as well. \mbox{} \\ \null \hfill $\blacksquare$
 
-\par \noindent \textbf{Claim}
-    If $X$ is completely regular, it has a compactification.
-
-\begin{theorem}
-    Let $X$ be $T1$ space. Suppose $X$ has an indexed family of continuous functions $\{f_{\alpha}: X \rightarrow \mathbb{R}\}_{\alpha \in J}$ such that $\forall x_0 \in X$, and $U \ni x_0$ open, there exists a function $f_{\alpha}$ such that $f_{\alpha}(x_0) = 1$ and $f_{\alpha}(X \setminus U) \equiv 0$. Then $F : X \rightarrow \mathbb{R}^J$ defined by $F(x) = (f_{\alpha}(x))_{\alpha \in J}$ is an embedding $X \hookrightarrow \mathbb{R}^J$. If, additionally, $f_{\alpha}: X \rightarrow [0, 1]$ for all $\alpha \in J$, then $F$ is an embedding $X \hookrightarrow [0, 1]^J$.  
-\end{theorem}
-\par \noindent \textbf{Proof} To be done. 
-
-\begin{theorem}
-    $X$ is completely regular if and only if it is homeomorphic to a subspace of a cube $[0, 1]^J$ for some index set $J$.
-\end{theorem}
-\par \noindent \textbf{Proof} Not shown in the lecture. 
-
-\begin{lemma}
-    Let $X$ be a Hausdorff space. Let $h: X\hookrightarrow Z$ be an embedding with $Z$ compact Hausdorff. Then there exists a compacdification $Y$ of $X$ such that there is an embedding $H: Y \hookrightarrow Z$ with $H|_{X} = h$. Such a compactification is uniquely determined. 
-\end{lemma}
-
-\begin{example}
-    Let $X = (0, 1)$. Consider the embedding $h: X \hookrightarrow \mathbb{R}^2$ defined by $h(x) = (x, \sin \frac{1}{x})$. Let $A = \{0\} \times [-1, 1] \cup \{(1, \sin(1))\}$. Then $Y = h(X) \cup A$ is a compactification of $h(X)$.
-\end{example}
-
-\par There's something. 
-
-\begin{theorem}
-    [Stone–Čech compactification]
-    Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ can be extended uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
-\end{theorem}
-\par \noindent \textbf{Proof} To be done. 
 
 
 \end{document}

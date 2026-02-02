@@ -1,0 +1,76 @@
+% 声明为子文件，指定主文件
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\pagestyle{plain}
+\setcounter{chapter}{21}
+
+\chapter{Lecture 22}
+\label{chap:chapter22}
+
+\begin{definition}
+    A compactification of a Hausdorff space $X$ is a compact Hausdorff space $Y \supseteq X$ such that $Y = \overline{X}$. We say that compactifications $Y_1$ and $Y_2$ are equivalent if there exists a homeomorphism $h: Y_1 \to Y_2$ such that $h|_{X} = id_{X}$.
+\end{definition}
+
+\begin{example}
+    $X = (0, 1)$, $Y = [0, 1] \subseteq \mathbb{R}$. 
+\end{example}
+
+\begin{theorem}
+    [Imbedding theorem]
+    Let $X$ be a $T_1$ space. Suppose that $\{f_{\alpha}\}_{\alpha \in J}$ is an indexed family of continuous functions $f_{\alpha}: X \to \mathbb{R}$ satisfying the requirement that for each point $x_0$ of $X$ and each open set $U$ containing $x_0$, there exists an index $\alpha$ such that $f_{\alpha}(x_0)$ is positive and $f_{\alpha}$ vanishes on $X \setminus U$. Then the function $F: X \rightarrow \mathbb{R}^J$ defined by
+    \begin{equation}
+        F(x) = (f_{\alpha}(x))_{\alpha \in J}
+    \end{equation}
+    is an imbedding of $X$ in $\mathbb{R}^J$. If $f_{\alpha}: X \rightarrow [0, 1]$ for each $\alpha \in J$, then $F$ is an imbedding of $X$ in the cube $[0, 1]^J$. 
+\end{theorem}
+\par \noindent \textbf{Proof} The proof is similar to the proof of Urysohn metrization theorem. 
+\par Here $T_1$ is required to guarantee that singletons are closed, so that if $x \neq y$, there exists $f_{\alpha}$ such that $f_{\alpha}(x) \neq f_{\alpha}(y)$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\begin{theorem}\label{thm:CRImbed}
+    A space is completely regular if and only if it is homeomorphic to a subspace of a cube $[0, 1]^J$ for some index set $J$. 
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par ($\Rightarrow$) Let $X$ be completely regular. For each $x_0 \in X$ and each open set $U$ containing $x_0$, there exists a continuous function $f: X \to [0, 1]$ such that $f(x_0) = 1$ and $f$ vanishes on $X \setminus U$. Let $\{f_{\alpha}\}_{\alpha \in J}$ be the collection of all such continuous functions. Then by the previous theorem, the function $F: X \to [0, 1]^J$ defined by $F(x) = (f_{\alpha}(x))_{\alpha \in J}$ is an embedding. Thus $X$ is homeomorphic to the subspace $F(X)$ of the cube $[0, 1]^J$. 
+\par ($\Leftarrow$) Recall that every metrizable space is normal thus is completely regular. And recall that product of completely regular spaces is completely regular. Since $[0, 1]$ is metrizable, it is completely regular. Thus the cube $[0, 1]^J$ is completely regular. 
+\par Since $X$ is homeomorphic to a subspace of $[0, 1]^J$, $X$ is completely regular as well because subspace of completely regular space is completely regular. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{lemma}\label{lemma:CRImbed}
+    Let $X$ be a Hausdorff space. Let $h: X \to Z$ be an imbedding of $X$ in the compact Hausdorff space $Z$. Then there exists a corresponding compactification $Y$ of $X$ such that there is an imbedding $H: Y \to Z$ with $H|_{X} = h$. Such a compactification $Y$ is uniquely determined up to equivalence. 
+\end{lemma}
+\par \noindent \textbf{Proof} To be done(P255 of the pdf). 
+
+\begin{example}
+    $X = (0, 1)$, $Y = S^1 \subseteq \mathbb{R}^2$, $X\ni x \mapsto (\cos 2\pi x, \sin 2\pi x) \in Y$ is a compactification of $X$. (Not the Usual sense of Compactification, see the above lemma. )
+\end{example}
+
+
+\begin{property}
+    Let $X \subseteq Y$ and $Y$ be a compact Hausdorff space. Then $X$ is completely regular. 
+\end{property}
+\par \noindent \textbf{Proof} 
+\par Since $Y$ is compact Hausdorff, $Y$ is normal. Then $Y$ is completely regular. Thus $X$ is completely regular as well. \mbox{} \\ \null \hfill $\blacksquare$
+
+\par \noindent \textbf{Claim}
+    If $X$ is completely regular, it has a compactification.
+\par \noindent \textbf{Proof} Since $X$ is completely regular, by Theorem \ref{thm:CRImbed}, there exists an embedding $h: X \to [0, 1]^J$ for some index set $J$. Since $[0, 1]^J$ is compact Hausdorff, by Lemma \ref{lemma:CRImbed}, there exists a compactification $Y$ of $X$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{example}
+    Let $X = (0, 1)$. Consider the embedding $h: X \hookrightarrow \mathbb{R}^2$ defined by $h(x) = (x, \sin \frac{1}{x})$. Let $A = \{0\} \times [-1, 1] \cup \{(1, \sin(1))\}$. Then $Y = h(X) \cup A$ is a compactification of $h(X)$.
+\end{example}
+
+\par Let $Y$ be a compactification of $X$ in $\mathbb{R}^2$ as above. Then the continuous function $f: X \to \mathbb{R}$ defined by $f(x) = \sin \frac{1}{x}$ can be extended to a continuous function $\overline{f}: Y \to \mathbb{R}$ by defining $\overline{f} = \pi_2\circ H$ where $H: Y \to \mathbb{R}^2$ is the imbedding and $\pi_2: \mathbb{R}^2 \to \mathbb{R}$ is the projection to the second coordinate. 
+
+
+\begin{theorem}
+    [Stone–Čech compactification]
+    Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ extends uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par We prove the existence first and the uniqueness will be discussed in the next lecture. 
+\par To be done(Hint: The imbedding Theorem).
+
+
+\end{document}

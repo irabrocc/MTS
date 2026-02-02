@@ -8,87 +8,92 @@
 \chapter{Later}
 \label{chap:chapter21}
 
-\section{The tychonoff theorem}
-\begin{theorem}
-    If $X, Y$ are compact sets, then $X \times Y$ is also compact.
-\end{theorem}
+%\par Let us consider the simplest case: the product of two %compact spaces $X_1 \times X_2$. Suppose that $\mathcal{A}$ %is a collection of closed subsets of $X_1 \times X_2$ that %has the finite intersection property. Consider the %projection map $\pi_1: X_1 \times X_2 \rightarrow X_1$. The %collection 
+%\begin{equation}
+%    \{\pi_1(A) | A\in \mathcal{A}\}
+%\end{equation}
+%of subsets of $X_1$ also has the finite intersection %property, and so does the collection of their closures %$\overline{\pi_1(A)}$(Closedness might not be preserved %under projection). Compactness of $X_1$ guarantees that the %intersection of all the sets $\overline{\pi_1(A)}$ is not %empty. Let us choose the point $x_1$ belonging to this %intersection. Similarly, let us choose a point $x_2$ %belonging to the sets $\overline{\pi_2(A)}$. 
+%\par We want to draw the conclusion that the point %$x_1\times x_2$ lies in $\bigcap_{A\in \mathcal{A}}$, for %then out theorem would be proved.  
 
-\begin{theorem}
-    If $X_{\alpha}$'s with $\alpha \in J$ are compact sets, then $\prod_{\alpha \in J} X_{\alpha}$ is also compact.
-\end{theorem}
-\section{Closed set formulation of compactness} 
-\par Let $X$ be a topological space. Let $\mathcal{C}$ be a family of closed sets in $X$.  
+\par \noindent \textbf{Idea} For the idea of this lecture, refer to Munkres' Topology, P230 or pdf P247. 
+
 \begin{definition}
-    We say $\mathcal{C}$ has the finite intersection property if for any finite closed sets $C_1, C_2, \ldots, C_n \in \mathcal{C}$, we have
-    \[
-        C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
-    \]
+    Let $(A, \leq)$ be a partially ordered set. A subset $B \subseteq A$ is called a chain if for any $a, b \in B$, we have either $a \leq b$ or $b \leq a$.
 \end{definition}
-\begin{theorem}
-    A topological space $X$ is compact if and only if for any family $\mathcal{C}$ of closed sets in $X$ with the finite intersection property, we have
-    \[
-        \bigcap_{C \in \mathcal{C}} C \neq \varnothing.
-    \]
-\end{theorem}
-\par \noindent \textbf{Exercise} Prove the above theorem(It has been proved long time ago).
-\begin{example}
-    Let $X = (0, 1), C_n = (0, \frac{1}{n}]$ for $n \in \mathbb{N}$. Then $\{C_n\}_{n=1}^{\infty}$ has the finite intersection property, but
-    \[
-        \bigcap_{n=1}^{\infty} C_n = \varnothing.
-    \]
-\end{example} 
 
-\par \noindent \textbf{Recall Zorn's lemma} 
+
 \begin{theorem}
     [Zorn's lemma]
     Let $(A, \leq)$ be a partially ordered set. If every chain in $A$ has an upper bound in $A$, then $A$ contains at least one maximal element.
 \end{theorem}
 
-\begin{lemma}
-    Let $X$ be a set, $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Then there exists a family $\mathcal{D}$ of subsets of $X$ such that 
-    \begin{enumerate}
-        \item $\mathcal{A} \subseteq \mathcal{D}$;
-        \item $\mathcal{D}$ has the finite intersection property;
-        \item $\mathcal{D}$ is maximal with respect to (ii), i.e., if $\mathcal{E}$ is a family of subsets of $X$ such that $\mathcal{D} \subsetneq \mathcal{E}$, then $\mathcal{E}$ does not have the finite intersection property. 
-    \end{enumerate}
+\begin{lemma}\label{lemma:maximal}
+    Let $X$ be a set; let $\mathcal{A}$ be a collection of subsets of $X$ having the finite intersection property. Then there is a collection $\mathcal{D}$ of subsets of $X$ such that $\mathcal{D}$ contains $\mathcal{A}$, and $\mathcal{D}$ has the finite intersection property, and no collections of subsets of $X$ properly containing $\mathcal{D}$ has the finite intersection property. 
 \end{lemma}
 \par \noindent \textbf{Proof} 
-\par Let $\mathcal{A}$ be a family of subsets of $X$ with the finite intersection property. Let
+\par For purposes of this proof, we shall call a set whose elements are collections of subsets of $X$ a "superset" and shall denote it by an outline letter. To summarize the notation: 
+\begin{itemize}
+    \item $c$ is an element of $X$;
+    \item $C$ is a subset of $X$; 
+    \item $\mathcal{C}$ is a collection of subsets of $X$; 
+    \item $\mathbb{C}$ is a superset whose elements are collections of subsets of $X$. 
+\end{itemize} 
+
+\par Now by hypothesis, $\mathcal{A}$ is a collection of subsets of $X$ having the finite intersection property. Let $\mathbb{A}$ be the superset consisting of all collections of subsets of $X$ such that $\forall \mathcal{B} \in \mathbb{A}$, we have $\mathcal{B} \supseteq \mathcal{A}$ and $\mathcal{B}$ has the finite intersection property. To prove the lemma, we need to show that $\mathbb{A}$ contains a maximal element with respect to the partial order $\subseteq$. 
+\par In order to apply Zorn's lemma, we must show that if $\mathbb{B}$ is a "subsuperset" of $\mathbb{A}$ that is a chain, then $\mathbb{B}$ has an upper bound in $\mathbb{A}$. Let 
 \begin{equation}
-    \mathbb{A} = \{ \mathcal{B} \supseteq \mathcal{A} | \mathcal{B} \text{ has finite intersection property }\}
+    \mathcal{C} = \bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}.
 \end{equation}
-Let $\subsetneq$ be the partial order on $\mathbb{A}$. Let $\mathbb{B} \subseteq \mathbb{A}$ be a chain. We need to show that $\mathbb{B}$ has an upper bound in $\mathbb{A}$. Let
+Certainly $\mathcal{C}$ contains $\mathcal{A}$, since each $\mathcal{B} \in \mathbb{B}$ contains $\mathcal{A}$. Let $C_1, C_2, \ldots, C_n$ be finitely many elements of $\mathcal{C}$. Then for each $i = 1, 2, \ldots, n$, there exists $\mathcal{B}_i \in \mathbb{B}$ such that $C_i \in \mathcal{B}_i$. Since $\mathbb{B}$ is a chain, there exists $\mathcal{B}_j \in \mathbb{B}$ such that $\mathcal{B}_i \subseteq \mathcal{B}_j$ for all $i = 1, 2, \ldots, n$. Thus $C_i \in \mathcal{B}_j$ for all $i = 1, 2, \ldots, n$. Since $\mathcal{B}_j$ has the finite intersection property, we have 
 \begin{equation}
-    \mathcal{C} = \bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}. 
-\end{equation}
-\par To be done. 
-
-
-\begin{lemma}
-    Let $X$ be a set, $\mathcal{D}$ be a maximal family of subsets of $X$ with the finite intersection property(obtain by the previous lemma). Then we have 
-    \begin{enumerate}
-        \item $\mathcal{D}$ is closed under finite intersections, i.e., for any finite subsets $D_1, D_2, \ldots, D_n \in \mathcal{D}$, we have 
-        \[
-            D_1 \cap D_2 \cap \ldots \cap D_n \in \mathcal{D};
-        \]
-        \item If $A \subseteq X$ satisfies $A \cap D \neq \varnothing$ for all $D \in \mathcal{D}$, then $A \in \mathcal{D}$. 
-    \end{enumerate}
-\end{lemma}
-
-\par \noindent \textbf{Proof} 
-\par Take $C_1, C_2, \ldots, C_n \in \mathcal{D}$. Since $\mathcal{D}$ has the finite intersection property, we have
-\[
     C_1 \cap C_2 \cap \ldots \cap C_n \neq \varnothing.
-\]
-Suppose $C_1 \cap C_2 \cap \ldots \cap C_n \notin \mathcal{D}$. Let $\mathcal{E} = \mathcal{D} \cup \{C_1 \cap C_2 \cap \ldots \cap C_n\}$. 
-\par Take $D_1', D_2', \ldots, D_m' \in \mathcal{D}$. Then 
-\[
-    (C_1 \cap C_2 \cap \ldots \cap C_n) \cap D_1' \cap D_2' \cap \ldots \cap D_m' \neq \varnothing.
-\]
-Thus $\mathcal{E}$ has the finite intersection property, contradicting the maximality of $\mathcal{D}$. Thus $C_1 \cap C_2 \cap \ldots \cap C_n \in \mathcal{D}$. 
+\end{equation}
+Thus $\mathcal{C}$ has the finite intersection property. And so $\mathcal{C} \in \mathbb{A}$. Moreover, for each $\mathcal{B} \in \mathbb{B}$, we have $\mathcal{B} \subseteq \mathcal{C}$. Thus $\mathcal{C}$ is an upper bound of $\mathbb{B}$ in $\mathbb{A}$. By Zorn's lemma, $\mathbb{A}$ contains a maximal element, which we denote by $\mathcal{D}$. This completes the proof of the lemma. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\begin{lemma}
+    Let $X$ be a set; let $\mathcal{D}$ be a collection of subsets of $X$ that is maximal with respect to the finite intersection property. Then 
+    \begin{enumerate}
+        \item Any finite intersection of elements of $\mathcal{D}$ is an element of $\mathcal{D}$; 
+        \item If $A$ is a subset of $X$ that intersects every element of $\mathcal{D}$, then $A$ is an element of $\mathcal{D}$. 
+    \end{enumerate}
+\end{lemma}
 
-
-
+\par \noindent \textbf{Proof to 1} 
+\par Let $B$ be any finite intersection of elements of $\mathcal{D}$. Let $\mathcal{E} = \mathcal{D} \cup \{B\}$. We can show that $\mathcal{E}$ has the finite intersection property(Check it). By maximality of $\mathcal{D}$, we have $\mathcal{E} = \mathcal{D}$, so $B \in \mathcal{D}$. 
+\par \noindent \textbf{Proof to 2} 
+\par Let $A$ be a subset of $X$ that intersects every element of $\mathcal{D}$. Let $\mathcal{E} = \mathcal{D} \cup \{A\}$. Take finitely many elements from $\mathcal{E}$. If none of them is $A$, then their intersection is not empty because $\mathcal{D}$ has the finite intersection property, otherwise, it is of the form 
+\begin{equation}
+    A \cap D_1 \cap D_2 \cap \ldots \cap D_n,
+\end{equation}
+Now, $D_1 \cap D_2 \cap \ldots \cap D_n \in \mathcal{D}$ by part 1, so $A$ intersects it by hypothesis. Thus the intersection is not empty. So $\mathcal{E}$ has the finite intersection property. By maximality of $\mathcal{D}$, we have $\mathcal{E} = \mathcal{D}$, so $A \in \mathcal{D}$.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\begin{theorem}
+    [Tychonoff theorem] 
+    Any arbitrary product of compact spaces is compact in the product topology. 
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Let  
+\begin{equation}
+    X = \prod_{\alpha \in J} X_{\alpha},
+\end{equation}
+where each $X_{\alpha}$ is compact. Let $\mathcal{A}$ be a collection of subsets of $X$ having the finite intersection property. We prove that the intersection $\bigcap_{A \in \mathcal{A}} \bar{A}$
+is non-empty. Compactness of $X$ follows. 
+\par By \ref{lemma:maximal}, we choose $\mathcal{D}$ containing $\mathcal{A}$ that is maximal with respect to the finite intersection property. It suffices to show that the intersection 
+\begin{equation}
+    \bigcap_{D \in \mathcal{D}} \bar{D} 
+\end{equation}
+is non-empty. 
+\par Given any $\alpha \in J$, we consider the collection 
+\begin{equation}
+    \{\pi_{\alpha}(D) | D\in \mathcal{D}\}
+\end{equation}
+of subsets of $X_{\alpha}$. This collection has the finite intersection property because $\mathcal{D}$ does. By compactness of $X_{\alpha}$, we can choose a point $x_{\alpha} \in X_{\alpha}$ such that 
+\begin{equation}
+    x_{\alpha} \in \bigcap_{D \in \mathcal{D}} \overline{\pi_{\alpha}(D)}.
+\end{equation}
+\par Now the point $x = (x_{\alpha})$ is defined in $X$. 
+\par Let $U_{\beta}$ be a neighborhood of $x_{\beta}$ in $X_{\beta}$. Since $x_{\beta} \in \overline{\pi_{\beta}(D)}$, we have that $\exists y\in D, \pi_{\beta}(y) \in U_{\beta} \cap \pi_{\beta}(D)$. Thus $y \in \pi_{\beta}^{-1}(U_{\beta}) \cap D$. Since this is true for any $D \in \mathcal{D}$, by the previous lemma, we have $\pi_{\beta}^{-1}(U_{\beta}) \in \mathcal{D}$. So every subbasis element containing $x$ is in $\mathcal{D}$. And then it follows from the same lemma that every basis(finite intersection of subbasis) element containing $x$ is in $\mathcal{D}$. Thus any open neighborhood of $x$ intersects every $D \in \mathcal{D}$. Therefore, $x \in \bar{D}$ for all $D \in \mathcal{D}$. 
+\mbox{} \\ \null \hfill $\blacksquare$  
 
 
 \end{document}
