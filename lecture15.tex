@@ -5,113 +5,156 @@
 \pagestyle{plain}
 \setcounter{chapter}{14}
 
-\chapter{Later}
+\chapter{Lecture 15: Criteria and Properties of compactness. }
 \label{chap:chapter15}
 
-\begin{definition}
-    Two norms $||\cdot||_a$ and $||\cdot||_b$ are equivalent if there exist positive constants $C_1$ and $C_2$ such that for all vectors $x$,
-    \[
-    C_1 ||x||_a \leq ||x||_b \leq C_2 ||x||_a.
-    \]
-\end{definition}
-
-\begin{property}
-    Equivalence of norms is an equivalence relation.
-\end{property}
-
 \begin{theorem}
-    All norms on $\mathbb{R}^n$ are equivalent.
+    $\mathbb{R}^{\omega}$ is metrizable in the product topology.
 \end{theorem}
 
-\par \noindent \textbf{Proof} 
-\par Given $||\cdot||_a$ and $||\cdot||_b$ are two norms on $\mathbb{R}^n$. We define a function $f: \mathbb{R}^n\backslash\{0\} \to \mathbb{R}$ by 
+\par \noindent \textbf{Proof} Define
 \begin{equation}
-    f(x) = \frac{||x||_b}{||x||_a} > 0.
+    \bar{d}(x_i, y_i) = \min(|x_i - y_i|, 1)
 \end{equation}
-which is continuous on $\mathbb{R}^n\backslash\{0\}$. 
-\par Since $f(x) = f(\lambda x) $ for any $\lambda > 0$, we say that $f(x) $ is conpletely determined by its values on the unit sphere $S = \{x \in \mathbb{R}^n: ||x||_a = 1\}$. Note that $S$ is compact, so $f(x)$ attains its minimum and maximum on $S$, say $m$ and $M$. Thus, for any $x \in \mathbb{R}^n\backslash\{0\}$, we have
+Let $x, y\in \mathbb{R}^{\omega}$. Then we define 
 \begin{equation}
-    0 < m \leq f(x) \le M < \infty,
+    D(x, y) = \sup \{ \frac{\bar{d}(x_i, y_i)}{i}| i\in \mathbb{Z}_{> 0}\}
 \end{equation}
-which implies
+Then we can show that $D$ is a metric on $\mathbb{R}^{\omega}$ because we have 
 \begin{equation}
-    m ||x||_a \leq ||x||_b \leq M ||x||_a.
+    \bar{d}(x_i, z_i) \le \bar{d}(x_i, y_i) + \bar{d}(y_i, z_i) \Longrightarrow D(x, z) \le D(x, y) + D(y, z)
 \end{equation}
-So the two norms are equivalent. \hfill $\blacksquare$
-\par \noindent \textbf{Remark} In $\infty$-dimensional space, the sphere is not compact. However, it is closed and bounded. 
-\par \noindent \textbf{Exercise} Give an example of norms on $l_1$ (convergent series) $l_1 = \{(x_1, x_2, \cdots)| \sum |x_i| < \infty \}$.
 
-\par Now let's come back to uniform continuity. Goal: Prove that any continuous map $f: (X, d_X) \to (Y, d_Y)$ with $X$ compact is uniformly continuous. 
-
-\begin{definition}
-    Let $X$ be a metric space. $A \subseteq X$. Then $diam(A) = \sup\{d(x, y): x, y \in A\}$ is called the diameter of $A$. 
-\end{definition}
-
-\begin{lemma}
-    [the Lebesgue Number Lemma]
-    Let $(X, d)$ be a compact metric space, and let $\mathcal{A}$ be an open cover of $X$. Then there exists a positive number $\delta > 0$ (called a Lebesgue number for the cover $\mathcal{A}$) such that for every subset $Y \subseteq X$ with diameter less than $\delta$ (i.e., for all $x, y \in Y$, $d(x, y) < \delta$), there exists an open set $A \in \mathcal{A}$ that contains $Y$.
-\end{lemma}
-
-\par \noindent \textbf{Proof of the Lemma}
-\par If $X\in \mathcal{A}$, there's nothing to prove. 
-\par Otherwise take a finite subcovering $\{A_1, A_2, \cdots, A_n\}$ of $\mathcal{A}$. For each $i$, let $C_i = X \backslash A_i$ which is closed. We know that a closed subset of a compact set is compact, so each $C_i$ is compact. Define 
+\par Why does it define the product topology?
+\par ($\Rightarrow$) Let $U$ be open in the metric topology. Then there exists $\epsilon >  0$ such that $B_D(x, \epsilon) \subseteq U$. Let $N$ be such that $\frac{1}{N} < \epsilon$. Then let 
 \begin{equation}
-    f(x) = \frac{1}{n} \sum_{i = 1}^{n} d(x, C_i)
+    V = \prod_{i=1}^{N} (x_i - \epsilon, x_i + \epsilon) \times \prod_{i=N+1}^{\infty} \mathbb{R}
 \end{equation}
-be the average distance from $x$ to the closed sets $C_i$. 
-\par We show that $f(x) > 0$ for all $x \in X$. 
-\par For all $x\in X$, we choose $A_i$ such that $x \in A_i$. Choose $\epsilon > 0$ such that $U_{\epsilon}(x) \subseteq A_i$. Then $d(x, C_i) \ge \epsilon > 0$. So $f(x) \ge \frac{1}{n} d(x, C_i) \ge \frac{\epsilon}{n}$. Let $\delta = \min_{x \in X} f(x) > 0$ (because $f$ is continuous on compact set $X$). We show that $\delta$ is a Lebesgue number. 
-\par Take $B \subseteq X$ with $diam(B) < \delta$. Then we can take $x_0 \in B$ with $B \subseteq U_{\delta}(x_0)$. 
-Then we can take $C_m$ such that  
+Then let $y\in V$. We have
+\begin{enumerate}
+    \item If $i \le N$, then $\bar{d}(x_i, y_i) < \epsilon$.
+    \item If $i > N$, then $\bar{d}(x_i, y_i) \le 1$.
+\end{enumerate}
+Thus, we have $D(x, y) = \sup \{\frac{\bar{d}(x_i, y_i)}{i}\} \le \max\{\epsilon, \frac{1}{N}\} = \epsilon$. So $y\in B_D(x, \epsilon) \subseteq U$. Hence, $V \subseteq U$. So $U$ is open in the product topology.
+\par ($\Leftarrow$) Let $U$ be open in the product topology. Then 
 \begin{equation}
-    \delta  \le f(x_0) \le d(x_0, C_m).
+    U = \prod U_i
 \end{equation}
-for some $m$. So we have 
+where $U_i$ is open if $i\in \{\alpha_1, \cdots, \alpha_n\}$ and $U_i = \mathbb{R}$ otherwise. We want $V$ open in the metric topology such that $V \subseteq U$. Let
 \begin{equation}
-    U_{\delta}(x_0) \subseteq A_m = X\backslash C_m.
+    x \in U
 \end{equation}
-So $B \subseteq A_m$. \hfill $\blacksquare$
-
-\begin{example}
-    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
-\end{example}
-
-\begin{definition}
-    A function between two metric spaces $f: (X, d_X) \to (Y, d_Y)$ is said to be uniformly continuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x_1, x_2 \in X$, if $d_X(x_1, x_2) < \delta$, then $d_Y(f(x_1), f(x_2)) < \epsilon$.
-\end{definition}
-
-\begin{theorem}
-    Let $f: X \rightarrow Y$ be a continuous function between two metric spaces. If $X$ is compact, then $f$ is uniformly continuous.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par Given $\epsilon > 0$, take the open covering of $Y$ by balls $B(y, \frac{\epsilon}{2})$ of radius $\frac{\epsilon}{2}$. Let $\mathcal{A}$ be the open covering of $X$ by the inverse images of these balls under $f$. Choose $\delta $ to be a Lebesgue number for the covering $\mathcal{A}$. Then if $x_1$ and $x_2$ are any two points in $X$ with $d_X(x_1, x_2) < \delta$, the set $\{x_1, x_2\}$ has diameter less than $\delta$, so there exists an open set $U = f^{-1}(B(y, \frac{\epsilon}{2}))$ in $\mathcal{A}$ that contains both $x_1$ and $x_2$. So $f(x_1)$ and $f(x_2)$ both lie in $B(y, \frac{\epsilon}{2})$, which implies that
+Then 
 \begin{equation}
-    d_Y(f(x_1), f(x_2)) < \epsilon.
+    x_i \in U_i
 \end{equation}
+for $i\in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$. Then there exists $\epsilon_i > 0$ such that
+\begin{equation}
+    (x_i - \epsilon_i, x_i + \epsilon_i) \subseteq U_i
+\end{equation}
+Let 
+\begin{equation}
+    \epsilon = \min (\{\frac{\epsilon_i}{i}| i \in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}\}\cup \{1\})
+\end{equation}
+Then we claim that
+\begin{equation}
+    U_D(x, \epsilon) \subseteq U
+\end{equation}
+Let $y\in U_D(x, \epsilon)$. Then we have
+\begin{equation}
+    \frac{\bar{d}(x_i, y_i)}{i} \le D(x, y) < \epsilon
+\end{equation}
+\par If $i \in \{\alpha_1, \alpha_2, \cdots, \alpha_n\}$, then
+\begin{equation}
+    \frac{\bar{d}(x_i, y_i)}{i} < \epsilon \le \frac{\epsilon_i}{i}
+\end{equation}
+which implies that
+\begin{equation}
+    y_i \in (x_i - \epsilon_i, x_i + \epsilon_i) \subseteq U_i
+\end{equation}
+So $y\in U$. Hence, $U_D(x, \epsilon) \subseteq U$. So $U$ is open in the metric topology.
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{definition}
-    If $X$ is a space, a point $x$ of $X$ is said to be an isolated point of $X$ if the one-point set $\{x\}$ is open in $X$.
+    $(X, \le )$ has a least upper bound property or supremum property if every non-empty subset of $X$ that is bounded above has a least upper bound in $X$. (For example, $\mathbb{R}$ has the least upper bound property)
 \end{definition}
 
+\par Let $X$ be a set with order topology and supremum property. 
+
 \begin{theorem}
-    Let $X$ be a non-empty compact Hausdorff space. If $X$ has no isolated points, then $X$ is uncountable.
+    $\forall a \le b \in X$, we have $[a, b]$ is compact. 
 \end{theorem}
-\par \noindent \textbf{Proof} 
-
-\par \noindent \textbf{Step 1} We show first that given any non-empty open set $U$ of $X$ and any point $x$ of $X$, there exists a non-empty open set $V$ contained in $U$ such that $x \notin \bar{V}$. 
-\par Choose a point $y$ of $U$ different from $x$; this is possible if $x$ is in $U$ because $x$ is not an isolated point of $X$ and it is possible if $x$ is not in $U$ simply because $U$ is non-empty. Since $X$ is Hausdorff, there exist disjoint open sets $W_x$ and $W_y$ containing $x$ and $y$, respectively. Then the open set $V = U \cap W_y$ is non-empty, is contained in $U$, and its closure $\bar{V}$ is contained in the complement of $W_x$, so $x \notin \bar{V}$. 
-\par \noindent \textbf{Step 2} We show that given $f: \mathbb{Z}_{+} \to X$, the function $f$ is not surjective. It follows that $X$ is uncountable. 
-\par Let $x_n = f(n)$. Apply Step 1 to the non-empty open set $X$ to choose a non-empty open set $V_1 \subseteq X$ such that $x_1 \notin \bar{V_1}$. In general, given $V_{n - 1}$ open and non-empty, choose $V_n$ to be a non-empty open set such that $V_n \subseteq V_{n - 1}$ and $x_n \notin \bar{V_n}$. Then we have a sequence of non-empty closed sets $\bar{V_n}$ with
-\begin{equation}
-    \bar{V_1} \supseteq \bar{V_2} \supseteq \bar{V_3} \supseteq \cdots
-\end{equation}
-Since $X$ is compact, any collection of closed subsets of $X$ with the finite intersection property has non-empty intersection. Thus, there exists a point $y$ in the intersection of all the $\bar{V_n}$. By construction, $y \neq x_n$ for all $n$, so $f$ is not surjective. 
+\par \noindent \textbf{Proof} Let $\mathcal{A}$ be an open covering of $[a, b]$. We need that there exists a finite subcovering of $\mathcal{A}$ covering $[a, b]$. 
+\par \noindent \textbf{Step 1} Let $x\in [a, b]$ with $x \neq b$, there exists $y > x$ such that at most two elements of $\mathcal{A}$ can cover $[x, y]$. 
+\begin{enumerate}
+    \item If $x$ has an immediate successor $s(x)$, then $[x, s(x)] = \{x, s(x)\}$ is covered by two elements from $ \mathcal{A}$. 
+    \item If not. Take $ x\in A$ with $A \in \mathcal{A}$ such that $\exists c\in X, x < c \le b, [x, c) \subseteq A$. Take any $y \in (x, c)$. Then $[x, y] \subseteq A$ is covered by one element from $\mathcal{A}$. 
+\end{enumerate} 
+\par \noindent \textbf{Step 2} Let $C$ be the set of points $y$ with $a\le y\le b$ such that $[a, y]$ has a finite subcovering from $\mathcal{A}$. Since $a \in C$, $C$ is non-empty. Let $c = \sup C$. 
+\par \noindent \textbf{Step 3} Show that $c\in C$. 
+\par We know from the first step that $c \neq a$. 
+\par Choose $A\in \mathcal{A}$ such that $c\in A$. Then $\exists d \in [a, b]$ such that $(d, c] \subseteq A$. If $c\notin C$, then there must be some point $z \in (d, c)$ with $z \in C$. Then $[a, z]$ can be covered by finite elements(say $M$) from $\mathcal{A}$. Thus, $[a, c] \subseteq [a, z] \cup (d, c]$ can be covered by at most $M + 1$ elements from $\mathcal{A}$. So $c\in C$ which contradicts the assumption that $c \notin C$. Hence, $c\in C$. 
+\par \noindent \textbf{Step 4} Show that $c = b$. If not, by Step 1, $\exists e > c$ such that $[c, e]$ can be covered by two elements from $\mathcal{A}$. Since $[a, c]$ can be covered by finite elements(say $M$) from $\mathcal{A}$, $[a, e]$ can be covered by at most $M + 2$ elements from $\mathcal{A}$. So $e\in C$ which contradicts the assumption that $c = \sup C$. Hence, $c = b$.  
 \mbox{} \\ \null \hfill $\blacksquare$ 
-
+\begin{corollary}
+    $[a, b] \subseteq \mathbb{R}$ is compact. 
+\end{corollary}
 
 \begin{corollary}
-    $[a, b] \subseteq \mathbb{R}$ is uncountable. 
+    $[a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_n, b_n] \subseteq \mathbb{R}^n$ is compact.
 \end{corollary}
+
+\begin{theorem}
+    $A \subseteq \mathbb{R}^n$ is compact if and only if $A$ is closed and bounded.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par ($\Rightarrow$) Take a covering by 
+\begin{equation}
+    \bigcup U_N(0)
+\end{equation} 
+which is the union of open balls centered at $0$ with radius $N$ for $N \in \mathbb{Z}_{>0}$. Since $A$ is compact, there exists a finite subcovering. Thus, $A \subseteq U_{N_0}(0)$ for $N_0 = \max\{N_1, N_2, \cdots, N_k\}$. So $A$ is bounded. 
+\par We know that $\mathbb{R}^n$ is a Hausdorff space. So $A$ is closed as a compact subset of a Hausdorff space.
+\par ($\Leftarrow$) Since $A$ is bounded, there exists $n$ such that
+\begin{equation}
+    A \subseteq [a_1, b_1] \times [a_2, b_2] \times \cdots \times [a_n, b_n]
+\end{equation}
+We know that the closed subset of a compact set is compact. So $A$ is compact.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{theorem}
+    [Extreme value theorem]
+    Let $f: X \rightarrow Y$ be continuous where $X$ is compact and $Y$ is an ordered set with the order topology. Then $\exists a, b \in X$ such that $\forall x\in X$, $f(a) \le f(x) \le f(b)$.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par We know that $A = f(X)$ is compact. We want to show that $A$ has a largest element. 
+\par We assume the contrary that $A$ has no largest element. Then $\forall a \in A$, $\exists b \in A$ such that $b > a$. So 
+\begin{equation}
+    A = \bigcup_{a \in A} (-\infty, a)
+\end{equation}
+which is an open covering of $A$. Since $A$ is compact, there exists a finite subcovering. Let the largest element among the finite elements be $a_0$. Then $a_0$ is not covered. This is a contradiction. So $A$ has a largest element. Similarly, $A$ has a smallest element. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\begin{definition}
+    Let $(X, d)$ be a metric space, $A \subseteq X$, $x\in X$. Let $d(x, A) = \inf \{d(x, a)| a\in A\}$.
+\end{definition}
+\begin{property}
+    $d(x, A)$ is a continuous function for $A$ fixed. 
+\end{property}
+\par \noindent \textbf{Proof} 
+\par We know 
+\begin{equation}
+    d(x, A) \le d(x, a) \le d(x, y) + d(y, a)
+\end{equation}
+for any $a\in A$. 
+Then 
+\begin{equation}
+    d(x, A) - d(x, y) \le \inf \{d(y, a)| a\in A\} = d(y, A)
+\end{equation}
+So 
+\begin{equation}
+    d(x, A) - d(y, A) \le d(x, y) 
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \end{document}

@@ -5,69 +5,59 @@
 \pagestyle{plain}
 \setcounter{chapter}{19}
 
-\chapter{Later}
+\chapter{Lecture 20: Criteria for normality. Urysohn's lemma. }
 \label{chap:chapter20}
 
 \begin{theorem}
-    [Urysohn's Lemma(Recalling)] 
-    Let $X$ be a normal space. If $A$ and $B$ are disjoint closed subsets of $X$, then there exists a continuous function $f: X \to [0, 1]$ such that $f(a) = 0$ for all $a \in A$ and $f(b) = 1$ for all $b \in B$.
+    Every second countable regular space is normal.
 \end{theorem}
-
-\begin{definition}
-    Suppose $X$ satisfies (T1). If a point and a closed set can be separated by a continuous function as in Urysohn's lemma, then $X$ is called completely regular(CR). (Sometimes it is called $T_{3\frac{1}{2}}$ space.)
-\end{definition}
-
-\begin{property}
-    Every normal space is completely regular.
-\end{property}
-\par \noindent \textbf{Proof} By Urysohn's lemma. 
-\mbox{} \\ \null \hfill $\blacksquare$ 
-\par \noindent \textbf{Remark} 
-\par Normal $\Rightarrow$ CR $\Rightarrow$ Regular. That's why we call it $T_{3\frac{1}{2}}$ space.
-
-\begin{property}
-    If $X$ is completely regular, then it is regular. 
-\end{property}
-
 \par \noindent \textbf{Proof} 
-\par Take $x_0\in X$ and a closed set $A$ such that $x_0 \notin A$. Since $X$ is CR, there exists a continuous function $f: X \to [0, 1]$ such that $f(x_0) = 0$ and $f(a) = 1$ for all $a \in A$. Let $U = f^{-1}([0, \frac{1}{2}))$ and $V = f^{-1}((\frac{1}{2}, 1])$. Then $U$ and $V$ are open sets because $f$ is continuous and $[0, \frac{1}{2})$, $(\frac{1}{2}, 1]$ are open in $[0, 1]$. So $x_0 \in U$, $A \subseteq V$ and $U \cap V = \varnothing$. Thus $X$ is regular.
-\mbox{} \\ \null \hfill $\blacksquare$ 
+\par Let $X$ be a second countable regular space with $A, B \subseteq X$ closed and $A \cap B = \emptyset$.
+\par For every $x \in A$, since $X$ is regular, there exist open sets $U\ni x$ such that $U\cap B = \emptyset$. 
+\par By the lemma, there exists a open set $V$ such that $x \in V$, $\bar{V} \subseteq U$ and thus $\bar{V} \cap B = \emptyset$. 
+\par Let $\mathcal{B}$ be a countable baisis for $X$. For each $x \in A$, there exists $U_x \in \mathcal{B}$ such that $x \in U_x \subseteq V$, and thus $\bar{U_x} \subseteq \bar{V} \subseteq U$ and $\bar{U_x} \cap B = \emptyset$. Since $\mathcal{B}$ is countable, the collection $\{U_x: x \in A\}$ has a countable subcollection $\{U_n: n \in \mathbb{N}\}$ covering $A$ such that $\bar{U_n} \cap B = \emptyset$ for each $n$. 
 
+\par Similarly, we can choose a countable collection $\{V_m: m \in \mathbb{N}\}$ of open sets covering $B$, such that $\bar{V_m} \cap A = \emptyset$ for each $m$. Then the sets $U = \bigcup_{n} U_n$ and $V = \bigcup_{m} V_m$ are open sets containing $A$ and $B$ respectively. But they need not be disjoint. We perform the following simple trick to construct two open sets that are disjoint. Given $n$, define 
+\begin{equation}
+    U_n' = U_n \setminus \bigcup_{m=1}^{n} \bar{V_m}, \quad V_n' = V_n \setminus \bigcup_{k=1}^{n} \bar{U_k}
+\end{equation} 
+Note that $U_n'$ and $V_n'$ are open. The collection $\{U_n': n \in \mathbb{N}\}$ covers $A$ because each $x$ in $A$ belongs to some $U_n$ and $x$ belongs to none of the $\bar{V_m}$'s. Similarly, $\{V_n': n \in \mathbb{N}\}$ covers $B$. 
+\par Finally, the open sets $U' = \bigcup_n U_n'$ and $V' = \bigcup_m V_m'$ are disjoint. For if $x \in U' \cap V'$, then there exist $n, m$ such that $x \in U_n'$ and $x \in V_m'$. Without loss of generality, assume that $n \leq m$. Then
+\begin{equation}
+    x \in U_n' \subseteq U_n \setminus \bigcup_{k=1}^{n} \bar{V_k} \subseteq U_n \setminus \bar{V_m}
+\end{equation}
+This contradicts the fact that $x \in V_m' \subseteq V_m \subseteq \bar{V_m}$. Thus, $U' \cap V' = \emptyset$. Hence, $X$ is normal.
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{theorem}
-    \begin{enumerate}
-        \item Subspace of CR space is CR. 
-        \item If $X_{\alpha}$ is CR, then $\prod X_{\alpha}$ with product topology is CR. 
-    \end{enumerate}
+    Every metrizable space $X$ is normal.
 \end{theorem}
-\par \noindent \textbf{Proof} 
-\par Let $X$ be CR, and $Y \subseteq X$ with subspace topology. Take $y_0 \in Y$ and a closed set $A \subseteq Y$ such that $y_0 \notin A$. Let $\bar{A}$ be the closure of $A$ in $X$ so $A = \bar{A} \cap Y$. Then $\bar{A}$ is closed in $X$ and $y_0 \notin \bar{A}$. Since $X$ is CR, there exists a continuous function $f: X \to [0, 1]$ such that $f(y_0) = 0$ and $f(a) = 1$ for all $a \in \bar{A}$. Restrict $f$ to $Y$, we get a continuous function $f|_Y: Y \to [0, 1]$ such that $f|_Y(y_0) = 0$ and $f|_Y(a) = 1$ for all $a \in A$. Thus $Y$ is CR.
-\par Take $A \subseteq \prod X_{\alpha}$ closed and $x = (x_{\alpha}) \notin A$. Then there exists a basic open set $U = \prod U_{\alpha}$ such that $x \in U$ and $U \cap A = \emptyset$, where $U_{\alpha}$ is open in $X_{\alpha}$ and $U_{\alpha} = X_{\alpha}$ for all but finitely many $\alpha$. Let those finitely many $\alpha$ be $\alpha_1, \alpha_2, \ldots, \alpha_n$. Since $X_{\alpha_i}$ is CR, there exists a continuous function $f_{\alpha_i}: X_{\alpha_i} \to [0, 1]$ such that $f_{\alpha_i}(x_{\alpha_i}) = 1$ and $f_{\alpha_i}(a) = 0$ for all $a \in X_{\alpha_i} \setminus U_{\alpha_i}$. So we can define a continuous function $f: \prod X_{\alpha} \to [0, 1]$ by
-\[
-    f(x) = \prod_{i = 1}^{n} f_{\alpha_i}(\pi_{\alpha_i}(x)). 
-\]
-Then $f(x) = 1$ and for all $a \in A$, $f(a) = 0$. Thus $\prod X_{\alpha}$ is CR.
-\mbox{} \\ \null \hfill $\blacksquare$  
 
-\begin{example}
-    $\mathbb{R}_l$ is normal then it is CR. So $\mathbb{R}_l^2$ is CR. But it is not normal as we have shown. 
-\end{example}
-
-\par \noindent \textbf{Fact}(no proof) There exist regular spaces that are not CR. 
-
-\par \noindent \textbf{Remark} Proof of Urysohn's lemma for metric spaces(exercise): 
-\par Let $X$ be metric space with metric $d: X \times X \to \mathbb{R}$. Given two disjoint closed sets $A, B \subseteq X$, define $d_B(x) = d(x, B)$ which vanishes exactly on $B$. Then define $d_A(x) = d(x, A)$ which vanishes exactly on $A$. Now define 
-\[
-    f(x) = \frac{d_A(x)}{d_A(x) + d_B(x)}.
-\]
-Then $f(A) = \{0\}$ and $f(B) = \{1\}$ and $f$ is continuous because we've proved that distance from a point to a closed set is continuous.   
-
+\par \noindent \textbf{Proof} Let $d$ be the metric on $X$. Given two closed disjoint subsets $A, B \subseteq X$. 
+\par For each $a\in A$, there exists $r_a > 0$ such that $B(a, r_a) \cap B = \emptyset$. 
+\par Similarly, for each $b \in B$, there exists $r_b > 0$ such that $B(b, r_b) \cap A = \emptyset$.
+\par Let $U = \bigcup_{a \in A} B(a, \frac{r_a}{2})$ and $V = \bigcup_{b \in B} B(b, \frac{r_b}{2})$. Then $U$ and $V$ are open sets containing $A$ and $B$ respectively. 
+\par We claim that $U \cap V = \emptyset$. Assume the contrary that there exists $x \in U \cap V$. Then there exist $a \in A$ and $b \in B$ such that $x \in B(a, \frac{r_a}{2})$ and $x \in B(b, \frac{r_b}{2})$. Without loss of generality, assume that $\frac{r_a}{2} \leq \frac{r_b}{2}$. Then
+\begin{equation}
+    d(a, b) \leq d(a, x) + d(x, b) < \frac{r_a}{2} + \frac{r_b}{2} \leq r_a
+\end{equation}
+This implies that $b \in B(a, r_a)$, which contradicts the choice of $r_a$. Thus, $U \cap V = \emptyset$. Hence, $X$ is normal. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{theorem}
-    [Urysohn Metrization Theorem] 
-    Every regular space with contable basis is metrizable. 
+    Every compact Hausdorff space is normal.
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par You can see the proof in P215 of Munkres' book, P232 of the pdf. 
+\par Let $x\in X$ and $B \subseteq X$ be closed such that $x \notin B$.
+\par For each $y\in B$, since $X$ is Hausdorff, there exist disjoint open sets $U_y$ and $V_y$ such that $x \in U_y$ and $y \in V_y$. Then $\{V_y | y \in B\}$ is an open covering of $B$. Since $X$ is compact and Hausdorff, $B$ is compact as a closed subset of $X$. By the compactness of $B$, there exists a finite subcollection $\{V_{y_1}, V_{y_2}, \ldots, V_{y_n}\}$ that covers $B$. 
+Let $V = \bigcup V_{y_i}$ and $U = \bigcap U_{y_i}$. Then $U$ and $V$ are disjoint open sets containing $x$ and $B$ respectively. So $X$ is regular. 
+\par Let $A, B \subseteq X$ be closed and $A \cap B = \emptyset$. For each $a\in A$, since $X$ is regular, there exist disjoint open sets $U_a$ and $V_a$ such that $a \in U_a$ and $B \subseteq V_a$. Then $\{U_a | a \in A\}$ is an open covering of $A$. By the compactness of $A$, there exists a finite subcollection $\{U_{a_1}, U_{a_2}, \ldots, U_{a_m}\}$ that covers $A$. 
+Let $U = \bigcup U_{a_i}$ and $V = \bigcap V_{a_i}$. Then $U$ and $V$ are disjoint open sets containing $A$ and $B$ respectively. So $X$ is normal. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
+\begin{lemma}
+    [Urysohn's lemma]
+    Given a normal space $X$ and two closed disjoint subsets $A, B \subseteq X$, there exists a continuous map $f: X \to [0, 1]$ such that $f(A) = \{0\}$ and $f(B) = \{1\}$.
+\end{lemma}
+\par \noindent \textbf{Proof} The proof is too long to be included here. Please refer to Munkres' Topology, PDF P 224. It is not required to be reproduced. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \end{document}

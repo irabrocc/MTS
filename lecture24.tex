@@ -5,23 +5,32 @@
 \pagestyle{plain}
 \setcounter{chapter}{23}
 
-\chapter{Later}
+\chapter{Lecture 24: Stone–Čech compactification. Complete metric spaces. }
 \label{chap:chapter24}
+
+\begin{theorem}\label{thm:SC}
+    [Recall: Stone–Čech compactification]
+    Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ extends uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
+\end{theorem}
 
 \begin{lemma}
     Let $A \subseteq X$. Let $f: A \rightarrow Z $ be continuous and $Z$ be Hausdorff. Then there exists at most one extension of $f$ to a continuous function $g: \bar{A} \rightarrow Z, g|_{A} = f$. 
 \end{lemma}
 \par \noindent \textbf{Proof} 
-
+\par To be done. 
+\par \noindent \textbf{Remark} The uniqueness part of Theorem \ref{thm:SC} follows from this lemma. 
 
 \begin{theorem}
-    Let $X$ be completely regular and $Y$ be a compactification of $X$ such that $Y$ satisfies the Stone–Čech property. Then any continuous map $f: X \rightarrow C$ where $C$ is a compact Hausdorff space can be extended to a continuous map $g: Y \rightarrow C$.
+    Let $X$ be completely regular and $Y$ be a compactification of $X$ such that $Y$ satisfies the Stone–Čech property \ref{thm:SC}. Then any continuous map $f: X \rightarrow C$ where $C$ is a compact Hausdorff space can be extended uniquely to a continuous map $g: Y \rightarrow C$.
 \end{theorem}
+\par \noindent \textbf{Proof} 
+\par To be done. 
 
 \begin{theorem}
     Let $Y_1, Y_2$ be compactifications of a completely regular space $X$. Suppose both $Y_1$ and $Y_2$ satisfy the Stone–Čech property. Then there exist homeomorphisms $h: Y_1 \rightarrow Y_2$. 
 \end{theorem}
-
+\par \noindent \textbf{Proof} 
+\par To be done. 
 \section{Complete Metric Spaces}
 
 \begin{definition}
@@ -48,11 +57,11 @@
     If $A \subseteq X$ is closed and $(X, d)$ is complete, then $A$ is complete.
 \end{property}
 \begin{property}
-    Let $(X, d)$ be a metric space. Take $\bar{d} = \min\{d, 1\}$. Then $(X, d)$ is complete implies $(X, \bar{d})$ is complete.
+    Let $(X, d)$ be a metric space. Take $\bar{d} = \min\{d, 1\}$. Then $(X, d)$ is complete implies $(X, \bar{d})$ is complete, and conversely. 
 \end{property}
 
 \begin{lemma}
-    $X$ is complete if and only if every Cauchy sequence has a convergent subsequence.
+    A metric space $X$ is complete if and only if every Cauchy sequence has a convergent subsequence.
 \end{lemma}
 \par \noindent \textbf{Proof} 
 \par ``$\Rightarrow$'': Trivial.
@@ -73,7 +82,7 @@ Then $\{x_n\}$ is bounded, i.e., there exists $M > 0$ such that for all $n$, $d_
     Let $X = \prod_{\alpha \in J} X_{\alpha}$. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ converges to $x \in X$ if and only if for all $\alpha \in J$, the sequence of $\alpha$-th coordinates $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ in $X_{\alpha}$.
 \end{lemma}
 \par \noindent \textbf{Proof} 
-\par ``$\Rightarrow$'': $\pi_{\alpha}$ is continuous for all $\alpha \in J$.
+\par ``$\Rightarrow$'': $\pi_{\alpha}$ is continuous for all $\alpha \in J$. Then it preserves convergence. 
 \par ``$\Leftarrow$'': Suppose $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ for all $\alpha \in J$. Let $U$ be an open neighborhood of $x$. Then there exists a finite set $K \subseteq J$ and open sets $U_{\alpha} \subseteq X_{\alpha}$ for all $\alpha \in K$ such that $x \in \prod_{\alpha \in K} U_{\alpha} \times \prod_{\alpha \in J \setminus K} X_{\alpha} \subseteq U$. Since $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$, for each $\alpha \in K$, there exists $N_{\alpha} \in \mathbb{N}$ such that for all $n \geq N_{\alpha}$, $\pi_{\alpha}(x_n) \in U_{\alpha}$. Let $N = \max_{\alpha \in K} N_{\alpha}$. Then for all $n \geq N$, $x_n \in U$. Thus $(x_n)$ converges to $x$.
 
 \begin{theorem}
@@ -81,9 +90,13 @@ Then $\{x_n\}$ is bounded, i.e., there exists $M > 0$ such that for all $n$, $d_
 \end{theorem}
 
 \par \noindent \textbf{Proof}
-\par Define $\bar{d}(a, b) = \min\{1, |a - b| \}$ for all $a, b \in \mathbb{R}$. Define $D(x, y) = \sup_{n \in \mathbb{N}} \{\frac{\bar{d}(x_n, y_n)}{n}\}$ for all $x = (x_n), y = (y_n) \in \mathbb{R}^{\omega}$. Then $D$ is a metric on $\mathbb{R}^{\omega}$.
-\par Let $\{x^m\} \subseteq \mathbb{R}^{\omega}$ be a Cauchy sequence in $D$. Then for all $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $m, l \geq N$, $D(x^m, x^l) < \varepsilon$. In particular, for all $n \in \mathbb{N}$, $\bar{d}(x_n^m, x_n^l) \leq n D(x^m, x^l) < n \varepsilon$. Thus for each fixed $n$, the sequence $\{x_n^m\}_{m=1}^{\infty}$ is a Cauchy sequence in $\mathbb{R}$. Since $\mathbb{R}$ is complete, there exists $x_n \in \mathbb{R}$ such that $x_n^m$ converges to $x_n$ as $m \to \infty$.
-(might not be true, you need to check this )
+\par Define $\bar{d}(a, b) = \min\{1, |a - b| \}$ for all $a, b \in \mathbb{R}$. Define $D(x, y) = \sup_{i \in \mathbb{N}} \{\frac{\bar{d}(x_i, y_i)}{i}\}$ for all $x = (x_i), y = (y_i) \in \mathbb{R}^{\omega}$. Then $D$ is a metric on $\mathbb{R}^{\omega}$ that induces the product topology(I think it is proved in some lectures ago, if it is not proved, it is an exercise). 
+\par Let $\{x_n\} \subseteq \mathbb{R}^{\omega}$ be a Cauchy sequence in $D$. Because 
+\begin{equation}
+    \bar{d}(\pi_i(x), \pi_i(y)) \leq i \cdot D(x, y)
+\end{equation}
+we see that for fixed $i$, $\{\pi_i(x_n)\}$ is a Cauchy sequence in $\mathbb{R}$, so it converges, say to $a_i$($\bar{d}$ is equivalent to $|\cdot|$ in the sense of convergence/completeness as the property says). Then the sequence $x_n$ converges to $a = (a_i) \in \mathbb{R}^{\omega}$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \section{Uniform Metric} 
 Let $(Y, d)$ be a metric space. Let $\bar{d} = \min\{d, 1\}$. We take the set of functions $Y^J$. There is a metric $\bar{\rho}$ on $Y^J$ defined by $\bar{\rho}(x, y) = \sup_{\alpha \in J} \{\bar{d}(x_{\alpha}, y_{\alpha})\}$. This is a metric(exercise). It is called the uniform metric. 
@@ -93,7 +106,11 @@ Let $(Y, d)$ be a metric space. Let $\bar{d} = \min\{d, 1\}$. We take the set of
 \end{example}
 
 \begin{theorem}
-    If $Y$ is complete with respect to $d$, then $Y^J$ is complete with respect to the uniform metric $\bar{\rho}$.
+    If $Y$ is complete with respect to $d$, then $Y^J$ is complete in the uniform metric $\bar{\rho}$ corresponding to $d$. 
+\end{theorem}
+
+\begin{theorem}
+    Let $X$ be a topological space and let $(Y, d)$ be a metric space. The set $C(X, Y)$ of continuous functions from $X$ to $Y$ is closed in $Y^X$ under the uniform metric. So is the set $B(X, Y)$ of bounded functions. Therefore, if $Y$ is complete, these spaces are complete in the uniform metric. 
 \end{theorem}
 
 

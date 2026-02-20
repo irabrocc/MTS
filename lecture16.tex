@@ -5,114 +5,113 @@
 \pagestyle{plain}
 \setcounter{chapter}{15}
 
-\chapter{Later}
+\chapter{Lecture 16: Uniform continuity. Lebesgue Number. }
 \label{chap:chapter16}
 
 \begin{definition}
-    [def1]
-    $X$ is compact if any open covering admits a finite subcovering. 
+    Two norms $||\cdot||_a$ and $||\cdot||_b$ are equivalent if there exist positive constants $C_1$ and $C_2$ such that for all vectors $x$,
+    \[
+    C_1 ||x||_a \leq ||x||_b \leq C_2 ||x||_a.
+    \]
 \end{definition}
 
-\begin{definition}
-    [def2: Frechet compactness]
-    $X$ is limit point compact if every infinite subset of $X$ has a limit point in $X$. 
-\end{definition}
+\begin{property}
+    Equivalence of norms is an equivalence relation.
+\end{property}
+
+\begin{theorem}
+    All norms on $\mathbb{R}^n$ are equivalent.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Given $||\cdot||_a$ and $||\cdot||_b$ are two norms on $\mathbb{R}^n$. We define a function $f: \mathbb{R}^n\backslash\{0\} \to \mathbb{R}$ by 
+\begin{equation}
+    f(x) = \frac{||x||_b}{||x||_a} > 0.
+\end{equation}
+which is continuous on $\mathbb{R}^n\backslash\{0\}$. 
+\par Since $f(x) = f(\lambda x) $ for any $\lambda > 0$, we say that $f(x) $ is conpletely determined by its values on the unit sphere $S = \{x \in \mathbb{R}^n: ||x||_a = 1\}$. Note that $S$ is compact, so $f(x)$ attains its minimum and maximum on $S$, say $m$ and $M$. Thus, for any $x \in \mathbb{R}^n\backslash\{0\}$, we have
+\begin{equation}
+    0 < m \leq f(x) \le M < \infty,
+\end{equation}
+which implies
+\begin{equation}
+    m ||x||_a \leq ||x||_b \leq M ||x||_a.
+\end{equation}
+So the two norms are equivalent. \hfill $\blacksquare$
+\par \noindent \textbf{Remark} In $\infty$-dimensional space, the sphere is not compact. However, it is closed and bounded. 
+\par \noindent \textbf{Exercise} Give an example of norms on $l_1$ (convergent series) $l_1 = \{(x_1, x_2, \cdots)| \sum |x_i| < \infty \}$.
+
+\par Now let's come back to uniform continuity. Goal: Prove that any continuous map $f: (X, d_X) \to (Y, d_Y)$ with $X$ compact is uniformly continuous. 
 
 \begin{definition}
-    [def3: sequential compactness/Bozano-Weierstrass compactness]
-    $X$ is sequentially compact if every sequence $\{x_n\} \subseteq X$ has a convergent subsequence converging to a point in $X$.
+    Let $X$ be a metric space. $A \subseteq X$. Then $diam(A) = \sup\{d(x, y): x, y \in A\}$ is called the diameter of $A$. 
+\end{definition}
+
+\begin{lemma}
+    [the Lebesgue Number Lemma]
+    Let $(X, d)$ be a compact metric space, and let $\mathcal{A}$ be an open cover of $X$. Then there exists a positive number $\delta > 0$ (called a Lebesgue number for the cover $\mathcal{A}$) such that for every subset $Y \subseteq X$ with diameter less than $\delta$ (i.e., for all $x, y \in Y$, $d(x, y) < \delta$), there exists an open set $A \in \mathcal{A}$ that contains $Y$.
+\end{lemma}
+
+\par \noindent \textbf{Proof of the Lemma}
+\par If $X\in \mathcal{A}$, there's nothing to prove. 
+\par Otherwise take a finite subcovering $\{A_1, A_2, \cdots, A_n\}$ of $\mathcal{A}$. For each $i$, let $C_i = X \backslash A_i$ which is closed. We know that a closed subset of a compact set is compact, so each $C_i$ is compact. Define 
+\begin{equation}
+    f(x) = \frac{1}{n} \sum_{i = 1}^{n} d(x, C_i)
+\end{equation}
+be the average distance from $x$ to the closed sets $C_i$. 
+\par We show that $f(x) > 0$ for all $x \in X$. 
+\par For all $x\in X$, we choose $A_i$ such that $x \in A_i$. Choose $\epsilon > 0$ such that $U_{\epsilon}(x) \subseteq A_i$. Then $d(x, C_i) \ge \epsilon > 0$. So $f(x) \ge \frac{1}{n} d(x, C_i) \ge \frac{\epsilon}{n}$. Let $\delta = \min_{x \in X} f(x) > 0$ (because $f$ is continuous on compact set $X$). We show that $\delta$ is a Lebesgue number. 
+\par Take $B \subseteq X$ with $diam(B) < \delta$. Then we can take $x_0 \in B$ with $B \subseteq U_{\delta}(x_0)$. 
+Then we can take $C_m$ such that  
+\begin{equation}
+    \delta  \le f(x_0) \le d(x_0, C_m).
+\end{equation}
+for some $m$. So we have 
+\begin{equation}
+    U_{\delta}(x_0) \subseteq A_m = X\backslash C_m.
+\end{equation}
+So $B \subseteq A_m$. \hfill $\blacksquare$
+
+\begin{example}
+    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
+\end{example}
+
+\begin{definition}
+    A function between two metric spaces $f: (X, d_X) \to (Y, d_Y)$ is said to be uniformly continuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x_1, x_2 \in X$, if $d_X(x_1, x_2) < \delta$, then $d_Y(f(x_1), f(x_2)) < \epsilon$.
 \end{definition}
 
 \begin{theorem}
-    If $X$ is a metric space, then $X$ is compact if and only if it is limit point compact if and only if it is sequentially compact.
+    Let $f: X \rightarrow Y$ be a continuous function between two metric spaces. If $X$ is compact, then $f$ is uniformly continuous.
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par The proof is quite long and technical. We will only some directions in the following. 
-
-\begin{theorem}
-    For an arbitrary topological space, compactness implies limit point compactness. The converse is not true in general.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par Let $X$ be compact, and let $A \subseteq X$ be infinite. 
-\par We assume that $A$ has no limit point. Then $A = \bar{A}$. 
-So $X\setminus A$ is open. Furthermore, for each $a \in A$, we can choose a neighborhood $U_a$ of $a$ such that $U_a \cap (A\setminus \{a\}) = \emptyset$.
-\par Then $\{U_a: a \in A\} \cup \{X\setminus A\}$ is an open covering of $X$. Since $X$ is compact, there exists a finite subcovering, say $\{U_{a_1}, U_{a_2}, \cdots, U_{a_n}\} \cup \{X\setminus A\}$. Thus,
-\[ X = \bigcup_{i=1}^n U_{a_i} \cup (X\setminus A) = (X\setminus A)\cup \{a_1, a_2, \cdots, a_n\}, \]
-which implies that $A$ is finite, a contradiction. Hence, $A$ has a limit point in $X$. 
+\par Given $\epsilon > 0$, take the open covering of $Y$ by balls $B(y, \frac{\epsilon}{2})$ of radius $\frac{\epsilon}{2}$. Let $\mathcal{A}$ be the open covering of $X$ by the inverse images of these balls under $f$. Choose $\delta $ to be a Lebesgue number for the covering $\mathcal{A}$. Then if $x_1$ and $x_2$ are any two points in $X$ with $d_X(x_1, x_2) < \delta$, the set $\{x_1, x_2\}$ has diameter less than $\delta$, so there exists an open set $U = f^{-1}(B(y, \frac{\epsilon}{2}))$ in $\mathcal{A}$ that contains both $x_1$ and $x_2$. So $f(x_1)$ and $f(x_2)$ both lie in $B(y, \frac{\epsilon}{2})$, which implies that
+\begin{equation}
+    d_Y(f(x_1), f(x_2)) < \epsilon.
+\end{equation}
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
-\begin{example}
-    [Counterexample for the converse]
-    Let $Y = \{p, q\}$ with anti-dicrete topology $J_Y = \{\emptyset, Y\}$. Let $X = \mathbb{N} \times Y$ with the product topology where $\mathbb{N}$ has the discrete topology. Then every non-empty set $A \subseteq X$ has a limit point. Because if $(n, p) \in A$, then any open set containing $(n, q)$ intersects $A$ at $(n, p)$. So $X$ is limit point compact. However, $X$ is not compact. Because $\{ \{n\} \times Y: n \in \mathbb{N} \}$ is an open covering of $X$ which admits no finite subcovering. 
-\end{example}
-
-\begin{example}
-    [Limit point compact but not sequentially compact]
-    Let $X$ be defined as the above example. Consider the sequence $\{(n, p)\}_{n=1}^{\infty}$. This sequence has no convergent subsequence. Because for any point $(m, p)$, the open set $\{m\} \times Y$ contains only finitely many terms of the sequence; for any point $(m, q)$, the open set $\{m\} \times Y$ also contains only finitely many terms of the sequence. So $X$ is not sequentially compact.
-\end{example}
-
-\begin{theorem}
-    For a first-countable topological space $X$, limit point compactness implies sequential compactness.
-\end{theorem}
-
-\par \noindent \textbf{Proof} 
-\par Take a sequence $\{x_n\} \subseteq X$. 
-\par If the set of values $\{x_n: n \in \mathbb{N}\}$ is finite, then there exists a value $x$ that appears infinitely many times in the sequence. So the subsequence constantly equal to $x$ converges to $x$.
-\par Suppose the set of values $\{x_n: n \in \mathbb{N}\}$ is infinite. Since $X$ is first-countable, we can construct a countable basis $\{U_k\}$ at a limit point $a$ such that 
-\begin{equation}
-    x_{n_1} \in U_1, x_{n_2} \in U_2, \cdots, x_{n_k} \in U_k, \cdots
-\end{equation}
-and 
-\begin{equation}
-    U_1 \supseteq U_2 \supseteq \cdots \supseteq U_k \supseteq \cdots
-\end{equation}
-That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$, $U_k \subseteq U$. Then $x_{n_k} \in U_k \subseteq U$ for all $k \ge N$. So $x_{n_k} \to a$. \hfill $\blacksquare$
-
-
-\par \noindent \textbf{Remark} For topological spaces, we have the following facts: 
-
-\begin{enumerate}
-    \item Compactness $\Rightarrow$ Limit Point Compactness
-    \item Sequential Compactness $\Rightarrow$ Limit Point Compactness 
-    \item But other implications are not true in general.
-\end{enumerate}
-
-\begin{theorem}
-    Sequential compactness implies compactness for metric spaces.
-\end{theorem}
-\par \noindent \textbf{Proof} This is harder than other directions. 
-
-
-\par \noindent \textbf{Exercise} Prove that $X$ is sequentially compact, then it is limit point compact. 
-
-\section{Locally Compact} 
-
 \begin{definition}
-    A space $X$ is said to be locally compact at $x$ if there is some compact subspace $C$ of $X$ containing a neighborhood $U$ of $x$. If $X$ is locally compact at each of its points, then $X$ is said to be locally compact.
+    If $X$ is a space, a point $x$ of $X$ is said to be an isolated point of $X$ if the one-point set $\{x\}$ is open in $X$.
 \end{definition}
 
-\begin{example}
-    $\mathbb{R}$ is locally compact. Because for any $x\in \mathbb{R}$, take $U = (x - 1, x + 1)$ and $C = [x - 1, x + 1]$ which is compact. 
-\end{example}
+\begin{theorem}
+    Let $X$ be a non-empty compact Hausdorff space. If $X$ has no isolated points, then $X$ is uncountable.
+\end{theorem}
+\par \noindent \textbf{Proof} 
 
-\begin{example}
-    $\mathbb{R}^n$ is locally compact. 
-\end{example}
-
-\begin{example}
-    [non example] 
-    $\mathbb{Q} \subseteq \mathbb{R}$ is not locally compact.
-\end{example}
-
-\par \noindent \textbf{Exercise} Show the above example. 
-\par \noindent \textbf{Solution} Let $C$ be a compact subspace of $\mathbb{Q}$ containing a neighborhood $U$ of $x \in \mathbb{Q}$. Since $U$ is open in $\mathbb{Q}$, there exists an interval $(a, b) \subseteq \mathbb{R}$ such that $U = (a, b) \cap \mathbb{Q}$. We know $Q$ is dense in $\mathbb{R}$, so there exists an irrational number $y \in (a, b)$. Let $\{q_n\} \subseteq (a, b) \cap \mathbb{Q}$ be a sequence converging to $y$. Since $C$ is compact, so $\{q_n\}$ has a subsequence converging to a point in $C$. But a convergent sequence in $\mathbb{R}$ has a unique limit, so the subsequence converges to $y$, which is not in $\mathbb{Q}$ thus not in $C$. This is a contradiction. Hence, $\mathbb{Q}$ is not locally compact.
+\par \noindent \textbf{Step 1} We show first that given any non-empty open set $U$ of $X$ and any point $x$ of $X$, there exists a non-empty open set $V$ contained in $U$ such that $x \notin \bar{V}$. 
+\par Choose a point $y$ of $U$ different from $x$; this is possible if $x$ is in $U$ because $x$ is not an isolated point of $X$ and it is possible if $x$ is not in $U$ simply because $U$ is non-empty. Since $X$ is Hausdorff, there exist disjoint open sets $W_x$ and $W_y$ containing $x$ and $y$, respectively. Then the open set $V = U \cap W_y$ is non-empty, is contained in $U$, and its closure $\bar{V}$ is contained in the complement of $W_x$, so $x \notin \bar{V}$. 
+\par \noindent \textbf{Step 2} We show that given $f: \mathbb{Z}_{+} \to X$, the function $f$ is not surjective. It follows that $X$ is uncountable. 
+\par Let $x_n = f(n)$. Apply Step 1 to the non-empty open set $X$ to choose a non-empty open set $V_1 \subseteq X$ such that $x_1 \notin \bar{V_1}$. In general, given $V_{n - 1}$ open and non-empty, choose $V_n$ to be a non-empty open set such that $V_n \subseteq V_{n - 1}$ and $x_n \notin \bar{V_n}$. Then we have a sequence of non-empty closed sets $\bar{V_n}$ with
+\begin{equation}
+    \bar{V_1} \supseteq \bar{V_2} \supseteq \bar{V_3} \supseteq \cdots
+\end{equation}
+Since $X$ is compact, any collection of closed subsets of $X$ with the finite intersection property has non-empty intersection. Thus, there exists a point $y$ in the intersection of all the $\bar{V_n}$. By construction, $y \neq x_n$ for all $n$, so $f$ is not surjective. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
-\begin{example}
-    [non example] 
-    $\mathbb{R}^{\omega}$ with product topology is not locally compact. If $U$ is open, then $U$ contains a basis element $(a_1, b_1) \times \cdots \times (a_n, b_n) \times \mathbb{R} \times \mathbb{R} \times \cdots$. Then $U$ is not contained in any compact set $C$($C$ contains one factor of $\mathbb{R}$, then the projection to some factor space is $\mathbb{R}$, but a projection is continuous, which means $\mathbb{R}$ is compact. This is definitely not true). 
-\end{example}
 
-
+\begin{corollary}
+    $[a, b] \subseteq \mathbb{R}$ is uncountable. 
+\end{corollary}
 
 \end{document}

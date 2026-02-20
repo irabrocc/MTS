@@ -5,110 +5,118 @@
 \pagestyle{plain}
 \setcounter{chapter}{11}
 
-\chapter{Later}
-\label{chap:chapter1}
+\chapter{Lecture 12: Relations between direct product topology, box topology and uniform topology. The sequence Lemma. }
+\label{chap:chapter12}
 
+\par \noindent \textbf{Exercise} Let $U_{\epsilon}(x) = \{y\in X| d(x, y) < \epsilon\}$. Prove that the collection of all such $U_{\epsilon}(x)$ forms a basis for a topology on $X$. 
 \begin{definition}
-    A collection $\mathcal{A}$ of subsets of a space $X$ is called "a covev" or "a covering" if the union of the elements of $\mathcal{A}$ is $X$; it is called an open covering if all these sets are open. 
-\end{definition}
+    A topological space $(X, \mathcal{T})$ is metrizable if there exists a metric $d$ on $X$ such that the topology induced by $d$ is equal to $\mathcal{T}$.
+\end{definition} 
 
+\begin{lemma}
+    Let $d$ and $d'$ be two metrics on $X$ defining the topologies $\mathcal{T}$ and $\mathcal{T}'$ respectively. Then $\mathcal{T}'$ is finer than $\mathcal{T}$ if and only if for each $x \in X$ and each $\epsilon > 0$, there exists $\delta > 0$ such that 
+    \begin{equation}
+        U_{\delta}^{d'}(x) \subseteq U_{\epsilon}^{d}(x)
+    \end{equation}
+\end{lemma}
+
+\begin{property}
+    The metrics $d_1, d_2, d_{\infty}$ define the same topology on $\mathbb{R}^n$. This is the product topology(or box as $n$ is finite) on $\mathbb{R}^n = \mathbb{R} \times \mathbb{R} \times \cdots \times \mathbb{R}$ ($n$ times). 
+\end{property}
+\par \noindent \textbf{Proof} This can be shown using graphs. 
+\par In the following, we will define a metric that is used to bound another metric. Let $d$ be a metric on $X$. Define
+\begin{equation}
+    \bar{d}(x, y) = \min\{d(x, y), 1\}
+\end{equation}
+\begin{theorem}
+    $\bar{d}$ is a metric on $X$ defining the same topology as $d$.
+\end{theorem}
+\par First, we need to check that $\bar{d}$ is a metric. The only non-trivial part is the triangle inequality. For any $x, y, z \in X$, we want to show that
+\begin{equation}
+    \bar{d}(x, z) \leq \bar{d}(x, y) + \bar{d}(y, z)
+\end{equation}
+If $\bar{d}(x, y)$ or $\bar{d}(y, z)$ equals 1, then the right hand side is at least 1, and the inequality holds. If both $\bar{d}(x, y)$ and $\bar{d}(y, z)$ are less than 1, then $\bar{d}(x, y) = d(x, y)$ and $\bar{d}(y, z) = d(y, z)$. By the triangle inequality of $d$, we have
+\begin{equation}
+    \bar{d}(x, z) = \min\{d(x, z), 1\} \leq d(x, z) \leq d(x, y) + d(y, z) = \bar{d}(x, y) + \bar{d}(y, z)
+\end{equation}
+\par Now we note that in any metric space, the collection of $\epsilon$-balls with $\epsilon < 1$ forms a basis for the topology induced by the metric. It follows that $\bar{d}$ and $d$ induce the same topology on $X$, because the collections of $\epsilon$-balls with $\epsilon < 1$ are the same for both metrics.
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+\par We want to define a metric on $\mathbb{R}^{\omega}$. 
 \begin{definition}
-    $X$ is called a compact space if every open covering $\mathcal{A}$ contains a finite subcollection which also covers $X$. 
+    For $x = (x_1, x_2, \ldots), y = (y_1, y_2, \ldots) \in \mathbb{R}^{\omega}$, define
+    \begin{equation}
+        \bar{d}(x, y) = \min(\sup(|x_i - y_i|), 1)
+    \end{equation}
+    which is called the uniform metric on $\mathbb{R}^{\omega}$. And the topology it induces is called the uniform topology.
 \end{definition}
-\par \noindent \textbf{Remark} Being compact depends on the topology: For example, consider $X$ with the antidiscrete topology, i.e., $\mathcal{T} = \{\emptyset, X\}$. Then $X$ is compact. 
-\begin{example}
-    $\mathbb{R}$ with the standard topology is not compact. Consider the open covering $\mathcal{A} = \{(-n, n) | n \in \mathbb{N}\}$. 
-\end{example}
-\begin{example}
-    $(0, 1]$ with the standard topology is not compact. Consider the open covering $\mathcal{A} = \{(1/n, 1] | n \in \mathbb{N}\}$.
-\end{example}
-\begin{example}
+Also we can generalize the metric for $\mathbb{R}^{J}$ for any $J$. (sup(min) or min(sup) does not matter)
+\begin{theorem}
+    Uniform topology on $\mathbb{R}^{J}$ is: 
     \begin{itemize}
-        \item $\{0\}\cup \{\dfrac{1}{n}| n\in \mathbb{Z}^{+}\} \subseteq \mathbb{R}$ is compact because $\{0\}$ is the limit point and any open covering must contain an open set containing $0$, which covers all but finite points.
-        \item $\{\dfrac{1}{n}| n\in \mathbb{Z}^+\}$ is not compact. Consider the open covering $\mathcal{A} = \{(1/n - \epsilon, 1/n + \epsilon) | n \in \mathbb{N}\}$. (Similarly, for infinite $X$ with discrete topology, $X$ is not compact.)
+        \item (strictly) finer than the direct product topology;
+        \item (strictly) coarser than the box topology. 
     \end{itemize}
-\end{example}
-
-\begin{definition}
-    $Y \subseteq X$ is compact if every open covering of $Y$ by sets open in $X$ contains a finite subcollection covering $Y$.
-\end{definition}
-\begin{lemma}
-    $Y \subseteq X$ is compact if and only if every open covering of $Y$ by sets open in $Y$ contains a finite subcollection covering $Y$.
-\end{lemma}
-\par \noindent \textbf{Proof}
-\par Trivial. 
-
-\begin{theorem}
-    Every closed subspace of a compact space is compact. 
 \end{theorem}
-\par \noindent \textbf{Proof} Let $X$ be a compact space and let $Y$ be a closed subspace of $X$. Let $\mathcal{A}$ be an open covering of $Y$ by sets open in $X$. Since $Y$ is closed, $X\setminus Y$ is open in $X$. Thus, $\mathcal{A} \cup \{X\setminus Y\}$ is an open covering of $X$. By the compactness of $X$, there exists a finite subcollection $\mathcal{A}' \subseteq \mathcal{A}$ such that $\mathcal{A}' \cup \{X\setminus Y\}$ covers $X$. Therefore, $\mathcal{A}'$ covers $Y$. Hence, $Y$ is compact.
-\begin{theorem}
-    Every compact subspace of a Hausdorff space is closed. 
-\end{theorem}
+provided that $J$ is infinite.
 \par \noindent \textbf{Proof} 
-\par It suffices to show that for any $x \in X \setminus Y$, there exists an open set $U$ containing $x$ such that $U \cap Y = \emptyset$. For each $y \in Y$, since $X$ is Hausdorff, there exist disjoint open sets $U_y$ and $V_y$ such that $x \in U_y$ and $y \in V_y$. Then $\{V_y | y \in Y\}$ is an open covering of $Y$. By the compactness of $Y$, there exists a finite subcollection $\{V_{y_1}, V_{y_2}, \ldots, V_{y_n}\}$ that covers $Y$. Let
+\par First, we show that the uniform topology is finer than the product topology. Let $x \in \mathbb{R}^{J}$ and let $U$ be a basic open set in the product topology containing $x$. Then
 \begin{equation}
-    U = \bigcap_{i=1}^{n} U_{y_i}
+    U = \prod_{\alpha \in J} U_{\alpha}
 \end{equation}
-Then $U$ is an open set containing $x$. Moreover
+where $U_{\alpha}$ is an open set in $\mathbb{R}$ and $U_{\alpha} = \mathbb{R}$ for all but finitely many $\alpha$. Let $K$ be the finite set of indices $\alpha$ such that $U_{\alpha} \neq \mathbb{R}$. For each $\alpha \in K$, there exists $1 > \epsilon_{\alpha} > 0$ such that
 \begin{equation}
-    U \cap Y  = (\bigcap_{i=1}^{n} U_{y_i}) \cap Y = \emptyset 
+    U_{\epsilon_{\alpha}}(x_{\alpha}) \subseteq U_{\alpha}
 \end{equation}
-Thus, $U \cap Y = \emptyset$. Hence, $Y$ is closed. 
+Let $\epsilon = \min_{\alpha \in K} \epsilon_{\alpha}$. Then the open ball $U_{\epsilon}^{\bar{d}}(x)$ in the uniform topology is contained in $U$. Thus the uniform topology is finer than the product topology. 
+\par On the other hand, let 
+\begin{equation}
+    U = \prod_{\alpha \in J} (x_{\alpha} - \epsilon, x_{\alpha} + \epsilon)
+\end{equation}
+with $\epsilon < 1$ which is a basis element in the uniform topology. And $U$ is also a basis element in the box topology. Thus the uniform topology is coarser than the box topology.
+\par For the strictness of the two sides, we can use some examples. 
+\par Since the uniform topology is finer than the product topology and the the box topology is finer than the uniform topology, we have that for a sequence $(x_n)$ in $\mathbb{R}^{J}$, if $x_n \rightarrow x$ in the box topology, then $x_n \rightarrow x$ in the uniform topology, and if $x_n \rightarrow x$ in the uniform topology, then $x_n \rightarrow x$ in the product topology. 
+\par So for the strictness, it suffices to find a sequence that converges in one topology but not in the other. 
+\par Let $\{w_i\}_{i=1}^{\infty}$ be a sequence in $\mathbb{R}^{\omega}$ defined as 
+\begin{equation}
+    w_1 = (1, 1, 1, \ldots), w_2 = (0, 2, 2, \ldots), w_3 = (0, 0, 3, 3, \ldots), \ldots
+\end{equation}
+Then $w_n \rightarrow 0$ in the product topology. But it diverges in the uniform topology and the box topology. Thus the uniform topology is strictly finer than the product topology. 
+\par Let $\{x_i\}_{i=1}^{\infty}$ be a sequence in $\mathbb{R}^{\omega}$ defined as
+\begin{equation}
+    x_1 = (1, 1, 1, \ldots), x_2 = (0, \frac{1}{2}, \frac{1}{2}, \ldots), x_3 = (0, 0, \frac{1}{3}, \frac{1}{3}, \ldots), \ldots
+\end{equation}
+\par Then w.l.o.g. if $\epsilon < 1$, the ball in the uniform topology 
+\begin{equation}
+    U_{\epsilon}^{\bar{d}}(0) = \{y \in \mathbb{R}^{\omega} | \sup(|y_i - 0|) < \epsilon\} = \{y \in \mathbb{R}^{\omega} | |y_i| < \epsilon, \forall i\}
+\end{equation}
+contains all but finitely many $x_n$. Thus $x_n \rightarrow 0$ in the uniform topology. However, for the box topology, consider 
+\begin{equation}
+    (-1, 1) \times (-\frac{1}{2}, \frac{1}{2}) \times (-\frac{1}{3}, \frac{1}{3}) \times \cdots
+\end{equation}
+which is a basis element in the box topology containing $0$. This set does not contain any $x_n$ for all $n$. Thus $x_n$ does not converge to $0$ in the box topology. Therefore, the uniform topology is strictly coarser than the box topology. 
+\par Consider the sequence $\{y_n\}_{n=1}^{\infty}$ in $\mathbb{R}^{\omega}$ defined as 
+\begin{equation}
+    y_1 = (1, 0, 0, 0, \ldots), y_2 = (\frac{1}{2}, \frac{1}{2}, 0, 0, \ldots), y_3 = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, 0, 0, \ldots), \ldots
+\end{equation}
+\par Then $y_n \rightarrow 0$ in all three topologies.
 \mbox{} \\ \null \hfill $\blacksquare$ 
-\begin{lemma}
-    $Y$ is a compact subspace of Hausdorff space $X$. And $x \in X \setminus Y$. Then there exist open sets $U$ and $V$ such that $x \in U$, $Y \subseteq V$ and $U \cap V = \emptyset$.
-\end{lemma}
-\par \noindent \textbf{Proof} Proved inside the proof of the theorem. 
+\par Recall that for two metric spaces $(X, d)$ and $(Y, d')$, a function $f: X \rightarrow Y$ is continuous if and only if for each $x \in X$ and each $\epsilon > 0$, there exists $\delta > 0$ such that
+\begin{equation}
+    d(x, y) < \delta \Rightarrow d'(f(x), f(y)) < \epsilon
+\end{equation}
+
+\par \noindent \textbf{Problem} If $x_n \rightarrow 0$ in the box topology on $\mathbb{R}^{\omega}$, what can be said about $x_n$? Is the guess: $\exists M, \forall m \ge M, x_n^{(m)} = 0$ correct? 
+\par \noindent \textbf{Answer} Not sure. 
 
 \begin{theorem}
-    The image of a compact set under a continuous map is compact. 
-\end{theorem}
-\par \noindent \textbf{Proof} Let $f: X \rightarrow Y$ be a continuous map. Consider any open covering $\mathcal{A}$ of $f(X)$ by sets open in $Y$. Then $\{f^{-1}(U) | U \in \mathcal{A}\}$ is an open covering of $X$ by sets open in $X$. By the compactness of $X$, there exists a finite subcollection $\{f^{-1}(U_1), f^{-1}(U_2), \ldots, f^{-1}(U_n)\}$ that covers $X$. Thus, $\{U_1, U_2, \ldots, U_n\}$ is a finite subcollection of $\mathcal{A}$ that covers $f(X)$. Hence, $f(X)$ is compact.
-\mbox{} \\ \null \hfill $\blacksquare$ 
-
-\begin{theorem}
-    Let $f: X \rightarrow Y$ be a bijective continuous map. If $X$ is compact and $Y$ is Hausdorff, then $f$ is a homeomorphism.
-\end{theorem}
-\par \noindent \textbf{Proof} 
-\par We just combine the above theorems. 
-\par It suffices to show that images of closed sets under $f$ are closed. Consider any closed set $D$ in $X$. By the theorem, $D$ is compact. Thus, by the previous theorem, $f(D)$ is compact. Since $Y$ is Hausdorff, by another theorem, $f(D)$ is closed. Hence, $f$ is a homeomorphism.
-\mbox{} \\ \null \hfill $\blacksquare$  
-
-\begin{lemma}
-    [tube lemma]
-    Let $x_0\in X$, suppose $\{x_0\}\times Y$ is convered by open sets $W_i$ in $X \times Y$. Then one can choose a finite subcovering $W_1, W_2, \ldots, W_n$ of $\{x_0\}\times Y$ and find an open neighbor $U$ of $x_0$ such that $U \times Y \subseteq \bigcup_{i=1}^{n} W_i$.
-\end{lemma}
-\par \noindent \textbf{Proof} One may assume that $W_i = U_i \times V_i$ where $U_i$ is open in $X$ and $V_i$ is open in $Y$. Then $\{V_i\}$ is an open covering of $Y$. By the compactness of $Y$, there exists a finite subcollection $\{V_1, V_2, \ldots, V_n\}$ that covers $Y$. 
-
-\par To be done. 
-
-\begin{theorem}
-    The product of finitely many compact spaces is compact. 
-\end{theorem}
-\par \noindent \textbf{Proof} It is enough to prove for two sets. Let $X$ and $Y$ be compact spaces. 
-\par We can cover $X\times Y$ by finitly many tubes by the tube lemma. And each tube can be covered by finitly many open sets. Thus $X \times Y$ is compact.
-\par To be done. 
-
-\begin{definition}
-    A collection $\mathcal{C}$ of sets has the finite intersection property if for any finite subcollection $\{C_1, C_2, \ldots, C_n\} \subseteq \mathcal{C}$, we have
-    \begin{equation}
-        C_1 \cap C_2 \cap \ldots \cap C_n \neq \emptyset
-    \end{equation}
-\end{definition}
-
-\begin{theorem}
-    $X$ is a topological space. Then $X$ is compact if and only if for every collection $\mathcal{C}$ of closed sets in $X$ with the finite intersection property, we have
-    \begin{equation}
-        \bigcap_{C \in \mathcal{C}} C \neq \emptyset
-    \end{equation}
+    [The sequence lemma] 
+    Let $X$ be a topological space, $A \subseteq X$. If there is a sequence of points $x_n \in A$ with $\lim_{n \rightarrow \infty} x_n = x$, then $x \in \bar{A}$. The converse holds if $X$ is metrizable.
 \end{theorem}
 
-\par \noindent \textbf{Proof} 
-\par Let $\mathcal{A}$ be a collection of open sets in $X$. Then $\mathcal{C} = \{X \setminus A | A \in \mathcal{A}\}$ is a collection of closed sets in $X$. 
-\par Then $\mathcal{A}$ is an open covering of $X$ if and only if $\bigcap_{C \in \mathcal{C}} C = \emptyset$. 
-\par Then a finite subcollection of $\mathcal{A}$ covers $X$ if and only if the corresponding finite subcollection of $\mathcal{C}$ has empty intersection. 
-\par Now the theorem follows directly.
+\par \noindent \textbf{Proof} If $x_n \in A$ and $\lim_{n \rightarrow \infty} x_n = x$, then for each open set $U$ containing $x$, we have $U\cap A$ contains all but finitely many $x_n$, so $U \cap A \neq \emptyset$. Thus $x \in \bar{A}$.
+\par For the converse, suppose $X$ is metrizable with metric $d$. If $x \in \bar{A}$, then for each $n \in \mathbb{N}$, the open ball $U_{1/n}(x)$ intersects $A$. Thus we can choose $x_n \in U_{1/n}(x) \cap A$. Then $\lim_{n \rightarrow \infty} x_n = x$($\forall \epsilon > 0, \exists N > \frac{1}{\epsilon}$, such that $d(x_n, x) < \epsilon$ for all $n > N$). 
+
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
 \end{document}

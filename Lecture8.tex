@@ -5,76 +5,131 @@
 \pagestyle{plain}
 \setcounter{chapter}{7}
 
-\chapter{Lecture 8}
+\chapter{Lecture 8: Subspace topology. Closed sets. Interior and Closure of a set. }
 \label{chap:Lecture8}
 
-\begin{theorem}
-    Let $A$ be a subset of the topological space $X$. 
-    \begin{enumerate}
-        \item $x\in \bar{A} \Longleftrightarrow $ every open set $U \subseteq X$ with $x \in U$ satisfies $U \cap A \neq \emptyset$.
-        \item For a basis $\mathcal{B}$ of $\mathcal{T}$, we have $x \in \bar{A} \Longleftrightarrow$ every basis element $B \in \mathcal{B}$ with $x \in B$ satisfies $B \cap A \neq \emptyset$. 
-    \end{enumerate}
-\end{theorem}
-
-\par \noindent \textbf{Proof to 1} 
-\par We transform each implication to its contrapositive, thereby obtaining the logically equivalent statement $(\lnot P) \Longleftrightarrow (\lnot Q)$. Written out, it is the follwoing statement. $x\notin \bar{A}$ if and only if there exists an open set $U$ containing $x$ that does not intersect $A$. 
-\par If $x \notin \bar{A}$, then the set $U = X - \bar{A}$ is an open set containing $x$ that does not intersect $A$.
-\par Conversely, if there exists an open set $U$ containing $x$ which does not intersect $A$, then $X-U$ is a closed set containing $A$. Then $\bar{A} \subseteq X - U$. Since $x \notin X - U$, $x\notin \bar{A}$. 
-\mbox{} \\ \null \hfill $\blacksquare$ 
-
-\par \noindent \textbf{Exercise} Finish the proof of 2. 
-
+\section{Subspace Topology}
 \begin{definition}
-    For $A \subseteq X$, $x\in X$ is a limit point of $A$ if every open set $U \subseteq X$ containing $x$ contains a point of $A$ different from $x$ itself. We denote $A'$ as the set of all limit points of $A$.
+    Let \((X, \mathcal{T})\) be a topological space and \(Y \subseteq X\). The \textbf{subspace topology} on \(Y\) is defined as
+    \[
+        \mathcal{T}_Y = \{ U \cap Y : U \in \mathcal{T} \}.
+    \]
 \end{definition}
+\begin{property}
+    $(Y, \mathcal{T}_Y)$ is a topological space.
+\end{property}
+\begin{lemma}
+    If $\mathcal{B}$ is a basis for the topology $\mathcal{T}$ on $X$, then the collection
+    \[
+        \mathcal{B}_Y = \{ B \cap Y : B \in \mathcal{B} \}
+    \]
+    is a basis for the subspace topology $\mathcal{T}_Y$ on $Y$.
+\end{lemma}
+
+\par \noindent \textbf{Proof} 
+\par Let $U \in \mathcal{T}$ and $y\in U \cap Y$. Then there exists $B \in \mathcal{B}$ such that $y \in B \subseteq U$. Then $y \in B \cap Y \subseteq U \cap Y$. 
+
+\par \noindent \textbf{Remark} The set which is open in the subspace topology may not be open in the original topology.
+
+\begin{property}
+    If $Y$ is open in $(X, \mathcal{T})$ and $U \subseteq Y$ is open in $(Y, \mathcal{T}_Y)$, then $U$ is open in $(X, \mathcal{T})$. 
+\end{property}
+\par \noindent \textbf{Proof} Since $U \subseteq Y$ is open in $(Y, \mathcal{T}_Y)$, there exists $V \in \mathcal{T}$ such that $U = V \cap Y$. Since $Y$ is open in $(X, \mathcal{T})$, we have $U = V \cap Y$ is open in $(X, \mathcal{T})$.
 
 \begin{theorem}
-    $\bar{A} = A \cup A'$
+    Let $A \subseteq X$ and $B \subseteq Y$ such that $A \times B \subseteq X \times Y$. Then the product of subspace topologies $\mathcal{T}_{A} \times \mathcal{T}_{B}$ is equal to the subspace topology $\mathcal{T}_{A \times B}$ on $A \times B$. 
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par We need to show that $\bar{A} \subseteq A \cup A'$ and $A \cup A' \subseteq \bar{A}$.
-\par $(\supseteq)$ If $x\in A'$, then every neighborhood $U$ of $x$ intersects $A$. Then $x\in \bar{A}$ by the previous theorem. If $x\in A$, then obviously $x\in \bar{A}$. Thus $A \cup A' \subseteq \bar{A}$.
-\par $(\subseteq)$ Let $x\in \bar{A}$. If $x\in A$, then $x\in A \cup A'$. If $x \in \bar{A}\setminus A$, then every neighborhood $U$ of $x$ intersects $A$ at $y$ such that $y \neq x$. Thus $x\in A'$. Therefore, $\bar{A} \subseteq A \cup A'$.
+\par Let $U \subseteq X$ and $V \subseteq Y$ be open sets in $(X, \mathcal{T}_X)$ and $(Y, \mathcal{T}_Y)$ respectively. Then the products of the form $U \times V$ form a basis for the product topology on $X \times Y$. And we have 
+\begin{equation}
+    (U \times V) \cap (A \times B) 
+\end{equation}
+form a basis for the subspace topology on $A \times B$. Note that
+\begin{equation}
+    (U \times V) \cap (A \times B) = (U \cap A) \times (V \cap B)
+\end{equation} 
+So the basis for the product of subspace topologies is equal to the basis for the subspace topology on $A \times B$. 
+\\ \null \hfill $\blacksquare$ 
+\par Let $(X, <)$ be an ordered set. Let $a_0 = min(X)$ and $b_0 = max(X)$ if they exists. Then 
+\begin{equation}
+    \mathcal{B} = \{ (a, b) : a_0 < a < b < b_0 \} \cup \{ [a_0, b) : b < b_0 \} \cup \{ (a, b_0] : a > a_0 \}
+\end{equation}
+is a basis for the order topology on $X$. Notice that $[a_0, b)$ refers to the set $\{ x \in X : x < b \}$ when $a_0$ does not exist. 
+\par \noindent \textbf{Remark} Let $Y \subseteq X$ be a subset inheriting the order from $X$. Then it may happen that the order topology on $Y$ is different from the subspace topology on $Y$.
+\begin{example}
+    Let $X = \mathbb{R}$ with the usual order and $Y = [0, 1)\cup \{2\}$ be a subset of $X$. Then $\{2\}$ is open in the subspace topology on $Y$ since \(\{2\} = (1.5, 2.5) \cap Y\). However, $\{2\}$ is not open in the order topology on $Y$. 
+\end{example}
 
-\mbox{} \\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Exercise} Show that for the order topology $[0,1) \cup \{2\}$ is connected. 
 
-\begin{corollary}
-    A set $A$ is closed if and only if $A' \subseteq A$.
-\end{corollary}
+\begin{example}
+    Let $X = Y = \mathbb{R}$ with the usual order. Then the product of order topologies is the standard topology on \(\mathbb{R}^2\). We take the lexicographic order as the order on \(\mathbb{R}^2\).  
+\end{example}
+\par \noindent \textbf{Remark} Let $I\times I = [0, 1]\times [0, 1] \subseteq X \times Y$. Then the order topology on $[0, 1] \times [0, 1]$ is different from the subspace topology inherited from the order topology on $\mathbb{R}^2$. The set $\{1/2\} \times (1/2, 1]$ is not open in the order topology on $I \times I$ but it is open in the subspace topology inherited from $\mathbb{R}^2$.
+\begin{definition}
+    $Y$ is convex if for any $a, b \in Y$, the interval $(a, b) \subseteq Y$. 
+\end{definition}
+\begin{theorem}
+    Let $Y \subseteq X$ be a convex subset of $(X, <)$. Then the the restriction of the order topology on $X$ to $Y$ is equal to the order topology on $Y$.
+\end{theorem}
+
+\par \noindent \textbf{Proof} 
+\par Take $(a, +\infty), (-\infty, b) \subseteq X$ which form a basis for the order topology on $X$. Take $Y \subseteq X$ convex. 
+\begin{enumerate}
+    \item If $a\in Y$, then \((a, +\infty) \cap Y = \{y| y\in Y \text{ and } a < y\}\).  
+    \item If $a \notin Y$, then there are only two cases because $Y$ is convex:
+    \begin{enumerate}
+        \item If $a$ is a lower bound for $Y$, then \((a, +\infty) \cap Y = Y\)
+        \item If $a$ is an upper bound for $Y$, then $(a, +\infty) \cap Y = \emptyset$
+    \end{enumerate} 
+\end{enumerate}
+Then we obtain the basis for subspace topology on $Y$ from the basis of order topology on $X$. 
+And also this is the basis for the order topology on $Y$. 
 
 \begin{definition}
-    For a sequence $\{ x_n \}$ in $X$, we say that $a$ is a limit of the sequence if for every open set $U$ containing $a$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $x_n \in U$. A sequence is convergent if it has a limit.
+    $A \subseteq X$ is closed if and only if \(X \setminus A\) is open. 
 \end{definition}
-
-\par \noindent \textbf{Remark} This is equivalent to the following: every open set $U$ containing $a$ contains almost all elements of the sequence except finitely many. And Notice that "all but finitely many" is not the same as "infinitely many".
-
-\begin{example}
-    Let $X$ be a topological space with the discrete topology. Then a sequence $\{ x_n \}$ converges to $a$ if and only if there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $x_n = a$.
-\end{example}
-
-\begin{example}
-    Let $X = \mathbb{Q}$ with the topology defined by the usual metric. Then the sequence: $3, 3.1, 3.14, 3.141, 3.1415, \ldots$ does not converge in $X$ since its limit $\pi$ is not in $\mathbb{Q}$.
-\end{example}
-
-\begin{example}
-    Let $X = \mathbb{R}_l$ with the lower limit topology($[a, b)$ are basis open sets). Then we say that a sequence converges in $\mathbb{R}^l$ if and only if it converges to $a$ in $\mathbb{R}$ with an extra condition: $x_n \ge a, \forall n \ge N$ for some $N\in \mathbb{N}$.  
-\end{example}
-
-\par \noindent \textbf{Exercise} Show that if $x_n$ converges in $\mathcal{T}$, then $x_n$ converges in any coarser topology $\mathcal{T}' \subseteq \mathcal{T}$.
-
-\begin{example}
-    $X = \mathbb{N}$, the basis $U_m = \{0, 1, 2 \cdots, m\}$. $\mathcal{T} = \{U_m | m\in \mathbb{N}\}\cup \{ \mathbb{N}, \emptyset\}$. Then $x_n$ converges to $a$ if and only if $a$ is essential upper bound of $\{ x_n \}$. In this case, the limit is not unique. 
-\end{example}
-
-\begin{example}
-    Finite complement topology on $\mathbb{R}$. 
-    \par For example take $\mathcal{T} = \{ \mathbb{R}, \emptyset\}\cup \{ \mathbb{R}\setminus \{p_1, p_2, \cdots, p_m\}| p_1, p_2, \cdots, p_m \in \mathbb{R}, m \in \mathbb{N}\}$. 
+\begin{property}
     \begin{enumerate}
-        \item If $x_n$ is eventually constant with value $a$, then $x_n$ converges to $a$. It can't not converge to $b \neq a$ because we can take the open set $\mathbb{R} \setminus \{a\}$ which contains $b$ but does not contain almost all elements of the sequence.
-        \item If $x_n = (- 1)^n$, then $x_n$ does not converge. If $x_n = a$ for infinitely many $n$ and $x_n = b$ for infinitely many $n$ ($a \neq b$), then $x_n$ does not converge. 
-        \item If $x_n = \dfrac{(-1)^n}{n}$, then $x_n$ converges to any real number. Because for any open set $U$, $U$ contains all but finitely many real numbers. So $U$ contains almost all elements of the sequence. 
-        \item If $x_n$ assumes every value finitely many times, then $x_n$ converges to any real number.  
+        \item $X$ and $\emptyset$ are closed.
+        \item The intersection of any collection of closed sets is closed.
+        \item The union of finitely many closed sets is closed.
     \end{enumerate}
-\end{example}
+\end{property}
+\begin{theorem}
+    Let $X$ be a topological space. And $Y \subseteq X$ has a subspace topology. Then $A \subseteq Y$ is closed in $Y$ if and only if there exists a closed set $C$ in $X$ such that \(A = C \cap Y\).
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par \((\Rightarrow)\) Since $A$ is closed in $Y$, then \(Y \setminus A\) is open in $Y$. So there exists an open set $U$ in $X$ such that \(Y \setminus A = U \cap Y\). Let \(C = X \setminus U\). Then $C$ is closed in $X$ and
+\[
+    A = Y \setminus (Y \setminus A) = Y \setminus (U \cap Y) = Y \cap (X \setminus U) = Y \cap C.
+\]
+\par \((\Leftarrow)\) Let $A = C \cap Y$ where $C$ is closed in $X$. Then \(X \setminus C\) is open in $X$. So we have
+$ (X \setminus C) \cap Y$ is open in $Y$. But we have 
+\begin{equation}
+    (X \setminus C) \cap Y = Y \setminus (C \cap Y) = Y \setminus A.
+\end{equation}
+which is open in $Y$. So $A$ is closed in $Y$.
+
+\begin{definition}
+    If $U \subseteq X$ is open and $x \in U$ then $U$ is a neighborhood of $x$.
+\end{definition}
+\begin{definition}
+    $Int(A) = \bigcup \{U \subseteq X | U \text{ is open and } U \subseteq A\}$ is the interior of $A$. 
+    \par 
+    $\bar{A} = \bigcap \{C \subseteq X | C \text{ is closed and } A \subseteq C\}$ is the closure of $A$.
+\end{definition}
+\par \noindent \textbf{Remark} $Int(A) \subseteq A \subseteq \bar{A}$. 
+\par \noindent \textbf{Remark} If $A \subseteq Y \subseteq X$, then the closure of $A$ in $Y$ and the closure of $A$ in $X$ may be different. For example let $X = \mathbb{R}$ and $Y = [0, 1)$. Let $A = (0, 1) \subseteq Y$. Then the closure of $A$ in $Y$ is $[0, 1)$ while the closure of $A$ in $X$ is $[0, 1]$. 
+
+\begin{theorem}
+    Let $Y \subseteq X$ with the subspace topology. Let $\bar{A}$ be the closure of $A$ in $X$. Then the closure of $A$ in $Y$ is equal to $\bar{A} \cap Y$.
+\end{theorem}
+\par \noindent \textbf{Proof} 
+\par Let $B$ be the closure of $A$ in $Y$. We prove the two inclusions. 
+\par Let $B$ be the closure of $A$ in $Y$. $\bar{A}$ is closed in $X$. So $\bar{A} \cap Y$ is closed in $Y$. Then $\bar{A} \cap Y \supseteq A$(Since we are talking about the closure in $Y$, we must have $A \subseteq Y$). So $B \subseteq \bar{A} \cap Y$($B$ is the smallest closed set containing $A$). 
+\par Since $B$ is closed in $Y$, there exists a closed set $C$ in $X$ such that \(B = C \cap Y\). Hence $C \supseteq A$ which is closed in $X$. So $C \supseteq \bar{A}$. Then $\bar{A} \cap Y \subseteq C \cap Y = B$. 
+\par Hence the two inclusions imply that $B = \bar{A} \cap Y$. 
+\\ \null \hfill $\blacksquare$  
 
 \end{document}
