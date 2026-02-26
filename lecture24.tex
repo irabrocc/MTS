@@ -134,6 +134,7 @@ Let $(Y, d)$ be a metric space. Let $\bar{d} = \min\{d, 1\}$. We take the set of
 \end{example}
 
 \begin{theorem}
+    \label{thm:uniformComplete}
     If $Y$ is complete with respect to $d$, then $Y^J$ is complete in the uniform metric $\bar{\rho}$ corresponding to $d$. 
 \end{theorem}
 \par \noindent \textbf{Proof} 
@@ -156,13 +157,44 @@ This inequality holds for all $\alpha \in J$, provided $n \geq N$. Therefore,
 \end{equation}
 for all $n \geq N$. So $f_n$ converges to $f$ in the uniform metric $\bar{\rho}$. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
-\par \noindent \textbf{Remark} Recall that the product topology on $\mathbb{R}^J$ is not metrizable if $J$ is uncountable. The topology induced by the uniform metric on $\mathbb{R}^J$ is strictly finer than the product topology so the uniform metric does not metrize the product topology.
-\par The set $J$ here is merely a set, not necessarily a topological space. If $J$ is a topological space, then we have the following result. 
+\par \noindent \textbf{Remark} Recall that the product topology on $\mathbb{R}^J$ is not metrizable if $J$ is uncountable. The topology induced by the uniform metric on $\mathbb{R}^J$ is strictly finer than the product topology so the uniform metric does not metrize the product topology. 
+\par The set $J$ here is merely a set, not necessarily a topological space. If $J$ is a topological space, we will have the result in the next theorem. But now we first introduce some definitions. 
+
+\begin{definition}
+    Let $f_n: X \rightarrow Y$ be a sequence of functions from the set $X$ to the metric space $Y$. Let $d$ be the metric on $Y$. We say that $f_n$ converges uniformly to a function $f: X \rightarrow Y$ if for every $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that 
+    \begin{equation}
+        d(f_n(x), f(x)) < \epsilon
+    \end{equation}
+    for all $n \geq N$ and all $x \in X$. 
+\end{definition} 
+
+\begin{theorem}
+    [Uniform limit theorem] 
+    Let $f_n: X \rightarrow Y$ be a sequence of continuous functions from the topological space $X$ to the metric space $Y$. If $f_n$ converges uniformly to a function $f: X \rightarrow Y$, then $f$ is continuous.
+\end{theorem}
+\par \noindent \textbf{Proof} This is an easy exercise in the style of $\varepsilon$-$\delta$ proof in Calculus. 
+\mbox{} \\ \null \hfill $\blacksquare$
 
 
 \begin{theorem}
+    \label{thm:completeFunSpace}
     Let $X$ be a topological space and let $(Y, d)$ be a metric space. The set $C(X, Y)$ of continuous functions from $X$ to $Y$ is closed in $Y^X$ under the uniform metric. So is the set $B(X, Y)$ of bounded functions. Therefore, if $Y$ is complete, these spaces are complete in the uniform metric. 
 \end{theorem}
+\par \noindent \textbf{Proof} 
+\par First, we show that if a sequence of elements $f_n$ of $Y^X$ converges to the element $f$ of $Y^X$ relative to the metric $\bar{\rho}$ on $Y^X$, then it converges to $f$ uniformly, relative to the metric $\bar{d}$ on $Y$. Given $\epsilon > 0$, choose an integer $N$ such that 
+\begin{equation}
+    \bar{\rho}(f_n, f) < \epsilon
+\end{equation}
+for all $n \geq N$. Then for all $x \in X$ and all $n \geq N$, we have 
+\begin{equation}
+    \bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \epsilon
+\end{equation}
+so $f_n$ converges to $f$ uniformly under $\bar{d}$. 
+\par Now we show that $C(X, Y)$ is closed in $Y^X$ relative to $\bar{\rho}$. Let $f$ be an element of $Y^X$ that is a limit point of $C(X, Y)$. Then there is a sequence $(f_n)$ of elements of $C(X, Y)$ that converges to $f$ under $\bar{\rho}$. By the uniform limit theorem, $f$ is continuous with $\bar{d}$ as the metric on $Y$ thus $f$ is continuous with $d$ as the metric on $Y$. So $f \in C(X, Y)$. Therefore, $C(X, Y)$ is closed in $Y^X$ under $\bar{\rho}$. 
+\par Finally, we show that $B(X, Y)$ is closed in $Y^X$ under $\bar{\rho}$. Let $f$ be an element of $Y^X$ that is a limit point of $B(X, Y)$. Then there is a sequence $(f_n)$ of elements of $B(X, Y)$ that converges to $f$ under $\bar{\rho}$. There exists $N$ such that $\bar{\rho}(f_n, f) < \frac{1}{2}$. Then, for all $x \in X$, we have $\bar{d}(f_n(x), f(x)) < \frac{1}{2}$, which implies that $d(f_n(x), f(x)) < \frac{1}{2}$. It follows that if $M$ is the diameter of the set $f_N(X)$, then $f(X)$ has diameter at most $M + 1$. So $f(X)$ is bounded. Therefore, $f \in B(X, Y)$. So $B(X, Y)$ is closed in $Y^X$ under $\bar{\rho}$. 
+\par By \ref{thm:uniformComplete}, $Y^X$ is complete under $\bar{\rho}$ if $Y$ is complete under $d$. Since $C(X, Y)$ and $B(X, Y)$ are closed in $Y^X$ under $\bar{\rho}$, they are complete under $\bar{\rho}$ as well. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+ 
 
 \begin{definition}
     If $(Y, d)$ is a metric space, one can define another metric on the set $B(X, Y)$ of bounded functions from $X$ to $Y$ by the equation 
@@ -171,15 +203,107 @@ for all $n \geq N$. So $f_n$ converges to $f$ in the uniform metric $\bar{\rho}$
     \end{equation}
     It is easy to see that $\rho$ is well-defined, for the set $f(X) \cup g(X)$ is bounded if both $f(X)$ and $g(X)$ are bounded. The metric $\rho$ is called the sup metric. 
 \end{definition}
-\par \noindent \textbf{Remark} There is something. 
+\par \noindent \textbf{Remark} There is a simple relation between the sup metric and the uniform metric. Indeed, if $f, g\in B(X, Y)$, then 
+\begin{equation}
+    \bar{\rho}(f, g) = \min{\{\rho(f, g), 1\}}
+\end{equation}
+For if $\rho(f, g) > 1$, then $d(f(x_0), g(x_0)) > 1$ for some $x_0 \in X$. So $\bar{d}(f(x_0), g(x_0)) = 1$ and $\bar{\rho}(f, g) = 1$ by definition. If $\rho(f, g) \leq 1$, then $\bar{d}(f(x), g(x)) = d(f(x), g(x)) \le 1$ for all $x \in X$. So $\bar{\rho}(f, g) = \sup_{x \in X} \{d(f(x), g(x))\} = \rho(f, g)$. 
+
+\par \noindent \textbf{Remark} If $X$ is a compact space, then every continuous function on $X$ is bounded; hence the sup metric is defined on $C(X, Y)$. If $Y$ is complete under $d$, then $C(X, Y)$ is complete under $\bar{\rho}$, so it is complete under $\rho$ as well. 
 
 \section{Completion} 
 
+\begin{lemma}
+    If $A$ is a dense subset of a metric space $(Z, \rho)$ and every Cauchy sequence in $A$ converges to a point in $Z$, then $Z$ is complete. 
+\end{lemma}
+\par \noindent \textbf{Proof} Let $(z_n)$ be a Cauchy sequence in $Z$. Since $A$ is dense in $Z$, for each $n$, there exists $a_n \in A$ such that $\rho(z_n, a_n) < \frac{1}{n}$. 
+\par Let $\epsilon > 0$. Since $(z_n)$ is a Cauchy sequence, there exists $N_1 \in \mathbb{N}$ such that for all $m, n \geq N_1$, $\rho(z_n, z_m) < \frac{\epsilon}{3}$.
+And let $N_2 \in \mathbb{N}$ such that $\frac{1}{N_2} < \frac{\epsilon}{3}$. Let $N = \max\{N_1, N_2\}$. Then for all $m, n \geq N$, we have 
+\begin{equation}
+    \rho(a_n, a_m) \leq \rho(a_n, z_n) + \rho(z_n, z_m) + \rho(z_m, a_m) < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
+\end{equation}
+So $(a_n)$ is a Cauchy sequence in $A$. By hypothesis, $(a_n)$ converges to some point $z \in Z$. So we have 
+\begin{equation}
+    \rho(z_n, z) \leq \rho(z_n, a_n) + \rho(a_n, z) < \frac{1}{n} + \rho(a_n, z)
+\end{equation}
+for all $n$. Letting $n \rightarrow \infty$, we have $\lim_{n \to \infty} \rho(z_n, z) = 0$. So $(z_n)$ converges to $z$. Therefore, $Z$ is complete. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{theorem}
     Let $(X, d)$ be a metric space. There is an isometric imbedding of $X$ into a complete metric space. 
 \end{theorem}
+\par \noindent \textbf{Proof 1} 
+\par Let $x_0$ be a fixed point of $X$. Given $a\in X$, define $\phi_a: X \rightarrow \mathbb{R}$ by the equation 
+\begin{equation}
+    \phi_a(x) = d(x, a) - d(x, x_0)
+\end{equation}
+We assert that $\phi_a$ is bounded. For it follows, from the inequalities 
+\begin{equation}
+    d(x, a) \leq d(x, b) + d(b, a), 
+\end{equation}
+\begin{equation}
+    d(x, b) \leq d(x, a) + d(a, b),
+\end{equation}
+that 
+\begin{equation}
+    |d(x, a) - d(x, b)| \leq d(a, b). 
+\end{equation}
+Setting $b = x_0$, we have that $|\phi_a(x)|\le d(a, x_0)$ for all $x \in X$.  
+\par Define $\Phi: X \rightarrow B(X, \mathbb{R})$ by setting 
+\begin{equation}
+    \Phi(a) = \phi_a
+\end{equation}
+We show that $\Phi$ is an isometric imbedding of $(X, d)$ into the complete metric space $(B(X, \mathbb{R}), \rho)$(This space is complete by using \ref{thm:completeFunSpace} and the fact $\mathbb{R}$ is complete). That is, we show that for every pair of points $a, b \in X$, 
+\begin{equation}
+    \rho(\phi(a), \phi(b)) = d(a, b). 
+\end{equation}
+\par By definition, 
+\begin{equation}
+    \rho(\phi(a), \phi(b)) = \sup_{x \in X} \{|\phi_a(x) - \phi_b(x)|\} = \sup_{x \in X} \{|d(x, a) - d(x, b)|\}
+\end{equation}
+We conclude that 
+\begin{equation}
+    \rho(\phi(a), \phi(b)) \leq d(a, b)
+\end{equation}
+for all $a, b \in X$. On the other hand, by setting $x = a$, we have that 
+\begin{equation}
+    |d(x, a) - d(x, b)| = d(a, b)
+\end{equation}
+which implies that $\rho(\phi(a), \phi(b)) \geq d(a, b)$. Therefore, $\rho(\phi(a), \phi(b)) = d(a, b)$ for all $a, b \in X$. So $\Phi$ is an isometric imbedding of $X$ into the complete metric space $B(X, \mathbb{R})$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Proof 2} 
+\par Let $\tilde{X}$ be the set of all Cauchy sequences in $X$. Define an equivalence relation $\sim$ on $\tilde{X}$ by setting $(x_n) \sim (y_n)$ if and only if $\lim_{n \to \infty} d(x_n, y_n) = 0$. 
+\par We assert that $\sim$ is an equivalence relation(easy to verify). 
+\par Let $Y$ be the set of all equivalence classes of $\tilde{X}$ under $\sim$. Define a metric $D$ on $Y$ the equation 
+\begin{equation}
+    D([(x_n)], [(y_n)]) = \lim_{n \to \infty} d(x_n, y_n)
+\end{equation}  
+\par We assert that $D$ is well-defined and is a metric on $Y$. First we can see that the limit $\lim_{n \to \infty} d(x_n, y_n)$ exists because $\{d(x_n, y_n)\}$ is a Cauchy sequence in $\mathbb{R}$. Second, if $(x_n) \sim (x_n')$ and $(y_n) \sim (y_n')$, then $\lim_{n \to \infty} d(x_n, x_n') = 0$ and $\lim_{n \to \infty} d(y_n, y_n') = 0$. By the triangle inequality, we have that 
+\begin{equation}
+    \lim_{n \to \infty} d(x_n', y_n') \leq \lim_{n \to \infty} d(x_n', x_n) + \lim_{n \to \infty} d(x_n, y_n) + \lim_{n \to \infty} d(y_n, y_n') = \lim_{n \to \infty} d(x_n, y_n)
+\end{equation}
+and similarly
+\begin{equation}
+    \lim_{n \to \infty} d(x_n, y_n) \leq \lim_{n \to \infty} d(x_n', y_n')
+\end{equation}
+thus $\lim_{n \to \infty} d(x_n, y_n) = \lim_{n \to \infty} d(x_n', y_n')$. So $D$ is well-defined. It is easy to verify that $D$ is a metric on $Y$. 
+\par Define $h: X \rightarrow Y$ by setting $h(x) = [(x, x, x, \cdots)]$. Then $h$ is an isometric imbedding of $(X, d)$ into $(Y, D)$. Indeed, given $x, y \in X$, we have that 
+\begin{equation}
+    D(h(x), h(y)) = D([(x, x, x, \cdots)], [(y, y, y, \cdots)]) = \lim_{n \to \infty} d(x, y) = d(x, y)
+\end{equation}
+And $h$ is injective because if $h(x) = h(y)$, then $D(h(x), h(y)) = 0$ thus $d(x, y) = 0 \Longrightarrow x = y$. An isometry is automatically a homeomorphism onto its image, so $h$ is an isometric imbedding of $(X, d)$ into $(Y, D)$.  
+\par We show that $(Y, D)$ is dense in $Y$. Let $[(x_n)]$ be an element of $Y$.
+We have a sequence $(h(x_n))$ in $Y$. And we have that
+\begin{equation}
+    D(h(x_n), [(x_n)]) = \lim_{m \to \infty} d(x_n, x_m) 
+\end{equation}
+So let $\epsilon > 0$ be given. Since $(x_n)\in \tilde{X}$, there exists $N \in \mathbb{N}$ such that for all $m, n \geq N$, $d(x_n, x_m) < \epsilon$. In particular, for all $n \geq N$, we have that $D(h(x_n), [(x_n)]) = \lim_{m \to \infty} d(x_n, x_m) < \epsilon$. 
+Hence $(h(x_n))$ converges to $[(x_n)]$. Since $[(x_n)]$ is an arbitrary element of $Y$, we conclude that $h(X)$ is dense in $Y$. 
+\par Let $(h(x_n))$ be a Cauchy sequence in $h(X)$. Since $h$ is an isometry, $(x_n)$ is a Cauchy sequence in $X$ if and only if $(h(x_n))$ is a Cauchy sequence in $h(X)$. Let $[(y_n)]$ be the element of $Y$. It follows from the same argument as in the previous paragraph that $(h(y_n))$ converges to $[(y_n)]$. So every Cauchy sequence in $h(X)$ converges to a point in $Y$. 
+\par Since $h(X)$ is dense in $Y$ and every Cauchy sequence in $h(X)$ converges to a point in $Y$, by the previous lemma, $Y$ is complete. 
+\mbox{} \\ \null \hfill $\blacksquare$  
 
-\par \noindent \textbf{Exercise} The completion of $X$ is unique up to isometry. 
+
+\par \noindent \textbf{Exercise} Let $h: X \rightarrow Y$ and $h': X \rightarrow Y'$ be isometric imbeddings of the metric space $(X, d)$ in the complete metric spaces $(Y, D)$ and $(Y', D')$, respectively. Then there is an isometry of $(\overline{h(X)}, D)$ with $(\overline{h'(X)}, D')$ that equals $h'\circ h^{-1}$ on the subspace $h(X)$. In other words, the completion of $X$ is unique up to isometry. 
 
 
 \end{document}
