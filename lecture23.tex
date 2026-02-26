@@ -18,6 +18,7 @@
 
 \begin{theorem}
     [Imbedding theorem]
+    \label{thm:Imbed}
     Let $X$ be a $T_1$ space. Suppose that $\{f_{\alpha}\}_{\alpha \in J}$ is an indexed family of continuous functions $f_{\alpha}: X \to \mathbb{R}$ satisfying the requirement that for each point $x_0$ of $X$ and each open set $U$ containing $x_0$, there exists an index $\alpha$ such that $f_{\alpha}(x_0)$ is positive and $f_{\alpha}$ vanishes on $X \setminus U$. Then the function $F: X \rightarrow \mathbb{R}^J$ defined by
     \begin{equation}
         F(x) = (f_{\alpha}(x))_{\alpha \in J}
@@ -25,7 +26,21 @@
     is an imbedding of $X$ in $\mathbb{R}^J$. If $f_{\alpha}: X \rightarrow [0, 1]$ for each $\alpha \in J$, then $F$ is an imbedding of $X$ in the cube $[0, 1]^J$. 
 \end{theorem}
 \par \noindent \textbf{Proof} The proof is similar to the proof of Urysohn metrization theorem. 
-\par Here $T_1$ is required to guarantee that singletons are closed, so that if $x \neq y$, there exists $f_{\alpha}$ such that $f_{\alpha}(x) \neq f_{\alpha}(y)$. 
+\par First, $F$ is continuous because $\mathbb{R}^J$ has the product topology and each $f_{\alpha}$ is continuous. Second, since $X$ is $T_1$, singletons are closed, so for any two distinct points $x, y \in X$, there exists an index $\alpha$ such that $f_{\alpha}(x) \neq f_{\alpha}(y)$. So $F(x) \neq F(y)$, which implies that $F$ is injective. 
+\par Finally, we must prove that $F$ is a homeomorphism onto its image, the subspace $Z = F(X)$ of $\mathbb{R}^J$. We know that $F$ defines a continuous bijection from $X$ to $Z$. So it suffices to show that for each open set $U$ in $X$, $F(U)$ is open in $Z$. Let $z_0$ be a point in $F(U)$. We shall find an open set $W$ of $Z$ such that 
+\begin{equation}
+    z_0 \in W \subseteq F(U).
+\end{equation}
+\par Let $x_0$ be the point in $U$ such that $F(x_0) = z_0$. Choose an index $\beta$ for which $f_{\beta}(x_0)$ is positive and $f_{\beta}(X - U) = \{0\}$. Let
+\begin{equation}
+    V = \{z \in Z: z_{\beta} > 0\} = \pi_{\beta}^{-1}((0, \infty)) \cap Z,
+\end{equation} 
+which is open in $Z$ by the definition of subspace topology. We assert that $z_0\in V \subseteq F(U)$. First, $z_0 \in V$ because  
+\begin{equation}
+    \pi_{\beta}(z_0) = f_{\beta}(x_0) > 0.
+\end{equation}
+Second, $V \subseteq F(U)$. For if $z \in V$, then $\pi_{\beta}(z) > 0$, so $f_{\beta}(x) > 0$ for some $x \in U$. Since $f_{\beta}$ vanishes on $X \setminus U$, we have $x \in U$. So $z = F(x)$ for some $x \in U$, which means $z \in F(U)$. 
+\par \noindent \textbf{Remark} Here $T_1$ is required to guarantee that singletons are closed, so that if $x \neq y$, there exists $f_{\alpha}$ such that $f_{\alpha}(x) \neq f_{\alpha}(y)$. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{theorem}\label{thm:CRImbed}
     A space is completely regular if and only if it is homeomorphic to a subspace of a cube $[0, 1]^J$ for some index set $J$. 
@@ -39,7 +54,11 @@
 \begin{lemma}\label{lemma:CRImbed}
     Let $X$ be a Hausdorff space. Let $h: X \to Z$ be an imbedding of $X$ in the compact Hausdorff space $Z$. Then there exists a corresponding compactification $Y$ of $X$ such that there is an imbedding $H: Y \to Z$ with $H|_{X} = h$. Such a compactification $Y$ is uniquely determined up to equivalence. 
 \end{lemma}
-\par \noindent \textbf{Proof} To be done(P255 of the pdf). 
+\par \noindent \textbf{Proof} 
+\par Given $h$, let $X_0$ denote the subspace $h(X)$ of $Z$, and let $Y_0$ denote its closure in $Z$. Then $Y_0$ is a compact Hausdorff space and $\overline{X_0} = Y_0$; therefore, $Y_0$ is a compactification of $X_0$. 
+\par We now construct a spacce $Y$ containing $X$ such that the pair $(X, Y)$ is homeomorphic to the pair $(X_0, Y_0)$. Let us choose a set $A$ disjoint from $X$ that is in bijective correspondence with $Y_0 \setminus X_0$ under some map $k: A \rightarrow Y_0 \setminus X_0$. Let $Y = X \cup A$ and define a bijective correspondence $H: Y \to Y_0$ by $H(x) = h(x)$ for $x \in X$ and $H(a) = k(a)$ for $a \in A$. Then topologize $Y$ by declaring $U$ to be open in $Y$ if and only if $H(U)$ is open in $Y_0$. The map $H: Y \to Y_0$ is automatically a homeomorphism; and the space $X$ is a subspace of $Y$ because $H$ equals thee homeomorphism $h$ when restricted to the subspace $X$ of $Y$. By expanding the range of $H$, we obtain the required imbedding of $Y$ into $Z$. 
+\par Now suppose $Y_i$ is a compactification of $X$ and that $H_i: Y_i \to Z$ is an imbedding that is an extension of $h$, for $i = 1, 2$. Now $H_i$ maps $X$ onto $h(X) = X_0$. Because $H_i$ is continuous, it must map $Y_i$ into $\bar{X}_0$(Recall $H$ is continuous iff $H(\bar{X}) \subseteq \overline{H(X)}$); because $H_i(Y_i)$ contains $X_0$ and is closed(being compact), it contains $\bar{X}_0$. Hence $H_i(Y_i) = \bar{X}_0$, and $H_2^{-1} \circ H_1$ defines a homeomorphism of $Y_1$ with $Y_2$ that equals the identity on $X$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{example}
     $X = (0, 1)$, $Y = S^1 \subseteq \mathbb{R}^2$, $X\ni x \mapsto (\cos 2\pi x, \sin 2\pi x) \in Y$ is a compactification of $X$. (Not the Usual sense of Compactification, see the above lemma. )
@@ -70,7 +89,19 @@
 \end{theorem}
 \par \noindent \textbf{Proof} 
 \par We prove the existence first and the uniqueness will be discussed in the next lecture. 
-\par To be done(Hint: The imbedding Theorem).
+\par \noindent \textbf{Proof} 
+\par Let $\{f_{\alpha}\}_{\alpha \in J}$ be the collection of all bounded continuous real-valued functions on $X$, indexed by some set $J$. For each $\alpha \in J$, choose a closed interval $I_{\alpha}$ in $\mathbb{R}$ that contains the range of $f_{\alpha}$. To be definite, choose 
+\begin{equation}
+    I_{\alpha} = [\inf f_{\alpha}(X), \sup f_{\alpha}(X)].
+\end{equation}
+Then define $h: X \rightarrow \prod_{\alpha \in J} I_{\alpha}$ by $h(x) = (f_{\alpha}(x))_{\alpha \in J}$. 
+\par By the Tychonoff theorem, $\prod_{\alpha \in J} I_{\alpha}$ is compact. Because $X$ is completely regular, points and closed sets can be separated by continuous functions from the family $\{f_{\alpha}\}_{\alpha \in J}$. So by the Imbedding theorem\ref{thm:Imbed}, $h$ is an imbedding of $X$ in the compact Hausdorff space $\prod_{\alpha \in J} I_{\alpha}$. 
+\par Let $Y$ be the compactification of $X$ induced by $h$ as in Lemma \ref{lemma:CRImbed}. Then by the lemma there is an imbedding $H: Y \rightarrow \prod_{\alpha \in J} I_{\alpha}$ that equals $h$ when restricted to the subspace $X$ of $Y$. 
+\par Given a bounded continuous function $f: X \rightarrow \mathbb{R}$, we show it extends to $Y$. The function belongs to the collection $\{f_{\alpha}\}_{\alpha \in J}$, so it equals $f_{\beta}$ for some $\beta \in J$. Let $\pi_{\beta}: \prod_{\alpha \in J} I_{\alpha} \rightarrow I_{\beta}$ be the projection to the $\beta$-th coordinate. Then the continuous map $\overline{f} = \pi_{\beta} \circ H: Y \rightarrow I_{\beta}$ is an extension of $f$ for if $x \in X$, then 
+\begin{equation}
+    \overline{f}(x) = \pi_{\beta}(H(x)) = \pi_{\beta}(h(x)) = f_{\beta}(x) = f(x). 
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 
 \end{document}

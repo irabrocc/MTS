@@ -27,7 +27,7 @@
     If $X$ is a metric space, then $X$ is compact if and only if it is limit point compact if and only if it is sequentially compact.
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par The proof is quite long and technical. We will only some directions in the following. 
+\par The proof is quite long and technical. We will only show some directions in the following. 
 
 \begin{theorem}
     For an arbitrary topological space, compactness implies limit point compactness. The converse is not true in general.
@@ -68,6 +68,14 @@ and
 \end{equation}
 That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$, $U_k \subseteq U$. Then $x_{n_k} \in U_k \subseteq U$ for all $k \ge N$. So $x_{n_k} \to a$. \hfill $\blacksquare$
 
+\begin{theorem}
+    Sequential compactness implies compactness for metric spaces.
+\end{theorem}
+\par \noindent \textbf{Proof} This is harder than other directions. 
+
+
+\par \noindent \textbf{Exercise} Prove that $X$ is sequentially compact, then it is limit point compact. 
+
 
 \par \noindent \textbf{Remark} For topological spaces, we have the following facts: 
 
@@ -77,13 +85,7 @@ That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$
     \item But other implications are not true in general.
 \end{enumerate}
 
-\begin{theorem}
-    Sequential compactness implies compactness for metric spaces.
-\end{theorem}
-\par \noindent \textbf{Proof} This is harder than other directions. 
 
-
-\par \noindent \textbf{Exercise} Prove that $X$ is sequentially compact, then it is limit point compact. 
 
 \section{Locally Compact} 
 
@@ -105,7 +107,7 @@ That is for each open set $U \ni a$ there exists $N$ such that $\forall k \ge N$
 \end{example}
 
 \par \noindent \textbf{Exercise} Show the above example. 
-\par \noindent \textbf{Solution} Let $C$ be a compact subspace of $\mathbb{Q}$ containing a neighborhood $U$ of $x \in \mathbb{Q}$. Since $U$ is open in $\mathbb{Q}$, there exists an interval $(a, b) \subseteq \mathbb{R}$ such that $U = (a, b) \cap \mathbb{Q}$. We know $Q$ is dense in $\mathbb{R}$, so there exists an irrational number $y \in (a, b)$. Let $\{q_n\} \subseteq (a, b) \cap \mathbb{Q}$ be a sequence converging to $y$. Since $C$ is compact, so $\{q_n\}$ has a subsequence converging to a point in $C$. But a convergent sequence in $\mathbb{R}$ has a unique limit, so the subsequence converges to $y$, which is not in $\mathbb{Q}$ thus not in $C$. This is a contradiction. Hence, $\mathbb{Q}$ is not locally compact.
+\par \noindent \textbf{Solution} Let $C$ be a compact subspace of $\mathbb{Q}$ containing a neighborhood $U$ of $x \in \mathbb{Q}$. Since $U$ is open in $\mathbb{Q}$, there exists an interval $(a, b) \subseteq \mathbb{R}$ such that $U = (a, b) \cap \mathbb{Q}$. We know $\mathcal{Q}$ is dense in $\mathbb{R}$, so there exists an irrational number $y \in (a, b)$. Let $\{q_n\} \subseteq (a, b) \cap \mathbb{Q}$ be a sequence converging to $y$. Since $C$ is compact, so $\{q_n\}$ has a subsequence converging to a point in $C$. But a convergent sequence in $\mathbb{R}$ has a unique limit, so the subsequence converges to $y$, which is not in $\mathbb{Q}$ thus not in $C$. This is a contradiction. Hence, $\mathbb{Q}$ is not locally compact.
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{example}

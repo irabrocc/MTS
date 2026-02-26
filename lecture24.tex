@@ -1,6 +1,9 @@
 % 声明为子文件，指定主文件
 \documentclass[main.tex]{subfiles}
 
+\usepackage{tikz-cd}
+\tikzcdset{arrow style=tikz, diagrams={>=stealth}}
+
 \begin{document}
 \pagestyle{plain}
 \setcounter{chapter}{23}
@@ -13,24 +16,38 @@
     Let $X$ be a completely regular space. Then there exists a compactification $Y$ of $X$ such that every bounded continuous function $f: X \rightarrow \mathbb{R}$ extends uniquely to a continuous function $\overline{f}: Y \rightarrow \mathbb{R}$. ($Y$ is called the Stone–Čech compactification of $X$) 
 \end{theorem}
 
+\par In the last lecture, we have shown the existence part of the above theorem. The uniqueness part is a consequence of the following lemma. 
+
 \begin{lemma}
+    \label{lemma:extenUnique}
     Let $A \subseteq X$. Let $f: A \rightarrow Z $ be continuous and $Z$ be Hausdorff. Then there exists at most one extension of $f$ to a continuous function $g: \bar{A} \rightarrow Z, g|_{A} = f$. 
 \end{lemma}
 \par \noindent \textbf{Proof} 
-\par To be done. 
-\par \noindent \textbf{Remark} The uniqueness part of Theorem \ref{thm:SC} follows from this lemma. 
+\par Suppose that $g, g': \bar{A} \rightarrow Z$ are two different extensions of $f$. Then there exists $x \in \bar{A}$ such that $g(x) \neq g'(x)$. Since $Z$ is Hausdorff, there exist disjoint open sets $U, U'$ in $Z$ such that $g(x) \in U$ and $g'(x) \in U'$. 
+Choose a neighborhood $V$ of $x$ such that $g(V) \subseteq U$ and $g'(V) \subseteq U'$. Now $V$ intersects $A$ because $x \in \bar{A}$. Take $y \in V \cap A$. Then $g(y) = f(y) = g'(y)$, contradicting the fact that $U$ and $U'$ are disjoint. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
 
 \begin{theorem}
-    Let $X$ be completely regular and $Y$ be a compactification of $X$ such that $Y$ satisfies the Stone–Čech property \ref{thm:SC}. Then any continuous map $f: X \rightarrow C$ where $C$ is a compact Hausdorff space can be extended uniquely to a continuous map $g: Y \rightarrow C$.
+    Let $X$ be completely regular and $Y$ be a compactification of $X$ such that $Y$ satisfies the Stone–Čech property \ref{thm:SC}. Then any continuous map $f: X \rightarrow C$ with $C$ being a compact Hausdorff space can be extended uniquely to a continuous map $g: Y \rightarrow C$.
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par To be done. 
+\par $C$ is compact Hausdorff, so it is normal thus is completely regular. So $C$ can be imbedded in a cube $[0, 1]^J$ for some index set $J$. Since $C$ is homeomorphic to its image in $[0, 1]^J$, we may as well assume $C$ is a subspace of $[0, 1]^J$. Then each component function $f_{\alpha} = \pi_{\alpha} \circ f: X \rightarrow [0, 1]$ is a bounded continuous function on $X$. By the Stone–Čech property, $f_{\alpha}$ extends to a continuous function $\overline{f_{\alpha}}: Y \rightarrow [0, 1]$. Define $\overline{f}: Y \rightarrow [0, 1]^J$ by $\overline{f}(y) = (\overline{f_{\alpha}}(y))_{\alpha \in J}$. Then $\overline{f}$ is continuous and extends $f$. Now in fact $\overline{f}$ maps $Y$ into $C$ because
+\begin{equation}
+    \overline{f}(Y) = \overline{f}(\bar{X}) \subseteq \overline{\bar{f}(X)} = \overline{f(X)} \subseteq \overline{C} = C.
+\end{equation}
+where $Y = \bar{X}$ because $X$ is dense in $Y$, $\bar{f}(\bar{X}) \subseteq \overline{\bar{f}(X)}$ because $\bar{f}$ is continuous, $\overline{\bar{f}(X)} = \overline{f(X)}$ because $\bar{f}$ extends $f$, and $\overline{C} = C$ because $C$ is closed as a compact subspace of a Hausdorff space. So $\overline{f}$ is a desired extension of $f$. The uniqueness of the extension follows from the previous lemma. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{theorem}
     Let $Y_1, Y_2$ be compactifications of a completely regular space $X$. Suppose both $Y_1$ and $Y_2$ satisfy the Stone–Čech property. Then there exist homeomorphisms $h: Y_1 \rightarrow Y_2$. 
 \end{theorem}
 \par \noindent \textbf{Proof} 
-\par To be done. 
+\par Consider the inclusion mapping $j_2: X \rightarrow Y_2$. It is a continuous map of $X$ into the compact Hausdorff sapce $Y_2$. Because $Y_1$ satisfies the Stone–Čech property, by the previous theorem, $j_2$ extends to a continuous map $f_2: Y_1 \rightarrow Y_2$. Similarly, the inclusion mapping $j_1: X \rightarrow Y_1$ extends to a continuous map $f_1: Y_2 \rightarrow Y_1$. 
+\par The composite $f_1 \circ f_2: Y_1 \rightarrow Y_1$ has the property that $f_1 \circ f_2(x) = x$ for all $x \in X$. Therefore, $f_1 \circ f_2$ is a continuous extension of the identity map on $X$. But the identity map of $Y_1$ is also a continuous extension of the identity map on $X$. By the uniqueness of the extension \ref{lemma:extenUnique}, we have $f_1 \circ f_2 = id_{Y_1}$. Similarly, $f_2 \circ f_1 = id_{Y_2}$. So $f_1$ and $f_2$ are homeomorphisms. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+
+
 \section{Complete Metric Spaces}
 
 \begin{definition}
@@ -39,7 +56,7 @@
 \begin{property}
     Every convergent sequence is a Cauchy sequence.
 \end{property}
-\par \noindent \textbf{Proof} To be done.
+\par \noindent \textbf{Proof} Easy exercise. 
 \begin{definition}
     A metric space $(X, d)$ is called complete if every Cauchy sequence in $X$ converges to a limit in $X$.
 \end{definition}
@@ -48,24 +65,35 @@
     [non-example] 
     $(0, 1)$ with the usual metric. Then the sequence $x_n = \frac{1}{n}$ is a Cauchy sequence that does not converge in $(0, 1)$.
 \end{example}
+\par \noindent \textbf{Remark} This example also shows that completeness is not a topological property. The subspace $(0, 1)$ of $\mathbb{R}$ is homeomorphic to $\mathbb{R}$, but $(0, 1)$ is not complete while $\mathbb{R}$ is complete. 
 
 \begin{example}
     [non-example] 
     $\mathbb{Q}$ with the usual metric is not complete. For example, the sequence defined by the decimal approximations of $\sqrt{2}$ is a Cauchy sequence in $\mathbb{Q}$ that does not converge to a rational number.
 \end{example}
 \begin{property}
-    If $A \subseteq X$ is closed and $(X, d)$ is complete, then $A$ is complete.
+    If $A \subseteq X$ is closed and $(X, d)$ is complete, then $A$ is complete in the restricted metric $d|_A$.
 \end{property}
+\par \noindent \textbf{Proof} Easy exercise.
 \begin{property}
     Let $(X, d)$ be a metric space. Take $\bar{d} = \min\{d, 1\}$. Then $(X, d)$ is complete implies $(X, \bar{d})$ is complete, and conversely. 
 \end{property}
+\par \noindent \textbf{Proof} 
+\par A sequence $\{x_n\}$ is Cauchy in $d$ if and only if it is Cauchy in $\bar{d}$. And a sequence $\{x_n\}$ converges under $d$ if and only if it converges under $\bar{d}$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{lemma}
     A metric space $X$ is complete if and only if every Cauchy sequence has a convergent subsequence.
 \end{lemma}
 \par \noindent \textbf{Proof} 
 \par ``$\Rightarrow$'': Trivial.
-\par ``$\Leftarrow$'': To be done.
+\par ``$\Leftarrow$'': 
+\par Let $\{x_n\}$ be a Cauchy sequence in $(X, d)$. We show that if $\{x_{n_k}\}$ is a subsequence of $\{x_n\}$ that converges to some $x \in X$, then $\{x_n\}$ converges to $x$.  
+\par Given $\epsilon > 0$, there exists $N_1 \in \mathbb{N}$ such that for all $m, n \geq N_1$, $d(x_n, x_m) < \frac{\epsilon}{2}$. Since $\{x_{n_k}\}$ converges to $x$, there exists $N_2 \in \mathbb{N}$ such that for all $n_k \geq N_2$, $d(x_{n_k}, x) < \frac{\epsilon}{2}$. Let $N = \max\{N_1, N_2\}$. Then for all $n, n_k \geq N$, we have 
+\begin{equation}
+    d(x_n, x) \leq d(x_n, x_{n_k}) + d(x_{n_k}, x) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+\end{equation}
+\mbox{} \\ \null \hfill $\blacksquare$ 
 
 \begin{theorem}
     $\mathbb{R}^k$ is complete in $d_1, d_2, d_{\infty}$.
@@ -73,29 +101,29 @@
 \par \noindent \textbf{Proof} 
 \par We show this for $d_{\infty}$. 
 \par Let $\{x_n\} \subseteq \mathbb{R}^k$ be a Cauchy sequence in $d_{\infty}$. 
-Then $\{x_n\}$ is bounded, i.e., there exists $M > 0$ such that for all $n$, $d_{\infty}(x_n, 0) < M$. So such sequence lies in a compact set $[-M, M]^k$. We know in metric spaces, compactness is equivalent to sequential compactness. Thus there exists a convergent subsequence $\{x_{n_k}\}$ that converges to some $x \in [-M, M]^k$. By the lemma, $\{x_n\}$ converges to $x$. 
+Then $\{x_n\}$ is bounded, i.e., there exists $M > 0$ such that for all $n$, $d_{\infty}(x_n, 0) < M$. So such sequence lies in a compact set $[-M, M]^k$. We know in metric spaces, compactness is equivalent to sequential compactness. Thus there exists a convergent subsequence $\{x_{n_k}\}$ that converges to some $x \in [-M, M]^k$. By the lemma, $X$ is complete under $d_{\infty}$.  
 \par All these metrics are equivalent, so $\mathbb{R}^k$ is complete in $d_1, d_2$ as well. 
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
 
 \begin{lemma}
-    Let $X = \prod_{\alpha \in J} X_{\alpha}$. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ converges to $x \in X$ if and only if for all $\alpha \in J$, the sequence of $\alpha$-th coordinates $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ in $X_{\alpha}$.
+    Let $X = \prod_{\alpha \in J} X_{\alpha}$. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ converges to $x \in X$ if and only if for all $\alpha \in J$, the sequence of $\alpha$-th coordinates $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)\in X_{\alpha}$.
 \end{lemma}
 \par \noindent \textbf{Proof} 
 \par ``$\Rightarrow$'': $\pi_{\alpha}$ is continuous for all $\alpha \in J$. Then it preserves convergence. 
 \par ``$\Leftarrow$'': Suppose $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$ for all $\alpha \in J$. Let $U$ be an open neighborhood of $x$. Then there exists a finite set $K \subseteq J$ and open sets $U_{\alpha} \subseteq X_{\alpha}$ for all $\alpha \in K$ such that $x \in \prod_{\alpha \in K} U_{\alpha} \times \prod_{\alpha \in J \setminus K} X_{\alpha} \subseteq U$. Since $(\pi_{\alpha}(x_n))$ converges to $\pi_{\alpha}(x)$, for each $\alpha \in K$, there exists $N_{\alpha} \in \mathbb{N}$ such that for all $n \geq N_{\alpha}$, $\pi_{\alpha}(x_n) \in U_{\alpha}$. Let $N = \max_{\alpha \in K} N_{\alpha}$. Then for all $n \geq N$, $x_n \in U$. Thus $(x_n)$ converges to $x$.
-
+\mbox{} \\ \null \hfill $\blacksquare$ 
 \begin{theorem}
     There is a metric on $\mathbb{R}^{\omega}$ that makes it complete.
 \end{theorem}
 
 \par \noindent \textbf{Proof}
-\par Define $\bar{d}(a, b) = \min\{1, |a - b| \}$ for all $a, b \in \mathbb{R}$. Define $D(x, y) = \sup_{i \in \mathbb{N}} \{\frac{\bar{d}(x_i, y_i)}{i}\}$ for all $x = (x_i), y = (y_i) \in \mathbb{R}^{\omega}$. Then $D$ is a metric on $\mathbb{R}^{\omega}$ that induces the product topology(I think it is proved in some lectures ago, if it is not proved, it is an exercise). 
+\par Define $\bar{d}(a, b) = \min\{1, |a - b| \}$ for all $a, b \in \mathbb{R}$. Define $D(x, y) = \sup_{i \in \mathbb{N}} \{\frac{\bar{d}(x_i, y_i)}{i}\}$ for all $x = (x_i), y = (y_i) \in \mathbb{R}^{\omega}$. Then $D$ is a metric on $\mathbb{R}^{\omega}$ that induces the product topology(Please refer to Lecture 15). 
 \par Let $\{x_n\} \subseteq \mathbb{R}^{\omega}$ be a Cauchy sequence in $D$. Because 
 \begin{equation}
     \bar{d}(\pi_i(x), \pi_i(y)) \leq i \cdot D(x, y)
 \end{equation}
-we see that for fixed $i$, $\{\pi_i(x_n)\}$ is a Cauchy sequence in $\mathbb{R}$, so it converges, say to $a_i$($\bar{d}$ is equivalent to $|\cdot|$ in the sense of convergence/completeness as the property says). Then the sequence $x_n$ converges to $a = (a_i) \in \mathbb{R}^{\omega}$. 
+we see that for fixed $i$, $\{\pi_i(x_n)\}$ is a Cauchy sequence in $\mathbb{R}$ under $\bar{d}$ thus is a Cauchy sequence under $d$. Then it converges, say, to $a_i$ under $d$. Then the sequence $x_n$ converges to $a = (a_i) \in \mathbb{R}^{\omega}$ by the previous lemma.  
 \mbox{} \\ \null \hfill $\blacksquare$ 
 
 \section{Uniform Metric} 
@@ -108,10 +136,50 @@ Let $(Y, d)$ be a metric space. Let $\bar{d} = \min\{d, 1\}$. We take the set of
 \begin{theorem}
     If $Y$ is complete with respect to $d$, then $Y^J$ is complete in the uniform metric $\bar{\rho}$ corresponding to $d$. 
 \end{theorem}
+\par \noindent \textbf{Proof} 
+\par Recall that if $(Y, d)$ is complete, so is $(Y, \bar{d})$. Now suppose that $f_1, f_2, \cdots$ is a Cauchy sequence in $Y^J$ under $\bar{\rho}$. Given $\alpha\in J$, the fact that 
+\begin{equation}
+    \bar{d}(f_n(\alpha), f_m(\alpha)) \leq \bar{\rho}(f_n, f_m)
+\end{equation}
+for all $n, m$ implies that $\{f_n(\alpha)\}$ is a Cauchy sequence in $Y$ under $\bar{d}$. Then it converges to some point $y_{\alpha}$. Let $f$ be defined by $f(\alpha) = y_{\alpha}$. We assert that $f_n$ converges to $f$ in the uniform metric $\bar{\rho}$. 
+\par Given $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n, m \geq N$, $\bar{\rho}(f_n, f_m) < \frac{\epsilon }{2}$. In particular, given $\alpha \in J$,
+\begin{equation}
+    \bar{d}(f_n(\alpha), f_m(\alpha)) < \frac{\epsilon}{2}
+\end{equation} 
+for all $n, m \geq N$. Letting $n$ and $\alpha$ be fixed and letting $m \rightarrow \infty$(classical and trivial method in Calculus), we have that 
+\begin{equation}
+    \bar{d}(f_n(\alpha), f(\alpha)) \leq \frac{\epsilon}{2} 
+\end{equation} 
+This inequality holds for all $\alpha \in J$, provided $n \geq N$. Therefore, 
+\begin{equation}
+    \bar{\rho}(f_n, f) = \sup_{\alpha \in J} \{\bar{d}(f_n(\alpha), f(\alpha))\} \leq \frac{\epsilon}{2} < \epsilon
+\end{equation}
+for all $n \geq N$. So $f_n$ converges to $f$ in the uniform metric $\bar{\rho}$. 
+\mbox{} \\ \null \hfill $\blacksquare$ 
+\par \noindent \textbf{Remark} Recall that the product topology on $\mathbb{R}^J$ is not metrizable if $J$ is uncountable. The topology induced by the uniform metric on $\mathbb{R}^J$ is strictly finer than the product topology so the uniform metric does not metrize the product topology.
+\par The set $J$ here is merely a set, not necessarily a topological space. If $J$ is a topological space, then we have the following result. 
+
 
 \begin{theorem}
     Let $X$ be a topological space and let $(Y, d)$ be a metric space. The set $C(X, Y)$ of continuous functions from $X$ to $Y$ is closed in $Y^X$ under the uniform metric. So is the set $B(X, Y)$ of bounded functions. Therefore, if $Y$ is complete, these spaces are complete in the uniform metric. 
 \end{theorem}
+
+\begin{definition}
+    If $(Y, d)$ is a metric space, one can define another metric on the set $B(X, Y)$ of bounded functions from $X$ to $Y$ by the equation 
+    \begin{equation}
+        \rho(f, g) = \sup_{x \in X} \{d(f(x), g(x))\}
+    \end{equation}
+    It is easy to see that $\rho$ is well-defined, for the set $f(X) \cup g(X)$ is bounded if both $f(X)$ and $g(X)$ are bounded. The metric $\rho$ is called the sup metric. 
+\end{definition}
+\par \noindent \textbf{Remark} There is something. 
+
+\section{Completion} 
+
+\begin{theorem}
+    Let $(X, d)$ be a metric space. There is an isometric imbedding of $X$ into a complete metric space. 
+\end{theorem}
+
+\par \noindent \textbf{Exercise} The completion of $X$ is unique up to isometry. 
 
 
 \end{document}

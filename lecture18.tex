@@ -21,7 +21,7 @@
 \par \noindent \textbf{Uniqueness} Let $Y = X \cup \{p\}$, $Y' = X \cup \{q\}$ satisfies the above properties. Define $h: Y \to Y'$ as follows: $h(x) = x$ for all $x \in X$ and $h(p) = q$. We show that $h$ is continuous. But the function is symmetric, so it is enough to show that $h(U)$ is open in $Y'$ for all open set $U$ in $Y$. 
 \par Take $U$ be open. There are two cases. 
 \par If $U \subseteq X$, then we are done. 
-\par Suppose $p\in U$. Then $C = Y \setminus U$ is closed in $Y$. So $C$ is compact. 
+\par Suppose $p\in U$. Then $C = Y \setminus U$ is closed in $Y$. So $C$ is compact. So $h(C) = C$ is compact in $Y'$. Since $Y'$ is Hausdorff, $C$ is closed in $Y'$. So $Y' \setminus C$ is open in $Y'$. Note that $h(U) = Y' \setminus C$. So $h(U)$ is open in $Y'$. 
 \par \noindent \textbf{Construction} We introduce the topology on $Y = X \cup \{\infty\}$ as follows: 
 \par There are two types of open sets in $Y$: 
 \begin{enumerate}
@@ -72,7 +72,7 @@ We need to check that this is a topology.
 
 \par \noindent \textbf{Proof} 
 \par $\Leftarrow$ $x\in V \subseteq \bar{V} \subseteq U$ and $\bar{V}$ is compact. So $X$ is locally compact at $x$.
-\par $\Rightarrow$ Let $Y$ be the one-point compactification(compact and Hausdorff) of $X$. Let $U$ be a neighborhood of $x$ in $Y$. Then $Y\setminus U:= C$ is a closed subset of $Y$. So $C$ is compact subspace of $Y$(Hausdorff). By lemma 12.0.2, there exists two open sets $V, W$ in $Y$ such that $x \in V$, $C \subseteq W$ and $V \cap W = \emptyset$. Then $\bar{V}$ is compact and $\bar{V} \cap C = \emptyset$. So $\bar{V} \subseteq U$. \hfill $\blacksquare$
+\par $\Rightarrow$ Let $Y$ be the one-point compactification(compact and Hausdorff) of $X$. Let $U$ be a neighborhood of $x$ in $Y$. Then $Y\setminus U:= C$ is a closed subset of $Y$. So $C$ is compact subspace of $Y$(Hausdorff). By lemma 13.0.2, there exists two open sets $V, W$ in $Y$ such that $x \in V$, $C \subseteq W$ and $V \cap W = \emptyset$. Then $\bar{V}$ is compact and $\bar{V} \cap C = \emptyset$. So $\bar{V} \subseteq U$. \hfill $\blacksquare$
 
 \begin{corollary}\label{coro:17.0.1}
     Let $X$ be locally compact Hausdorff space. $A \subseteq X$ is open or closed. Then $A$ is locally compact.
@@ -96,6 +96,7 @@ We need to check that this is a topology.
 
 \section{Urysohn's Metrization Theorem}
 \begin{theorem}
+    [Our goal in the next few lectures]
     Every $X$ that is regular(T3) and second-countable is metrizable.
 \end{theorem}
 

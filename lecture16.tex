@@ -29,7 +29,7 @@
     f(x) = \frac{||x||_b}{||x||_a} > 0.
 \end{equation}
 which is continuous on $\mathbb{R}^n\backslash\{0\}$. 
-\par Since $f(x) = f(\lambda x) $ for any $\lambda > 0$, we say that $f(x) $ is conpletely determined by its values on the unit sphere $S = \{x \in \mathbb{R}^n: ||x||_a = 1\}$. Note that $S$ is compact, so $f(x)$ attains its minimum and maximum on $S$, say $m$ and $M$. Thus, for any $x \in \mathbb{R}^n\backslash\{0\}$, we have
+\par Since $f(x) = f(\lambda x) $ for any $\lambda > 0$, we say that $f(x) $ is completely determined by its values on the unit sphere $S = \{x \in \mathbb{R}^n: ||x||_a = 1\}$. Note that $S$ is compact, so $f(x)$ attains its minimum and maximum on $S$, say $m$ and $M$. Thus, for any $x \in \mathbb{R}^n\backslash\{0\}$, we have
 \begin{equation}
     0 < m \leq f(x) \le M < \infty,
 \end{equation}
@@ -73,7 +73,8 @@ for some $m$. So we have
 So $B \subseteq A_m$. \hfill $\blacksquare$
 
 \begin{example}
-    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Then $\delta = \min\{b_i - a_i: i=1,2,\cdots,n\}$ is a Lebesgue number.
+    [Corrected]
+    Let $X \subseteq \mathbb{R}$ be convered by $(a_{\alpha}, b_{\alpha})$. Take a finite subcovering $(a_i, b_i)$, $i=1,2,\cdots,n$. Let $C = \{a_i | i = 1, 2, \cdots, n\} \cup \{ b_i | i = 1, 2, \cdots, n\}$. Let $\delta = \min_{ |c - c'|: c, c' \in C, c \neq c'}$. Then $\delta$ is a Lebesgue number for the cover.  
 \end{example}
 
 \begin{definition}
